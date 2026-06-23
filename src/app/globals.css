@@ -1,0 +1,57 @@
+@import url('https://fonts.googleapis.com/css2?family=Comfortaa:wght@400;600;700&family=Afacad+Flux:wght@300;400;500;600;700&display=swap');
+@import "tailwindcss";
+
+:root {
+  --background: #F8FAFC;
+  --foreground: #1E293B;
+  
+  /* Brand e Accenti */
+  --brand-slate: #1E293B;
+  --brand-slate-dark: #0F172A;
+  --brand-slate-light: #475569;
+  
+  --accent-lime: #DCFD8B;
+  --accent-purple: #BC84EE;
+  --accent-orange: #FF823A;
+}
+
+@theme inline {
+  --font-sans: "Afacad Flux", sans-serif;
+  --font-title: "Comfortaa", sans-serif;
+  
+  --color-brand-bg: var(--background);
+  --color-brand-text: var(--foreground);
+  
+  --color-slate-brand: var(--brand-slate);
+  --color-slate-brand-dark: var(--brand-slate-dark);
+  --color-slate-brand-light: var(--brand-slate-light);
+  
+  --color-lime-accent: var(--accent-lime);
+  --color-purple-accent: var(--accent-purple);
+  --color-orange-accent: var(--accent-orange);
+}
+
+body {
+  background-color: var(--background);
+  color: var(--foreground);
+  font-family: var(--font-sans);
+  background-image: radial-gradient(circle at 10% 20%, rgba(220, 253, 139, 0.05) 0%, transparent 40%),
+                    radial-gradient(circle at 90% 80%, rgba(188, 132, 238, 0.07) 0%, transparent 40%);
+  min-height: 100vh;
+}
+
+/* Scrollbar personalizzata nello stile Fit Gelateria */
+::-webkit-scrollbar {
+  width: 6px;
+  height: 6px;
+}
+::-webkit-scrollbar-track {
+  background: transparent;
+}
+::-webkit-scrollbar-thumb {
+  background: var(--brand-slate-light);
+  border-radius: 9999px;
+}
+::-webkit-scrollbar-thumb:hover {
+  background: var(--accent-purple);
+}
