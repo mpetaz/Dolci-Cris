@@ -3,14 +3,14 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
-  <title>Gelateria Socio Fit - Masterclass Gelati & Caffè</title>
+  <title>Dolci Crisi - Fit & High-Protein Masterclass</title>
   
-  <!-- Font Google -->
+  <!-- Font Google ad alta leggibilità -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Comfortaa:wght@400;600;700&family=Afacad+Flux:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Comfortaa:wght@500;700&family=Afacad+Flux:wght@400;600;800&display=swap" rel="stylesheet">
   
-  <!-- Tailwind CSS CDN -->
+  <!-- Tailwind CSS -->
   <script src="https://cdn.tailwindcss.com"></script>
   <script>
     tailwind.config = {
@@ -24,13 +24,10 @@
             brand: {
               slate: '#1E293B',
               dark: '#0F172A',
-              light: '#475569',
-              bg: '#F8FAFC'
-            },
-            accent: {
+              cream: '#FDFBF7',
+              accent: '#BC84EE',
               lime: '#DCFD8B',
-              purple: '#BC84EE',
-              orange: '#FF823A',
+              orange: '#FF823A'
             }
           }
         }
@@ -40,132 +37,126 @@
 
   <style>
     body {
-      background-color: #F8FAFC;
-      background-image: radial-gradient(circle at 10% 20%, rgba(220, 253, 139, 0.06) 0%, transparent 40%),
-                        radial-gradient(circle at 90% 80%, rgba(188, 132, 238, 0.08) 0%, transparent 40%);
-      min-height: 100vh;
+      background-color: #FDFBF7; /* Crema caldissimo per stancare meno gli occhi */
+      font-size: 17px; /* Dimensione base generosa per iPhone */
     }
-    
-    /* Scrollbar personalizzata */
-    ::-webkit-scrollbar {
-      width: 6px;
-      height: 6px;
+    /* Impedisce lo zoom involontario sui campi di testo nei dispositivi iOS */
+    input, select, textarea {
+      font-size: 16px !important;
     }
-    ::-webkit-scrollbar-track {
-      background: transparent;
-    }
-    ::-webkit-scrollbar-thumb {
-      background: #475569;
-      border-radius: 9999px;
-    }
-    ::-webkit-scrollbar-thumb:hover {
-      background: #BC84EE;
+    /* Touch target ottimali per le dita (minimo 44px) */
+    .touch-target {
+      min-height: 48px;
+      min-width: 48px;
     }
   </style>
 </head>
-<body class="antialiased flex flex-col min-h-screen font-sans text-brand-slate">
+<body class="antialiased text-brand-dark min-h-screen flex flex-col">
 
-  <div class="flex-1 flex flex-col max-w-lg mx-auto w-full bg-white shadow-2xl min-h-screen relative overflow-hidden pb-12">
+  <!-- CONTENITORE MOBILE-FIRST -->
+  <div class="flex-1 flex flex-col max-w-md mx-auto w-full bg-white shadow-xl min-h-screen pb-16 relative">
     
-    <!-- HEADER -->
-    <header class="bg-brand-dark text-white px-5 py-6 rounded-b-[2.5rem] shadow-lg relative overflow-hidden">
-      <div class="absolute top-0 right-0 w-32 h-32 bg-accent-purple/10 rounded-full blur-2xl"></div>
-      <div class="absolute bottom-0 left-0 w-24 h-24 bg-accent-lime/10 rounded-full blur-xl"></div>
-      
-      <div class="flex justify-between items-center relative z-10">
-        <div>
-          <h1 class="font-title text-2xl font-bold tracking-tight flex items-center gap-2">
-            <span class="text-accent-lime font-extrabold text-3xl">Fit</span> Gelato
-          </h1>
-          <p class="text-xs text-slate-300 font-sans tracking-wide mt-1">
-            Moulinex Dolci × Russell Hobbs Masterclass
-          </p>
-        </div>
-        
-        <div class="flex items-center gap-2 bg-slate-800/60 backdrop-blur-md px-3 py-1.5 rounded-full border border-slate-700/50">
-          <span class="w-2.5 h-2.5 rounded-full bg-accent-lime animate-pulse"></span>
-          <span class="text-[10px] font-semibold uppercase tracking-wider text-accent-lime">Cucina Attiva</span>
-        </div>
-      </div>
-
-      <!-- STATUS HARDWARE -->
-      <div class="mt-6 bg-slate-800/50 backdrop-blur-lg border border-slate-700/30 rounded-2xl p-4 relative z-10">
-        <h3 class="text-xs font-bold uppercase tracking-wider text-accent-purple mb-2.5 flex items-center gap-1.5">
-          <svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 3v4M3 5h4M6 17v4m-2-2h4m5-16l2.286 6.857L21 12l-5.714 2.143L13 21l-2.286-6.857L5 12l5.714-2.143L13 3z"/></svg>
-          Dotazione Hardware in Possesso
-        </h3>
-        <div class="grid grid-cols-2 gap-3 text-xs">
-          <div class="bg-brand-dark/50 p-2.5 rounded-xl border border-slate-700/20 flex flex-col justify-between">
-            <div>
-              <span class="font-semibold text-white block truncate">Moulinex Dolci</span>
-              <span class="text-[10px] text-slate-400 block mt-0.5">Tecnologia Perfector</span>
-            </div>
-            <div className="mt-2" class="flex flex-wrap gap-1 mt-2">
-              <span class="px-1 text-[8px] bg-accent-purple/20 text-accent-purple rounded">1-Step</span>
-              <span class="px-1 text-[8px] bg-accent-lime/20 text-accent-lime rounded">MIX</span>
-              <span class="px-1 text-[8px] bg-slate-700 text-slate-300 rounded">Re-spin</span>
-            </div>
-          </div>
-          
-          <div class="bg-brand-dark/50 p-2.5 rounded-xl border border-slate-700/20 flex flex-col justify-between">
-            <div>
-              <span class="font-semibold text-white block truncate">Russell Hobbs Adventure</span>
-              <span class="text-[10px] text-slate-400 block mt-0.5">Caffè Filtro (85°C)</span>
-            </div>
-            <div class="mt-2">
-              <span class="px-1.5 py-0.5 text-[8px] bg-accent-orange/20 text-accent-orange rounded font-medium">Estrazione Neutri</span>
-            </div>
-          </div>
-        </div>
+    <!-- HEADER TITOLO GIGANTE -->
+    <header class="bg-brand-dark text-white px-6 py-8 rounded-b-[2rem] shadow-md relative">
+      <div class="absolute top-0 right-0 w-24 h-24 bg-brand-accent/15 rounded-full blur-xl"></div>
+      <div class="relative z-10 text-center">
+        <h1 class="font-title text-4xl font-bold tracking-tight text-white">
+          Dolci <span class="text-accent-lime">Crisi</span>
+        </h1>
+        <p class="text-sm text-slate-300 font-sans tracking-wide mt-2 font-medium">
+          La cucina Fit di Cris & del Socio
+        </p>
       </div>
     </header>
 
-    <!-- NAVIGATION TABS -->
-    <nav class="px-4 mt-5">
-      <div class="bg-slate-100/80 backdrop-blur-md p-1.5 rounded-2xl flex justify-between border border-slate-200/50">
-        <button id="tab-recipes-btn" onclick="switchTab('recipes')" class="flex-1 py-2.5 rounded-xl text-xs font-semibold flex flex-col items-center gap-1 transition-all duration-300 bg-white text-brand-dark shadow-md">
-          <svg class="w-4 h-4 text-accent-purple" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 6.253v13m0-13C10.832 5.477 9.246 5 7.5 5S4.168 5.477 3 6.253v13C4.168 18.477 5.754 18 7.5 18s3.332.477 4.5 1.253m0-13C13.168 5.477 14.754 5 16.5 5c1.747 0 3.332.477 4.5 1.253v13C19.832 18.477 18.247 18 16.5 18c-1.746 0-3.332.477-4.5 1.253"/></svg>
-          Ricette
+    <!-- MENU PRINCIPALE A PULSANTI GRANDI (GRIGLIA TATTILE) -->
+    <section class="px-5 mt-6">
+      <div class="grid grid-cols-2 gap-4">
+        <button onclick="selectSection('recipes')" id="btn-sec-recipes" class="touch-target py-5 px-4 rounded-2xl bg-brand-dark text-white font-title font-bold text-lg flex flex-col items-center justify-center gap-2 border-2 border-brand-dark shadow-md active:scale-95 transition-all">
+          <span class="text-2xl">🍦</span>
+          Gelati
         </button>
         
-        <button id="tab-freezer-btn" onclick="switchTab('freezer')" class="flex-1 py-2.5 rounded-xl text-xs font-semibold flex flex-col items-center gap-1 transition-all duration-300 text-slate-500 hover:text-slate-800 relative">
-          <span id="badge-freezer" class="absolute top-1 right-3 hidden h-2 w-2">
-            <span class="animate-ping absolute inline-flex h-full w-full rounded-full bg-accent-lime opacity-75"></span>
-            <span class="relative inline-flex rounded-full h-2 w-2 bg-accent-lime"></span>
-          </span>
-          <svg class="w-4 h-4 text-cyan-500" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 3v1m0 16v1m9-9h-1M4 12H3m15.364-6.364l-.707.707M6.343 17.657l-.707.707m0-12.728l.707.707m12.728 12.728l.707-.707M12 8a4 4 0 100 8 4 4 0 000-8z"/></svg>
-          Freezer
+        <button onclick="selectSection('dolci')" id="btn-sec-dolci" class="touch-target py-5 px-4 rounded-2xl bg-slate-100 text-brand-dark font-title font-bold text-lg flex flex-col items-center justify-center gap-2 border-2 border-slate-200 active:scale-95 transition-all">
+          <span class="text-2xl">🍰</span>
+          Dolci (TBD)
         </button>
         
-        <button id="tab-pantry-btn" onclick="switchTab('pantry')" class="flex-1 py-2.5 rounded-xl text-xs font-semibold flex flex-col items-center gap-1 transition-all duration-300 text-slate-500 hover:text-slate-800 relative">
-          <span id="badge-pantry" class="absolute top-1 right-3 hidden h-2 w-2">
-            <span class="animate-ping absolute inline-flex h-full w-full rounded-full bg-accent-orange opacity-75"></span>
-            <span class="relative inline-flex rounded-full h-2 w-2 bg-accent-orange"></span>
-          </span>
-          <svg class="w-4 h-4 text-amber-500" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M20 7l-8-4-8 4m16 0l-8 4m8-4v10l-8 4m0-10L4 7m8 4v10M4 7v10l8 4"/></svg>
+        <button onclick="selectSection('machines')" id="btn-sec-machines" class="touch-target py-5 px-4 rounded-2xl bg-slate-100 text-brand-dark font-title font-bold text-lg flex flex-col items-center justify-center gap-2 border-2 border-slate-200 active:scale-95 transition-all">
+          <span class="text-2xl">🔌</span>
+          Macchine
+        </button>
+        
+        <button onclick="selectSection('pantry')" id="btn-sec-pantry" class="touch-target py-5 px-4 rounded-2xl bg-slate-100 text-brand-dark font-title font-bold text-lg flex flex-col items-center justify-center gap-2 border-2 border-slate-200 active:scale-95 transition-all">
+          <span class="text-2xl">🛒</span>
           Dispensa
         </button>
-        
-        <button id="tab-trouble-btn" onclick="switchTab('trouble')" class="flex-1 py-2.5 rounded-xl text-xs font-semibold flex flex-col items-center gap-1 transition-all duration-300 text-slate-500 hover:text-slate-800">
-          <svg class="w-4 h-4 text-accent-orange" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8.228 9c.549-1.165 2.03-2 3.772-2 2.21 0 4 1.343 4 3 0 1.4-1.278 2.575-3.006 2.907-.542.104-.994.54-.994 1.093m0 3h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"/></svg>
-          Spin & Tips
-        </button>
       </div>
-    </nav>
+    </section>
 
-    <!-- MAIN VIEW CONTAINER -->
-    <main id="main-content" class="flex-1 px-4 py-4 overflow-y-auto">
-      <!-- Il contenuto delle tab verrà inserito dinamicamente qui -->
+    <!-- SEZIONE CONTENUTO -->
+    <main id="section-content" class="flex-1 px-5 py-6">
+      <!-- Il contenuto delle tab verrà inserito qui -->
     </main>
 
-    <!-- FOOTER -->
-    <footer class="absolute bottom-0 inset-x-0 h-10 bg-slate-50 border-t flex items-center justify-center text-[10px] text-slate-400">
-      Gelateria Socio Fit v1.0 • Fatto con PWA Autonoma & ❤️
-    </footer>
+    <!-- NOTIFICA POPUP (MODALE PER DETTAGLIO RICETTA E INGREDIENTI) -->
+    <div id="recipe-modal" class="fixed inset-0 bg-brand-dark/80 backdrop-blur-sm z-50 hidden flex items-end sm:items-center justify-center p-4">
+      <div class="bg-white w-full max-w-md rounded-t-3xl sm:rounded-3xl max-h-[90vh] overflow-y-auto shadow-2xl p-6 relative animate-slideUp">
+        
+        <!-- Pulsante Chiudi Grande -->
+        <button onclick="closeRecipeModal()" class="absolute top-4 right-4 touch-target w-10 h-10 rounded-full bg-slate-100 hover:bg-slate-200 flex items-center justify-center text-slate-800 text-xl font-bold">
+          ✕
+        </button>
+
+        <div id="modal-content-area">
+          <!-- Riempito dinamicamente -->
+        </div>
+      </div>
+    </div>
+
+    <!-- POPUP AGGIUNGI INGREDIENTE -->
+    <div id="pantry-modal" class="fixed inset-0 bg-brand-dark/80 backdrop-blur-sm z-50 hidden flex items-center justify-center p-4">
+      <div class="bg-white w-full max-w-sm rounded-3xl shadow-2xl p-6 relative">
+        <button onclick="closePantryModal()" class="absolute top-4 right-4 touch-target w-10 h-10 rounded-full bg-slate-100 hover:bg-slate-200 flex items-center justify-center text-slate-800 text-xl font-bold">
+          ✕
+        </button>
+        
+        <h3 class="font-title text-xl font-bold text-brand-dark mb-4">Aggiungi Prodotto</h3>
+        
+        <div class="space-y-4">
+          <div>
+            <label class="block text-xs font-bold text-slate-500 uppercase tracking-wider mb-1">Nome Ingrediente</label>
+            <input id="new-ing-name" type="text" placeholder="es. Latte Scremato in Polvere" class="w-full border-2 border-slate-200 rounded-xl p-3 text-base focus:outline-none focus:border-brand-accent bg-slate-50 font-semibold" />
+          </div>
+          <div class="grid grid-cols-2 gap-3">
+            <div>
+              <label class="block text-xs font-bold text-slate-500 uppercase tracking-wider mb-1">Quantità</label>
+              <input id="new-ing-qty" type="number" placeholder="500" class="w-full border-2 border-slate-200 rounded-xl p-3 text-base focus:outline-none focus:border-brand-accent bg-slate-50 font-semibold font-mono" />
+            </div>
+            <div>
+              <label class="block text-xs font-bold text-slate-500 uppercase tracking-wider mb-1">Unità</label>
+              <select id="new-ing-unit" class="w-full border-2 border-slate-200 rounded-xl p-3 text-base focus:outline-none focus:border-brand-accent bg-slate-50 font-semibold">
+                <option value="g">grammi (g)</option>
+                <option value="ml">millilitri (ml)</option>
+                <option value="pcs">pezzi (pz)</option>
+              </select>
+            </div>
+          </div>
+          <div class="flex items-center gap-2 py-1">
+            <input id="new-ing-critical" type="checkbox" class="w-5 h-5 rounded border-slate-300 text-brand-accent focus:ring-brand-accent" />
+            <label for="new-ing-critical" class="text-sm font-semibold text-slate-700 select-none">È un ingrediente fondamentale (Critico)</label>
+          </div>
+          
+          <button onclick="saveNewIngredient()" class="w-full bg-brand-dark text-white font-title font-bold text-base py-3.5 rounded-xl shadow-md active:scale-95 transition-all mt-2">
+            Salva in Dispensa
+          </button>
+        </div>
+      </div>
+    </div>
 
   </div>
 
-  <!-- SCRIPT DI LOGICA DELL'APPLICAZIONE -->
+  <!-- CODICE LOGICA APPLICAZIONE -->
   <script>
     // -------------------- DATI DI SEED --------------------
     const initialIngredients = [
@@ -195,8 +186,11 @@
         id: 'rec-1',
         title: 'Cioccolato Fit Protein',
         category: 'Gelato',
-        description: 'Gelato proteico al cioccolato denso e cremoso, bilanciato con eritritolo e neutro.',
+        description: 'Un gelato proteico al cioccolato denso e cremoso, bilanciato con eritritolo e neutro.',
         programUsed: 'Gelato',
+        protein: '28g',
+        kcal: '240',
+        tips: 'Attivazione a caldo del neutro in 50ml di latte. Frulla col mixer a immersione per formare il gel protettivo ed evitare grumi fastidiosi.',
         ingredients: [
           { name: 'Impact Whey Protein (Cioccolato)', quantity: 30, unit: 'g' },
           { name: 'Latte fresco parzialmente scremato', quantity: 300, unit: 'ml' },
@@ -205,15 +199,13 @@
           { name: 'Neutro per Gelati SaporePuro', quantity: 2, unit: 'g' },
         ],
         steps: [
-          { stepNumber: 1, instruction: 'Miscela a secco il Neutro SaporePuro e l\'eritritolo in una ciotolina per evitare grumi.', tempMin: null, tempMax: null },
-          { stepNumber: 2, instruction: 'Preleva 50ml di latte e scaldalo a 80-85°C (temperatura di attivazione del neutro).', tempMin: 80, tempMax: 85 },
-          { stepNumber: 3, instruction: 'Versa la miscela di neutro ed eritritolo nel latte caldo e frulla col mixer per attivare i gelificanti.', tempMin: null, tempMax: null },
-          { stepNumber: 4, instruction: 'Unisci le Impact Whey, il cacao amaro e il restante latte freddo (250ml) nel bicchiere del frullatore.', tempMin: null, tempMax: null },
-          { stepNumber: 5, instruction: 'Frulla il tutto accuratamente per emulsionare le due basi e lascia intiepidire.', tempMin: null, tempMax: null },
-          { stepNumber: 6, instruction: 'Versa nella pinta Moulinex e metti in freezer a congelare per esattamente 24 ore senza coperchio.', tempMin: null, tempMax: null },
-        ],
-        hasMixIn: false,
-        mixInInstructions: null,
+          'Miscela a secco il Neutro SaporePuro e l\'eritritolo.',
+          'Scalda 50ml di latte a 80-85°C (temperatura di attivazione del neutro).',
+          'Versa la miscela di neutro ed eritritolo nel latte caldo e frulla col mixer per attivare i gelificanti.',
+          'Unisci le Impact Whey, il cacao amaro e il restante latte freddo (250ml) nel frullatore.',
+          'Frulla tutto accuratamente per emulsionare le due basi.',
+          'Versa nella pinta e congela in freezer per 24 ore.'
+        ]
       },
       {
         id: 'rec-2',
@@ -221,6 +213,9 @@
         category: 'Gelato',
         description: 'Il classico gusto Malaga rivisitato in chiave proteica con yogurt greco e un tocco alcolico di Marsala.',
         programUsed: 'Gelato',
+        protein: '18g',
+        kcal: '290',
+        tips: 'Shock Termico dell\'uvetta: metti le uvette scolate nel freezer per 20 minuti prima di inserirle nel foro centrale del gelato spinnato, così non scioglieranno il gelato.',
         ingredients: [
           { name: 'Yogurt Greco 0% Bianco', quantity: 200, unit: 'g' },
           { name: 'Latte fresco parzialmente scremato', quantity: 150, unit: 'ml' },
@@ -230,24 +225,24 @@
           { name: 'Uvetta', quantity: 40, unit: 'g' },
         ],
         steps: [
-          { stepNumber: 1, instruction: 'Metti le uvette a bagno in 20-30ml extra di Marsala per almeno 4 ore.', tempMin: null, tempMax: null },
-          { stepNumber: 2, instruction: 'Miscela a secco il Neutro SaporePuro e l\'eritritolo.', tempMin: null, tempMax: null },
-          { stepNumber: 3, instruction: 'Scalda 50ml di latte a circa 80-85°C, unisci il neutro/eritritolo e frulla col mixer per idratare.', tempMin: 80, tempMax: 85 },
-          { stepNumber: 4, instruction: 'Unisci lo yogurt greco 0%, il latte freddo rimanente, i 30ml di Marsala per la base e frulla bene.', tempMin: null, tempMax: null },
-          { stepNumber: 5, instruction: 'Versa la base nella pinta, livella la superficie e congela in freezer per 24 ore.', tempMin: null, tempMax: null },
-          { stepNumber: 6, instruction: 'Scola le uvette ammollate e mettile in freezer su un piattino per 20 minuti prima dello spin per lo shock termico (fondamentale!).', tempMin: null, tempMax: null },
-          { stepNumber: 7, instruction: 'Esegui il primo spin della pinta con il programma "Gelato". Scava poi un foro cilindrico al centro.', tempMin: null, tempMax: null },
-          { stepNumber: 8, instruction: 'Versa le uvette nel foro e avvia il programma "MIX" della Moulinex Dolci per incorporarle.', tempMin: null, tempMax: null },
-        ],
-        hasMixIn: true,
-        mixInInstructions: 'Shock Termico: Uvette ammollate nel Marsala, scolate bene e messe 20 minuti in freezer prima di inserirle nel foro centrale del gelato appena spinnato. Avviare poi il programma MIX.',
+          'Metti le uvette a bagno in 20-30ml di Marsala per almeno 4 ore.',
+          'Miscela a secco il Neutro SaporePuro e l\'eritritolo.',
+          'Scalda 50ml di latte a 80-85°C, unisci il neutro/eritritolo e frulla col mixer.',
+          'Unisci lo yogurt greco 0%, il latte freddo rimanente, i 30ml di Marsala e frulla bene.',
+          'Versa la base nella pinta, livella la superficie e congela per 24 ore.',
+          'Scola le uvette e mettile in freezer per 20 minuti su un piattino.',
+          'Esegui lo spin "Gelato", scava un foro al centro, versa le uvette ghiacciate e premi MIX.'
+        ]
       },
       {
         id: 'rec-3',
         title: 'Crema Caffè Russell-Moulinex',
         category: 'Gelato',
-        description: 'Deliziosa crema caffè proteica che unisce l\'estrazione a filtro della Russell Hobbs con la mantecazione della Moulinex.',
+        description: 'Una crema caffè proteica e vellutata che unisce caffè a filtro e yogurt greco.',
         programUsed: 'Yogurt Gelato',
+        protein: '32g',
+        kcal: '260',
+        tips: 'Sciogli il neutro e l\'eritritolo direttamente nel caffè bollente appena estratto dalla Russell Hobbs Adventure (perfetto per attivarlo a 85°C).',
         ingredients: [
           { name: 'Caffè in grani/polvere', quantity: 15, unit: 'g' },
           { name: 'Acqua', quantity: 150, unit: 'ml' },
@@ -258,22 +253,22 @@
           { name: 'Impact Whey Protein (Vaniglia)', quantity: 20, unit: 'g' },
         ],
         steps: [
-          { stepNumber: 1, instruction: 'Esegui un\'estrazione a filtro calda usando la macchina Russell Hobbs Adventure per ottenere 150ml di caffè.', tempMin: 80, tempMax: 85 },
-          { stepNumber: 2, instruction: 'Sciogli immediatamente il Neutro e l\'eritritolo direttamente nel caffè bollente appena uscito, frullando col mixer.', tempMin: null, tempMax: null },
-          { stepNumber: 3, instruction: 'Lascia intiepidire la miscela di caffè per qualche minuto.', tempMin: null, tempMax: null },
-          { stepNumber: 4, instruction: 'Aggiungi lo yogurt greco al caffè 0%, il latte freddo e le Impact Whey e frulla accuratamente.', tempMin: null, tempMax: null },
-          { stepNumber: 5, instruction: 'Versa nella pinta e posizionala in freezer a congelare per 24 ore.', tempMin: null, tempMax: null },
-          { stepNumber: 6, instruction: 'Processa la pinta congelata utilizzando il programma "Yogurt Gelato" sulla Moulinex Dolci.', tempMin: null, tempMax: null },
-        ],
-        hasMixIn: false,
-        mixInInstructions: null,
+          'Esegui un\'estrazione a filtro calda per ottenere 150ml di caffè.',
+          'Sciogli subito il neutro e l\'eritritolo nel caffè bollente frullando bene col mixer.',
+          'Lascia intiepidire la miscela per qualche minuto.',
+          'Aggiungi lo yogurt greco al caffè, il latte freddo e le whey protein e frulla.',
+          'Versa nella pinta e congela in freezer per 24 ore.'
+        ]
       },
       {
         id: 'rec-4',
         title: 'Sorbetto alla Pesca Matura',
         category: 'Sorbetto',
-        description: 'Sorbetto rinfrescante con pesche fresche frullate e stabilizzato a caldo con neutro ed eritritolo.',
+        description: 'Sorbetto rinfrescante con pesche fresche e stabilizzato a caldo.',
         programUsed: 'Sorbetto',
+        protein: '2g',
+        kcal: '140',
+        tips: 'Aggiungi un cucchiaio di succo di limone fresco mentre frulli le pesche per evitare l\'ossidazione e mantenere un colore vivo.',
         ingredients: [
           { name: 'Pesche Mature', quantity: 350, unit: 'g' },
           { name: 'Acqua', quantity: 80, unit: 'ml' },
@@ -281,22 +276,22 @@
           { name: 'Neutro per Gelati SaporePuro', quantity: 2, unit: 'g' },
         ],
         steps: [
-          { stepNumber: 1, instruction: 'Scalda 80ml di acqua a 80°C.', tempMin: 75, tempMax: 85 },
-          { stepNumber: 2, instruction: 'Sciogli il Neutro e l\'eritritolo nell\'acqua calda frullando accuratamente.', tempMin: null, tempMax: null },
-          { stepNumber: 3, instruction: 'Sbuccia le pesche, tagliale a pezzi e frullale finemente con un cucchiaio di succo di limone.', tempMin: null, tempMax: null },
-          { stepNumber: 4, instruction: 'Unisci lo sciroppo di neutro caldo alla polpa di pesca e frulla per amalgamare.', tempMin: null, tempMax: null },
-          { stepNumber: 5, instruction: 'Versa la miscela nella pinta e congela per 24 ore.', tempMin: null, tempMax: null },
-          { stepNumber: 6, instruction: 'Mantechi la pinta congelata con il programma "Sorbetto".', tempMin: null, tempMax: null },
-        ],
-        hasMixIn: false,
-        mixInInstructions: null,
+          'Scalda 80ml di acqua a 80°C.',
+          'Sciogli il neutro e l\'eritritolo nell\'acqua calda frullando.',
+          'Sbuccia le pesche, tagliale a pezzi e frullale con un po\' di succo di limone.',
+          'Unisci lo sciroppo caldo alla polpa di pesca e frulla bene.',
+          'Versa nella pinta e congela in freezer per 24 ore.'
+        ]
       },
       {
         id: 'rec-5',
         title: 'Sorbetto ai Frutti di Bosco "Sanificato"',
         category: 'Sorbetto',
-        description: 'Massima sicurezza alimentare: frutti di bosco cotti a caldo per eliminare virus, stabilizzati con neutro.',
+        description: 'Sorbetto frutti di bosco cotto a caldo contro virus per la massima sicurezza alimentare.',
         programUsed: 'Sorbetto',
+        protein: '3g',
+        kcal: '150',
+        tips: 'La bollitura di 2-3 minuti dei frutti di bosco congelati è fondamentale per eliminare virus (Epatite A/Norovirus) e sanificare la frutta.',
         ingredients: [
           { name: 'Frutti di Bosco Congelati', quantity: 300, unit: 'g' },
           { name: 'Acqua', quantity: 100, unit: 'ml' },
@@ -304,34 +299,32 @@
           { name: 'Neutro per Gelati SaporePuro', quantity: 2.5, unit: 'g' },
         ],
         steps: [
-          { stepNumber: 1, instruction: 'Bollisci i frutti di bosco congelati per 2-3 minuti in 100ml di acqua e eritritolo (processo fondamentale anti-virus).', tempMin: 90, tempMax: 100 },
-          { stepNumber: 2, instruction: 'A circa 85°C, sciogli 2.5g di Neutro nella purea calda di frutti di bosco, frullando accuratamente col mixer.', tempMin: 80, tempMax: 85 },
-          { stepNumber: 3, instruction: 'Lascia raffreddare la purea a temperatura ambiente.', tempMin: null, tempMax: null },
-          { stepNumber: 4, instruction: 'Versa il composto nella pinta e congelalo per 24 ore.', tempMin: null, tempMax: null },
-          { stepNumber: 5, instruction: 'Processa nella Moulinex Dolci con il programma "Sorbetto".', tempMin: null, tempMax: null },
-        ],
-        hasMixIn: false,
-        mixInInstructions: null,
+          'Bollisci i frutti di bosco congelati per 2-3 minuti in 100ml di acqua ed eritritolo.',
+          'Raggiunti gli 85°C in raffreddamento, sciogli il neutro direttamente nella purea calda frullando col mixer.',
+          'Lascia raffreddare a temperatura ambiente.',
+          'Versa nella pinta e congela per 24 ore.'
+        ]
       },
       {
         id: 'rec-6',
         title: 'Nice Cream Choco-Banana Istantaneo',
         category: 'NiceCream',
-        description: 'Il gelato velocissimo senza attesa di 24 ore, cremoso grazie alle banane congelate frullate ed emulsionate subito.',
+        description: 'Gelato velocissimo senza attesa di 24 ore, cremoso ed emulsionato al volo.',
         programUsed: 'MIX',
+        protein: '6g',
+        kcal: '230',
+        tips: 'Usa banane molto mature prima di congelarle: la dolcezza naturale eliminerà la necessità di aggiungere eritritolo!',
         ingredients: [
           { name: 'Banane', quantity: 2, unit: 'pcs' },
           { name: 'Cacao Amaro', quantity: 15, unit: 'g' },
           { name: 'Latte fresco parzialmente scremato', quantity: 45, unit: 'ml' },
         ],
         steps: [
-          { stepNumber: 1, instruction: 'Taglia a rondelle le banane e mettile in freezer per almeno 4-6 ore fino a renderle completamente solide.', tempMin: null, tempMax: null },
-          { stepNumber: 2, instruction: 'Metti le banane congelate, il cacao amaro e il latte freddo nel frullatore.', tempMin: null, tempMax: null },
-          { stepNumber: 3, instruction: 'Frulla immediatamente a impulsi finché non ottieni una consistenza cremosa.', tempMin: null, tempMax: null },
-          { stepNumber: 4, instruction: 'Trasferisci subito il composto nella pinta Moulinex e avvia il programma "MIX" per servire all\'istante senza attendere 24 ore!', tempMin: null, tempMax: null },
-        ],
-        hasMixIn: false,
-        mixInInstructions: null,
+          'Taglia le banane a rondelle e congelale per almeno 4-6 ore.',
+          'Metti le banane congelate, il cacao e il latte freddo nel frullatore.',
+          'Frulla a impulsi fino ad ottenere una crema omogenea.',
+          'Versa nella pinta Moulinex e lancia il programma MIX per servire subito!'
+        ]
       },
       {
         id: 'rec-7',
@@ -339,6 +332,9 @@
         category: 'Granita',
         description: 'Una granita al caffè tradizionale dolcificata con eritritolo, stabilizzata con neutro e servita con panna.',
         programUsed: 'Granita',
+        protein: '4g',
+        kcal: '180',
+        tips: 'Monta la panna freschissima e dolcificala con pochissimo eritritolo a velo per una guarnizione spettacolare.',
         ingredients: [
           { name: 'Caffè in grani/polvere', quantity: 30, unit: 'g' },
           { name: 'Acqua', quantity: 300, unit: 'ml' },
@@ -347,15 +343,11 @@
           { name: 'Panna da montare', quantity: 50, unit: 'ml' },
         ],
         steps: [
-          { stepNumber: 1, instruction: 'Esegui un\'estrazione a filtro calda per ottenere 300ml di caffè americano caldo.', tempMin: 80, tempMax: 85 },
-          { stepNumber: 2, instruction: 'Sciogli l\'eritritolo e 1.5g di Neutro direttamente nel caffè bollente frullando bene col mixer.', tempMin: null, tempMax: null },
-          { stepNumber: 3, instruction: 'Lascia raffreddare la miscela a temperatura ambiente e poi versala nella pinta.', tempMin: null, tempMax: null },
-          { stepNumber: 4, instruction: 'Congela in freezer per 24 ore.', tempMin: null, tempMax: null },
-          { stepNumber: 5, instruction: 'Mantechi la granita utilizzando il programma "Granita" sulla Moulinex Dolci.', tempMin: null, tempMax: null },
-          { stepNumber: 6, instruction: 'Servi la granita in un bicchiere con una generosa guarnizione di panna montata.', tempMin: null, tempMax: null },
-        ],
-        hasMixIn: false,
-        mixInInstructions: null,
+          'Prepara 300ml di caffè caldo a filtro.',
+          'Sciogli eritritolo e neutro nel caffè bollente frullando.',
+          'Lascia raffreddare e poi versa nella pinta.',
+          'Congela per 24 ore e poi mantechi col programma "Granita".'
+        ]
       },
       {
         id: 'rec-8',
@@ -363,6 +355,9 @@
         category: 'Gelato',
         description: 'Gelato proteico e ricco con pasta pura di mandorle, yogurt greco e whey vaniglia.',
         programUsed: 'Gelato',
+        protein: '24g',
+        kcal: '380',
+        tips: 'Diluisci la pasta pura di mandorle 100% aggiungendo il latte freddo a filo un po\' alla volta per ottenere un\'emulsione senza grumi oleosi.',
         ingredients: [
           { name: 'Pasta Pura di Mandorle 100%', quantity: 80, unit: 'g' },
           { name: 'Yogurt Greco 0% Bianco', quantity: 200, unit: 'g' },
@@ -372,47 +367,21 @@
           { name: 'Neutro per Gelati SaporePuro', quantity: 2.5, unit: 'g' },
         ],
         steps: [
-          { stepNumber: 1, instruction: 'Miscela a secco il Neutro SaporePuro e l\'eritritolo.', tempMin: null, tempMax: null },
-          { stepNumber: 2, instruction: 'Scalda 50ml di latte a 80-85°C e sciogli la miscela di neutro ed eritritolo frullando col mixer.', tempMin: 80, tempMax: 85 },
-          { stepNumber: 3, instruction: 'In una ciotola capiente, diluisci la pasta pura di mandorle con il restante latte freddo (100ml) un po\' alla volta.', tempMin: null, tempMax: null },
-          { stepNumber: 4, instruction: 'Unisci lo yogurt greco 0%, le Impact Whey vaniglia, lo sciroppo di neutro caldo e la pasta di mandorla frullando bene.', tempMin: null, tempMax: null },
-          { stepNumber: 5, instruction: 'Frulla vigorosamente per ottenere un composto liscio e vellutato.', tempMin: null, tempMax: null },
-          { stepNumber: 6, instruction: 'Versa nella pinta e posizionala in freezer per 24 ore.', tempMin: null, tempMax: null },
-          { stepNumber: 7, instruction: 'Mantechi col programma "Gelato" sulla Moulinex Dolci.', tempMin: null, tempMax: null },
-        ],
-        hasMixIn: false,
-        mixInInstructions: null,
+          'Miscela a secco il Neutro SaporePuro e l\'eritritolo.',
+          'Scalda 50ml di latte a 80-85°C e sciogli la miscela frullando.',
+          'Diluisci la pasta di mandorla con il latte freddo rimanente a filo.',
+          'Unisci yogurt greco, whey, sciroppo caldo e pasta di mandorle frullando.',
+          'Versa nella pinta e congela in freezer per 24 ore.'
+        ]
       },
     ];
 
-    // Mappatura stili categoria
-    const categoryStyles = {
-      'Gelato': { bg: 'bg-amber-50/80', text: 'text-amber-900', border: 'border-amber-200', textBadge: 'bg-amber-100 text-amber-800' },
-      'Sorbetto': { bg: 'bg-cyan-50/80', text: 'text-cyan-900', border: 'border-cyan-200', textBadge: 'bg-cyan-100 text-cyan-800' },
-      'Granita': { bg: 'bg-indigo-50/80', text: 'text-indigo-900', border: 'border-indigo-200', textBadge: 'bg-indigo-100 text-indigo-800' },
-      'NiceCream': { bg: 'bg-yellow-50/80', text: 'text-yellow-900', border: 'border-yellow-200', textBadge: 'bg-yellow-100 text-yellow-800' }
-    };
-
-    const recipeMacros = {
-      'Cioccolato Fit Protein': { protein: '28g', kcal: '240' },
-      'Malaga Fit (Marsala & Uvetta)': { protein: '18g', kcal: '290' },
-      'Crema Caffè Russell-Moulinex': { protein: '32g', kcal: '260' },
-      'Sorbetto alla Pesca Matura': { protein: '2g', kcal: '140' },
-      'Sorbetto ai Frutti di Bosco "Sanificato"': { protein: '3g', kcal: '150' },
-      'Nice Cream Choco-Banana Istantaneo': { protein: '6g', kcal: '230' },
-      'Granita Siciliana al Caffè (con Panna)': { protein: '4g', kcal: '180' },
-      'Gelato alla Mandorla Siciliano': { protein: '24g', kcal: '380' },
-    };
-
-    // -------------------- STATO APPLICAZIONE --------------------
-    let currentTab = 'recipes';
-    let selectedRecipe = null;
-    let completedSteps = {};
+    // -------------------- STATO --------------------
+    let currentSection = 'recipes';
     let ingredients = [];
-    let trackers = [];
 
-    // Carica dati da localStorage
-    function initData() {
+    // Inizializzazione dati
+    function init() {
       const storedIng = localStorage.getItem('dolcicris_ingredients');
       if (storedIng) {
         ingredients = JSON.parse(storedIng);
@@ -420,30 +389,20 @@
         ingredients = [...initialIngredients];
         localStorage.setItem('dolcicris_ingredients', JSON.stringify(ingredients));
       }
-
-      const storedTr = localStorage.getItem('dolcicris_trackers');
-      if (storedTr) {
-        trackers = JSON.parse(storedTr);
-      } else {
-        trackers = [];
-        localStorage.setItem('dolcicris_trackers', JSON.stringify(trackers));
-      }
+      selectSection('recipes');
     }
 
-    // Cambia Tab
-    function switchTab(tabId) {
-      currentTab = tabId;
-      selectedRecipe = null;
-      completedSteps = {};
+    // Navigazione
+    function selectSection(sectionId) {
+      currentSection = sectionId;
       
-      // Update classi bottoni
-      const tabs = ['recipes', 'freezer', 'pantry', 'trouble'];
-      tabs.forEach(t => {
-        const btn = document.getElementById(`tab-${t}-btn`);
-        if (t === tabId) {
-          btn.className = "flex-1 py-2.5 rounded-xl text-xs font-semibold flex flex-col items-center gap-1 transition-all duration-300 bg-white text-brand-dark shadow-md";
+      const sections = ['recipes', 'dolci', 'machines', 'pantry'];
+      sections.forEach(s => {
+        const btn = document.getElementById(`btn-sec-${s}`);
+        if (s === sectionId) {
+          btn.className = "touch-target py-5 px-4 rounded-2xl bg-brand-dark text-white font-title font-bold text-lg flex flex-col items-center justify-center gap-2 border-2 border-brand-dark shadow-md active:scale-95 transition-all";
         } else {
-          btn.className = "flex-1 py-2.5 rounded-xl text-xs font-semibold flex flex-col items-center gap-1 transition-all duration-300 text-slate-500 hover:text-slate-800 relative";
+          btn.className = "touch-target py-5 px-4 rounded-2xl bg-slate-100 text-brand-dark font-title font-bold text-lg flex flex-col items-center justify-center gap-2 border-2 border-slate-200 active:scale-95 transition-all";
         }
       });
 
@@ -451,645 +410,345 @@
     }
 
     // Controlla disponibilità ingredienti
-    function checkRecipeAvailability(recipe) {
-      const warnings = [];
-      let isFullyAvailable = true;
-
-      recipe.ingredients.forEach((reqIng) => {
-        const match = ingredients.find(
-          (pantry) => pantry.name.toLowerCase().includes(reqIng.name.toLowerCase().split(' (')[0])
-        );
-
-        if (!match) {
-          if (reqIng.name.toLowerCase() !== 'acqua') {
-            warnings.push(`${reqIng.name} non presente`);
-            isFullyAvailable = false;
-          }
-        } else if (match.quantity < reqIng.quantity) {
-          warnings.push(`${reqIng.name} insufficiente`);
-          if (match.isCritical) {
-            isFullyAvailable = false;
-          }
+    function checkAvailability(recipe) {
+      let missingCount = 0;
+      recipe.ingredients.forEach(req => {
+        const match = ingredients.find(p => p.name.toLowerCase().includes(req.name.toLowerCase().split(' (')[0]));
+        if (req.name.toLowerCase() !== 'acqua' && (!match || match.quantity < req.quantity)) {
+          missingCount++;
         }
       });
-
-      return { isFullyAvailable, warnings };
+      return missingCount;
     }
 
-    // Salva quantità ingrediente
-    function handleUpdateQuantity(id, qty) {
-      const idx = ingredients.findIndex(i => i.id === id);
-      if (idx !== -1) {
-        ingredients[idx].quantity = Math.max(0, parseFloat(qty) || 0);
+    // Aggiungi ingrediente
+    function saveNewIngredient() {
+      const nameInput = document.getElementById('new-ing-name');
+      const qtyInput = document.getElementById('new-ing-qty');
+      const unitSelect = document.getElementById('new-ing-unit');
+      const criticalCheck = document.getElementById('new-ing-critical');
+
+      const name = nameInput.value.trim();
+      const qty = parseFloat(qtyInput.value) || 0;
+      const unit = unitSelect.value;
+      const isCritical = criticalCheck.checked;
+
+      if (!name) {
+        alert('Inserisci il nome del prodotto!');
+        return;
+      }
+
+      const newId = 'ing-' + Math.random().toString(36).substr(2, 9);
+      ingredients.push({
+        id: newId,
+        name: name,
+        quantity: qty,
+        unit: unit,
+        isCritical: isCritical
+      });
+
+      // Ordina per nome
+      ingredients.sort((a, b) => a.name.localeCompare(b.name));
+
+      localStorage.setItem('dolcicris_ingredients', JSON.stringify(ingredients));
+      
+      // Resetta campi
+      nameInput.value = '';
+      qtyInput.value = '';
+      criticalCheck.checked = false;
+
+      closePantryModal();
+      render();
+    }
+
+    // Regola quantità
+    function adjustQty(id, delta) {
+      const ing = ingredients.find(i => i.id === id);
+      if (ing) {
+        ing.quantity = Math.max(0, ing.quantity + delta);
         localStorage.setItem('dolcicris_ingredients', JSON.stringify(ingredients));
-        updateBadges();
+        document.getElementById(`qty-val-${id}`).innerText = `${ing.quantity} ${ing.unit}`;
+        
+        // Colora se critico scarso
+        const ingCard = document.getElementById(`ing-card-${id}`);
+        if (ing.isCritical && ing.quantity <= 10) {
+          ingCard.className = "p-4.5 bg-orange-50 border-2 border-orange-200 rounded-2xl flex items-center justify-between shadow-xs";
+        } else {
+          ingCard.className = "p-4.5 bg-slate-50 border border-slate-200 rounded-2xl flex items-center justify-between shadow-xs";
+        }
       }
     }
 
-    // Aggiungi pinta in freezer
-    function handleAddPint(recipeId, pintaName) {
+    // Rimuovi ingrediente
+    function deleteIngredient(id) {
+      if (confirm('Sei sicuro di voler eliminare questo prodotto dalla dispensa?')) {
+        ingredients = ingredients.filter(i => i.id !== id);
+        localStorage.setItem('dolcicris_ingredients', JSON.stringify(ingredients));
+        render();
+      }
+    }
+
+    // Modali
+    function openRecipeModal(recipeId) {
       const recipe = initialRecipes.find(r => r.id === recipeId);
       if (!recipe) return;
 
-      const now = new Date();
-      const readyAt = new Date(now.getTime() + 24 * 60 * 60 * 1000);
-      const isIstantanea = recipe.category === 'NiceCream';
+      const modal = document.getElementById('recipe-modal');
+      const content = document.getElementById('modal-content-area');
 
-      const newTracker = {
-        id: 'tr-' + Math.random().toString(36).substr(2, 9),
-        pintaName: (pintaName || `Pinta ${recipe.title}`).trim(),
-        recipeId: recipeId,
-        recipe: recipe,
-        createdAt: now.toISOString(),
-        readyAt: (isIstantanea ? now : readyAt).toISOString(),
-        isSpun: false
-      };
-
-      trackers.push(newTracker);
-      localStorage.setItem('dolcicris_trackers', JSON.stringify(trackers));
-
-      // Scala gli ingredienti della ricetta
-      recipe.ingredients.forEach((reqIng) => {
-        const pantryItem = ingredients.find(
-          (pantry) => pantry.name.toLowerCase().includes(reqIng.name.toLowerCase().split(' (')[0])
-        );
-        if (pantryItem) {
-          pantryItem.quantity = Math.max(0, pantryItem.quantity - reqIng.quantity);
-        }
+      let ingList = '';
+      recipe.ingredients.forEach(ing => {
+        const match = ingredients.find(p => p.name.toLowerCase().includes(ing.name.toLowerCase().split(' (')[0]));
+        const isOk = ing.name.toLowerCase() === 'acqua' || (match && match.quantity >= ing.quantity);
+        ingList += `
+          <div class="flex justify-between py-2 border-b text-lg border-slate-100">
+            <span class="font-medium text-slate-800">${ing.name}</span>
+            <span class="font-bold text-slate-900 bg-slate-50 border px-3 py-0.5 rounded-lg ${isOk ? '' : 'text-red-600 bg-red-50 border-red-200'}">
+              ${ing.quantity}${ing.unit}
+            </span>
+          </div>
+        `;
       });
-      localStorage.setItem('dolcicris_ingredients', JSON.stringify(ingredients));
 
-      alert('Pinta registrata in freezer! Avviato il countdown di 24 ore.');
-      switchTab('freezer');
+      let stepsList = '';
+      recipe.steps.forEach((step, idx) => {
+        stepsList += `
+          <div class="flex gap-3 text-lg leading-relaxed text-slate-800">
+            <span class="text-brand-accent font-extrabold text-xl">${idx + 1}.</span>
+            <p>${step}</p>
+          </div>
+        `;
+      });
+
+      content.innerHTML = `
+        <div class="space-y-6">
+          <div>
+            <span class="px-3 py-1 bg-brand-dark text-white rounded-full text-xs font-bold uppercase tracking-wider">${recipe.category}</span>
+            <h2 class="font-title text-2xl font-bold text-brand-dark mt-2">${recipe.title}</h2>
+            <p class="text-base text-slate-500 mt-1">${recipe.description}</p>
+          </div>
+
+          <!-- MACROS -->
+          <div class="grid grid-cols-2 gap-4 bg-slate-50 p-4 rounded-2xl border">
+            <div class="text-center">
+              <span class="text-xs text-slate-400 font-bold uppercase">Proteine</span>
+              <span class="block text-2xl font-extrabold text-brand-dark">${recipe.protein}</span>
+            </div>
+            <div class="text-center border-l">
+              <span class="text-xs text-slate-400 font-bold uppercase">Calorie</span>
+              <span class="block text-2xl font-extrabold text-brand-dark">${recipe.kcal} kcal</span>
+            </div>
+          </div>
+
+          <!-- SEZIONE INGREDIENTI -->
+          <div class="space-y-3">
+            <h3 class="font-title text-xl font-bold text-brand-dark flex items-center gap-2">
+              📋 Ingredienti
+            </h3>
+            <div class="space-y-1">
+              ${ingList}
+            </div>
+          </div>
+
+          <!-- PROCEDIMENTO -->
+          <div class="space-y-4">
+            <h3 class="font-title text-xl font-bold text-brand-dark">
+              ⚡ Procedimento
+            </h3>
+            <div class="space-y-4">
+              ${stepsList}
+            </div>
+          </div>
+
+          <!-- CHICCHE E TIPS -->
+          <div class="bg-accent-orange/15 border-2 border-accent-orange/30 p-5 rounded-2xl space-y-2">
+            <h4 class="font-title font-bold text-lg text-brand-dark flex items-center gap-1.5">
+              💡 Chicche e Tips del Socio
+            </h4>
+            <p class="text-base text-slate-800 leading-relaxed font-medium">
+              ${recipe.tips}
+            </p>
+          </div>
+        </div>
+      `;
+
+      modal.classList.remove('hidden');
+      document.body.classList.add('overflow-hidden');
     }
 
-    // Segna pinta come spinnata
-    function handleSpinPint(id) {
-      const tracker = trackers.find(t => t.id === id);
-      if (tracker) {
-        tracker.isSpun = true;
-        localStorage.setItem('dolcicris_trackers', JSON.stringify(trackers));
-        render();
-      }
+    function closeRecipeModal() {
+      document.getElementById('recipe-modal').classList.add('hidden');
+      document.body.classList.remove('overflow-hidden');
     }
 
-    // Elimina pinta dal tracker
-    function handleDeleteTracker(id) {
-      trackers = trackers.filter(t => t.id !== id);
-      localStorage.setItem('dolcicris_trackers', JSON.stringify(trackers));
-      render();
+    function openPantryModal() {
+      document.getElementById('pantry-modal').classList.remove('hidden');
     }
 
-    // Calcola countdown
-    function getTimerDetails(tracker) {
-      const readyTime = new Date(tracker.readyAt).getTime();
-      const startTime = new Date(tracker.createdAt).getTime();
-      const nowMs = new Date().getTime();
-
-      const totalDuration = readyTime - startTime;
-      const timePassed = nowMs - startTime;
-      const timeRemaining = readyTime - nowMs;
-
-      const percentage = Math.min(100, Math.max(0, totalDuration > 0 ? (timePassed / totalDuration) * 100 : 100));
-      const isReady = timeRemaining <= 0;
-
-      let countdownStr = '00:00:00';
-      if (!isReady && timeRemaining > 0) {
-        const hours = Math.floor(timeRemaining / (1000 * 60 * 60));
-        const minutes = Math.floor((timeRemaining % (1000 * 60 * 60)) / (1000 * 60));
-        const seconds = Math.floor((timeRemaining % (1000 * 60)) / 1000);
-        countdownStr = `${hours.toString().padStart(2, '0')}:${minutes.toString().padStart(2, '0')}:${seconds.toString().padStart(2, '0')}`;
-      }
-
-      return { percentage, isReady, countdownStr };
+    function closePantryModal() {
+      document.getElementById('pantry-modal').classList.add('hidden');
     }
 
-    // Aggiorna badge notifiche
-    function updateBadges() {
-      // Badge freezer
-      const now = new Date().getTime();
-      const readyCount = trackers.filter(t => !t.isSpun && new Date(t.readyAt).getTime() <= now).length;
-      const badgeFreezer = document.getElementById('badge-freezer');
-      if (readyCount > 0) {
-        badgeFreezer.classList.remove('hidden');
-      } else {
-        badgeFreezer.classList.add('hidden');
-      }
-
-      // Badge dispensa (ingredienti critici e scarsi)
-      const criticalLowCount = ingredients.filter(i => i.isCritical && i.quantity <= 10).length;
-      const badgePantry = document.getElementById('badge-pantry');
-      if (criticalLowCount > 0) {
-        badgePantry.classList.remove('hidden');
-      } else {
-        badgePantry.classList.add('hidden');
-      }
-    }
-
-    // Toggle step completato
-    function toggleStep(stepNumber) {
-      completedSteps[stepNumber] = !completedSteps[stepNumber];
-      const stepText = document.getElementById(`step-text-${stepNumber}`);
-      const stepCircle = document.getElementById(`step-circle-${stepNumber}`);
-      
-      if (completedSteps[stepNumber]) {
-        stepText.classList.add('text-slate-400', 'line-through');
-        stepCircle.innerHTML = `<svg class="w-3 h-3 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="3" d="M5 13l4 4L19 7"/></svg>`;
-        stepCircle.className = "absolute -left-[27px] top-0.5 w-5 h-5 rounded-full flex items-center justify-center bg-emerald-500 border border-emerald-500 text-white shadow-xs";
-      } else {
-        stepText.classList.remove('text-slate-400', 'line-through');
-        stepCircle.innerHTML = stepNumber;
-        stepCircle.className = "absolute -left-[27px] top-0.5 w-5 h-5 rounded-full flex items-center justify-center bg-white border border-slate-300 text-slate-600 hover:border-accent-purple";
-      }
-    }
-
-    // -------------------- RENDER LOGIC --------------------
+    // -------------------- SCHERMATE DI RENDERING --------------------
     function render() {
-      const container = document.getElementById('main-content');
-      updateBadges();
+      const content = document.getElementById('section-content');
 
-      // --- TAB RICETTE (E DETTAGLIO) ---
-      if (currentTab === 'recipes') {
-        if (!selectedRecipe) {
-          // Elenco Ricette
-          let html = `
-            <div class="space-y-4">
-              <div class="flex justify-between items-center mb-1">
-                <h2 class="font-title text-lg font-bold text-brand-dark">Il Socio Ricettario Fit</h2>
-                <span class="text-[10px] bg-slate-100 text-slate-600 px-2.5 py-1 rounded-full font-medium">${initialRecipes.length} Ricette Integrate</span>
-              </div>
-              <div class="grid grid-cols-1 gap-4">
-          `;
+      // --- SECTION GELATI ---
+      if (currentSection === 'recipes') {
+        let cards = '';
+        initialRecipes.forEach(recipe => {
+          const missingCount = checkAvailability(recipe);
+          const isReady = missingCount === 0;
 
-          initialRecipes.forEach((recipe) => {
-            const styles = categoryStyles[recipe.category] || categoryStyles['Gelato'];
-            const macros = recipeMacros[recipe.title] || { protein: '15g', kcal: '200' };
-            const { isFullyAvailable, warnings } = checkRecipeAvailability(recipe);
-
-            html += `
-              <div onclick="selectRecipe('${recipe.id}')" class="group relative overflow-hidden rounded-3xl border ${styles.border} ${styles.bg} p-4 shadow-sm hover:shadow-md transition-all duration-300 cursor-pointer flex flex-col justify-between">
-                <div>
-                  <div class="flex justify-between items-start gap-2">
-                    <div class="flex items-center gap-2">
-                      <span class="px-2.5 py-1 rounded-full text-[10px] font-bold uppercase tracking-wider ${styles.textBadge}">
-                        ${recipe.category}
-                      </span>
-                      <span class="text-[9px] bg-slate-800 text-white px-2 py-0.5 rounded font-mono">
-                        ${recipe.programUsed}
-                      </span>
-                    </div>
-                    <div class="flex items-center gap-1 bg-white/90 backdrop-blur px-2.5 py-0.5 rounded-full border border-slate-200/50 shadow-xs">
-                      <span class="text-[10px] font-bold text-slate-800">${macros.protein} PRO</span>
-                    </div>
-                  </div>
-                  <h3 class="font-title text-base font-bold text-brand-dark mt-2.5 group-hover:text-accent-purple transition-colors">
-                    ${recipe.title}
-                  </h3>
-                  <p class="text-xs text-slate-600 mt-1 line-clamp-2">
-                    ${recipe.description}
-                  </p>
-                </div>
-                <div class="mt-4 pt-3 border-t border-slate-200/30 flex justify-between items-center text-xs">
-                  ${isFullyAvailable 
-                    ? `<span class="text-emerald-700 font-medium flex items-center gap-1">✓ Ingredienti pronti</span>`
-                    : `<span class="text-accent-orange font-medium flex items-center gap-1">⚠️ ${warnings.length} ingredienti mancanti</span>`
-                  }
-                  <div class="text-[10px] text-slate-500 flex items-center gap-1 font-semibold">
-                    Dettagli ricetta →
-                  </div>
-                </div>
-              </div>
-            `;
-          });
-
-          html += `</div></div>`;
-          container.innerHTML = html;
-        } else {
-          // Dettaglio Ricetta Selezionata
-          const recipe = selectedRecipe;
-          const macros = recipeMacros[recipe.title] || { protein: '15g', kcal: '200' };
-          
-          let ingHtml = '';
-          recipe.ingredients.forEach((ing) => {
-            const match = ingredients.find(
-              (pantry) => pantry.name.toLowerCase().includes(ing.name.toLowerCase().split(' (')[0])
-            );
-            const isAvailable = ing.name.toLowerCase() === 'acqua' || (match && match.quantity >= ing.quantity);
-            ingHtml += `
-              <li class="flex justify-between items-center py-1.5 border-b border-slate-200/30">
-                <span class="text-slate-800 font-medium">${ing.name}</span>
-                <div class="flex items-center gap-2">
-                  <span class="font-mono bg-white border px-2 py-0.5 rounded font-semibold text-slate-700">
-                    ${ing.quantity}${ing.unit}
-                  </span>
-                  ${isAvailable 
-                    ? `<span class="text-[10px] text-emerald-600 bg-emerald-50 px-1.5 py-0.5 rounded font-medium">Disp.</span>`
-                    : `<span class="text-[10px] text-red-600 bg-red-50 px-1.5 py-0.5 rounded font-medium">Scarso</span>`
-                  }
-                </div>
-              </li>
-            `;
-          });
-
-          let stepsHtml = '';
-          recipe.steps.forEach((step) => {
-            stepsHtml += `
-              <div class="relative">
-                <button id="step-circle-${step.stepNumber}" onclick="toggleStep(${step.stepNumber})" class="absolute -left-[27px] top-0.5 w-5 h-5 rounded-full flex items-center justify-center bg-white border border-slate-300 text-slate-600 text-[9px] font-bold hover:border-accent-purple">
-                  ${step.stepNumber}
-                </button>
-                <div id="step-text-${step.stepNumber}" class="text-xs text-slate-800 pl-2">
-                  <p class="leading-relaxed font-medium">${step.instruction}</p>
-                  ${step.tempMin !== null 
-                    ? `<div class="mt-2 inline-flex items-center gap-1.5 bg-orange-50 border border-orange-200 text-orange-800 px-2.5 py-1 rounded-lg text-[10px] font-semibold">
-                         Temperatura: ${step.tempMin}°C - ${step.tempMax}°C (Russell Hobbs Adventure)
-                       </div>`
-                    : ''
-                  }
-                </div>
-              </div>
-            `;
-          });
-
-          let html = `
-            <div class="space-y-5">
-              <div class="flex justify-between items-center">
-                <button onclick="setSelectedRecipe(null)" class="text-xs font-semibold text-slate-600 hover:text-slate-900 bg-slate-100 px-3.5 py-1.5 rounded-full flex items-center gap-1 transition-all">
-                  ← Torna alle Ricette
-                </button>
-                <span class="text-[10px] uppercase font-bold text-slate-400">Guida Passo-Passo</span>
-              </div>
-
-              <div class="bg-brand-dark text-white rounded-3xl p-5 shadow-lg relative overflow-hidden">
-                <div class="absolute top-0 right-0 w-32 h-32 bg-accent-purple/20 rounded-full blur-2xl"></div>
-                <div class="relative z-10">
-                  <span class="px-2 py-0.5 rounded text-[8px] uppercase tracking-wider font-extrabold bg-accent-lime text-brand-dark">
-                    ${recipe.category}
-                  </span>
-                  <h2 class="font-title text-xl font-bold text-white mt-1.5">${recipe.title}</h2>
-                  <p class="text-xs text-slate-300 mt-1">${recipe.description}</p>
-                  
-                  <div class="flex gap-4 mt-4 text-xs font-medium border-t border-slate-700/40 pt-3">
-                    <div>
-                      <span class="text-slate-400 block text-[9px] uppercase tracking-wider">Proteine totali</span>
-                      <span class="text-accent-lime font-bold text-sm">${macros.protein}</span>
-                    </div>
-                    <div>
-                      <span class="text-slate-400 block text-[9px] uppercase tracking-wider">Calorie circa</span>
-                      <span class="text-accent-orange font-bold text-sm">${macros.kcal} kcal</span>
-                    </div>
-                    <div>
-                      <span class="text-slate-400 block text-[9px] uppercase tracking-wider">Programma</span>
-                      <span class="text-accent-purple font-bold text-sm">${recipe.programUsed}</span>
-                    </div>
-                  </div>
-                </div>
-              </div>
-
-              <div class="bg-slate-50 rounded-3xl p-5 border border-slate-200/50">
-                <h3 class="font-title text-sm font-bold text-brand-dark mb-3 flex items-center gap-1.5">
-                  📁 Ingredienti Richiesti
-                </h3>
-                <ul class="space-y-2 text-xs">
-                  ${ingHtml}
-                </ul>
-              </div>
-
-              <div class="space-y-4">
-                <h3 class="font-title text-sm font-bold text-brand-dark flex items-center gap-1.5">
-                  ✓ Procedimento
-                </h3>
-                <div class="relative border-l-2 border-slate-200 ml-3.5 pl-5 space-y-6 py-1">
-                  ${stepsHtml}
-                </div>
-              </div>
-
-              ${recipe.hasMixIn 
-                ? `<div class="bg-amber-50 border border-amber-200 rounded-3xl p-4.5 text-xs text-amber-900">
-                     <h4 class="font-bold flex items-center gap-1 mb-1 text-amber-900">⚡ Mix-In:</h4>
-                     <p class="leading-relaxed">${recipe.mixInInstructions}</p>
-                   </div>`
-                : ''
-              }
-
-              <div class="pt-4 border-t border-slate-200 flex flex-col gap-3">
-                ${recipe.category !== 'NiceCream' 
-                  ? `<div>
-                       <h4 class="text-xs font-bold text-slate-700 mb-2">Avvia il freezer tracker per questa ricetta:</h4>
-                       <div class="flex gap-2">
-                         <input id="input-pinta-name" type="text" placeholder="es. Malaga Fit in Pinta 1" class="flex-1 border border-slate-300 rounded-xl px-3 py-2 text-xs focus:outline-none focus:ring-1 focus:ring-accent-purple bg-white" />
-                         <button onclick="triggerAddPint('${recipe.id}')" class="bg-accent-purple hover:bg-purple-600 text-white font-semibold text-xs px-4 py-2.5 rounded-xl flex items-center gap-1.5 shadow-md">
-                           In Freezer (24h)
-                         </button>
-                       </div>
-                     </div>`
-                  : `<button onclick="triggerAddPint('${recipe.id}', 'Nice Cream')" class="w-full bg-accent-lime hover:bg-lime-400 text-brand-dark font-bold text-xs py-3 rounded-xl flex items-center justify-center gap-1.5 shadow-md">
-                       Emulsiona Istantaneamente col programma MIX!
-                     </button>`
-                }
-              </div>
-            </div>
-          `;
-          container.innerHTML = html;
-        }
-      }
-
-      // --- TAB FREEZER TRACKER ---
-      else if (currentTab === 'freezer') {
-        let trackerRows = '';
-
-        if (trackers.length === 0) {
-          trackerRows = `
-            <div class="text-center py-10 border border-dashed border-slate-300 rounded-3xl text-slate-400">
-              <p class="text-xs">Nessuna pinta registrata in congelamento al momento.</p>
-              <p class="text-[10px] text-slate-400 mt-1">Registrane una dalle ricette per iniziare il conto alla rovescia di 24 ore.</p>
-            </div>
-          `;
-        } else {
-          trackers.forEach((tr) => {
-            const { percentage, isReady, countdownStr } = getTimerDetails(tr);
-            
-            trackerRows += `
-              <div class="border rounded-3xl p-4 shadow-xs relative overflow-hidden bg-white mb-3.5 ${tr.isSpun ? 'opacity-65' : ''}">
-                <div class="absolute top-0 left-0 w-1.5 h-full ${
-                  tr.recipe.category === 'Sorbetto' ? 'bg-cyan-400' :
-                  tr.recipe.category === 'Granita' ? 'bg-indigo-400' :
-                  tr.recipe.category === 'NiceCream' ? 'bg-yellow-400' : 'bg-amber-400'
-                }"></div>
-
-                <div class="flex justify-between items-start pl-2">
-                  <div class="flex-1 min-w-0 pr-4">
-                    <span class="text-[9px] uppercase font-bold text-slate-400 tracking-wider">
-                      ${tr.recipe.title}
-                    </span>
-                    <h4 class="font-title text-sm font-bold text-brand-dark truncate mt-0.5">
-                      ${tr.pintaName}
-                    </h4>
-                    <span class="text-[9px] text-slate-500 block mt-1 font-mono">
-                      Inserito: ${new Date(tr.createdAt).toLocaleDateString('it-IT')} ${new Date(tr.createdAt).toLocaleTimeString('it-IT', { hour: '2-digit', minute: '2-digit' })}
-                    </span>
-                  </div>
-
-                  <div class="flex flex-col items-center gap-1">
-                    ${!tr.isSpun 
-                      ? `<div class="relative w-14 h-14">
-                           <svg class="w-full h-full transform -rotate-90" viewBox="0 0 36 36">
-                             <path class="text-slate-100" stroke-width="3.5" stroke="currentColor" fill="none" d="M18 2.0845 a 15.9155 15.9155 0 0 1 0 31.831 a 15.9155 15.9155 0 0 1 0 -31.831" />
-                             <path class="${isReady ? 'text-accent-lime' : 'text-cyan-400'} transition-all duration-1000" stroke-dasharray="${percentage}, 100" stroke-width="3.5" stroke-linecap="round" stroke="currentColor" fill="none" d="M18 2.0845 a 15.9155 15.9155 0 0 1 0 31.831 a 15.9155 15.9155 0 0 1 0 -31.831" />
-                           </svg>
-                           <div class="absolute inset-0 flex items-center justify-center text-[10px] font-mono font-bold text-slate-700">
-                             ${Math.round(percentage)}%
-                           </div>
-                         </div>`
-                      : `<span class="bg-emerald-100 text-emerald-800 p-1.5 rounded-full">✓</span>`
-                    }
-                  </div>
-                </div>
-
-                <div class="mt-4 pt-3 border-t border-slate-100 flex justify-between items-center pl-2 text-xs">
-                  <div>
-                    ${tr.isSpun 
-                      ? `<span class="text-emerald-700 font-bold bg-emerald-50 px-2 py-1 rounded-lg">Spinnato & Prontissimo</span>`
-                      : isReady 
-                        ? `<span class="text-emerald-700 font-extrabold bg-accent-lime px-2.5 py-1 rounded-lg animate-pulse">⚡ Pronto per lo Spin!</span>`
-                        : `<div class="flex items-center gap-1.5 font-semibold text-cyan-600 bg-cyan-50 px-2.5 py-1 rounded-lg font-mono">
-                             ⏱️ ${countdownStr}
-                           </div>`
-                    }
-                  </div>
-
-                  <div class="flex gap-2">
-                    ${!tr.isSpun 
-                      ? `<button onclick="handleSpinPint('${tr.id}')" class="text-[10px] font-bold px-3 py-1.5 rounded-xl shadow-xs transition-all ${isReady ? 'bg-accent-purple text-white' : 'bg-slate-100 text-slate-600'}">Avvia Spin</button>`
-                      : ''
-                    }
-                    <button onclick="handleDeleteTracker('${tr.id}')" class="text-red-500 hover:text-red-700 p-1.5 hover:bg-red-50 rounded-full transition-colors">
-                      Elimina
-                    </button>
-                  </div>
-                </div>
-              </div>
-            `;
-          });
-        }
-
-        // Form rapido per aggiungere direttamente da Tab Freezer
-        let selectOptions = '';
-        initialRecipes.forEach(r => {
-          selectOptions += `<option value="${r.id}">${r.title}</option>`;
-        });
-
-        let html = `
-          <div class="space-y-5">
-            <div class="flex justify-between items-center mb-1">
-              <h2 class="font-title text-lg font-bold text-brand-dark">Freezer Tracker Attivo</h2>
-              <span class="text-[10px] bg-cyan-100 text-cyan-800 px-2.5 py-1 rounded-full font-medium">Countdown 24 Ore</span>
-            </div>
-
-            <div class="bg-slate-50 border border-slate-200/50 rounded-3xl p-5 space-y-3.5">
-              <h3 class="font-title text-xs font-bold text-slate-700 uppercase tracking-wider">Metti in Freezer una Nuova Pinta</h3>
-              <div class="grid grid-cols-1 gap-3">
-                <div>
-                  <label class="text-[10px] font-bold text-slate-500 uppercase tracking-wider mb-1 block">Seleziona Ricetta</label>
-                  <select id="select-pinta-recipe" class="w-full border border-slate-300 rounded-xl px-3 py-2 text-xs focus:outline-none focus:ring-1 focus:ring-accent-purple bg-white">
-                    ${selectOptions}
-                  </select>
-                </div>
-                <div>
-                  <label class="text-[10px] font-bold text-slate-500 uppercase tracking-wider mb-1 block">Etichetta Pinta</label>
-                  <input id="input-pinta-name-manual" type="text" placeholder="es. Málaga Fit in Pinta 1" class="w-full border border-slate-300 rounded-xl px-3 py-2 text-xs focus:outline-none focus:ring-1 focus:ring-accent-purple bg-white" />
-                </div>
-                <button onclick="triggerAddPintManual()" class="w-full bg-brand-dark hover:bg-slate-800 text-white font-semibold text-xs py-2.5 rounded-xl flex items-center justify-center gap-1.5 shadow-md">
-                  Posiziona nel Congelatore
-                </button>
-              </div>
-            </div>
-
-            <div class="space-y-4">
-              <h3 class="font-title text-sm font-bold text-brand-dark">Pinte in Congelamento</h3>
-              <div class="space-y-3">${trackerRows}</div>
-            </div>
-          </div>
-        `;
-        container.innerHTML = html;
-      }
-
-      // --- TAB DISPENSA / PANTRY ---
-      else if (currentTab === 'pantry') {
-        const criticalCount = ingredients.filter(i => i.isCritical && i.quantity <= 10).length;
-        
-        let warningHtml = '';
-        if (criticalCount > 0) {
-          warningHtml = `
-            <div class="bg-orange-50 border border-orange-200 rounded-3xl p-4.5 text-xs text-orange-950 flex items-start gap-3">
-              <div class="shrink-0 mt-0.5 text-orange-600 font-bold text-base">⚠️</div>
-              <div>
-                <h4 class="font-bold text-orange-900">Attenzione: Ingredienti Critici Scarsi!</h4>
-                <p class="mt-1 leading-relaxed">
-                  Alcuni elementi necessari (come il Neutro o le Impact Whey) sono sotto la soglia minima di 10.
-                </p>
-              </div>
-            </div>
-          `;
-        }
-
-        let itemsHtml = '';
-        ingredients.forEach((ing) => {
-          const isLow = ing.isCritical && ing.quantity <= 10;
-          itemsHtml += `
-            <div class="p-4 flex items-center justify-between transition-colors ${isLow ? 'bg-orange-50/30' : 'hover:bg-slate-50/50'}">
-              <div class="min-w-0 flex-1 mr-3">
-                <span class="font-semibold text-xs text-slate-800 block ${isLow ? 'text-orange-900 font-bold' : ''}">
-                  ${ing.name}
+          cards += `
+            <div onclick="openRecipeModal('${recipe.id}')" class="p-5 bg-white border-2 border-slate-200 rounded-3xl shadow-sm hover:shadow-md active:scale-[0.98] transition-all cursor-pointer space-y-4">
+              <div class="flex justify-between items-start">
+                <span class="px-2.5 py-0.5 bg-slate-100 text-brand-dark rounded-md text-[11px] font-extrabold uppercase font-mono tracking-wider">${recipe.programUsed}</span>
+                <span class="text-sm font-bold text-emerald-600 bg-emerald-50 px-2.5 py-1 rounded-full flex items-center gap-1">
+                  💪 ${recipe.protein}
                 </span>
-                <div class="flex gap-2.5 mt-1 items-center">
-                  ${ing.isCritical ? `<span class="text-[8px] uppercase tracking-wider font-extrabold bg-red-100 text-red-800 px-1.5 py-0.5 rounded">Critico</span>` : ''}
-                  <span class="text-[9px] text-slate-400">Unità: ${ing.unit}</span>
-                </div>
+              </div>
+              
+              <div>
+                <h3 class="font-title text-xl font-bold text-brand-dark leading-tight">${recipe.title}</h3>
+                <p class="text-sm text-slate-500 mt-1 line-clamp-2">${recipe.description}</p>
               </div>
 
-              <div class="flex items-center gap-2">
-                <div class="flex items-center border border-slate-300 rounded-xl bg-white p-0.5">
-                  <button type="button" onclick="changeQty('${ing.id}', -10)" class="w-7 h-7 text-xs font-bold text-slate-600 rounded-lg hover:bg-slate-100 flex items-center justify-center">-</button>
-                  <span id="qty-display-${ing.id}" class="w-12 text-center text-xs font-semibold font-mono">${ing.quantity}</span>
-                  <button type="button" onclick="changeQty('${ing.id}', 10)" class="w-7 h-7 text-xs font-bold text-slate-600 rounded-lg hover:bg-slate-100 flex items-center justify-center">+</button>
-                </div>
+              <div class="pt-3 border-t border-slate-100 flex justify-between items-center">
+                ${isReady 
+                  ? `<span class="text-sm text-emerald-700 font-bold flex items-center gap-1">✓ Pronto da preparare</span>`
+                  : `<span class="text-sm text-accent-orange font-bold flex items-center gap-1">⚠️ Mancano ${missingCount} ingredienti</span>`
+                }
+                <span class="text-xs font-bold text-brand-accent flex items-center gap-0.5">Apri ricetta →</span>
               </div>
             </div>
           `;
         });
 
-        let html = `
+        content.innerHTML = `
           <div class="space-y-5">
-            <div class="flex justify-between items-center mb-1">
-              <h2 class="font-title text-lg font-bold text-brand-dark">La Mia Dispensa Fit</h2>
-              <span class="text-[10px] bg-amber-100 text-amber-800 px-2.5 py-1 rounded-full font-medium">Stato Dispensa</span>
-            </div>
-
-            ${warningHtml}
-
-            <div class="bg-white border rounded-3xl overflow-hidden shadow-xs">
-              <div class="bg-slate-50 px-4.5 py-3 border-b text-[10px] font-bold uppercase tracking-wider text-slate-500 flex justify-between">
-                <span>Ingrediente</span>
-                <span class="pr-12 text-right">Quantità</span>
-              </div>
-              <div class="divide-y divide-slate-100">
-                ${itemsHtml}
-              </div>
-            </div>
-          </div>
-        `;
-        container.innerHTML = html;
-      }
-
-      // --- TAB TROUBLESHOOTING ---
-      else if (currentTab === 'trouble') {
-        let html = `
-          <div class="space-y-5">
-            <div class="flex justify-between items-center mb-1">
-              <h2 class="font-title text-lg font-bold text-brand-dark">Spin & Troubleshooting</h2>
-              <span class="text-[10px] bg-orange-100 text-orange-800 px-2.5 py-1 rounded-full font-medium">Troubleshooting</span>
-            </div>
-
-            <div class="bg-amber-50 border border-amber-200 rounded-3xl p-5 space-y-3 shadow-xs">
-              <h3 class="font-title text-sm font-bold text-amber-900 flex items-center gap-1.5">
-                🍇 Málaga e il Mix-In dell'Uvetta
-              </h3>
-              <div class="text-xs text-amber-950 space-y-2.5 leading-relaxed">
-                <p>
-                  Per un gelato Málaga perfetto ed evitare di spappolare le uvette, il Socio consiglia la tecnica dello <strong>Shock Termico</strong>:
-                </p>
-                <ol class="list-decimal pl-4 space-y-1.5">
-                  <li>Ammolla le uvette nel Marsala per almeno 4 ore.</li>
-                  <li>Scolale benissimo per rimuovere l'alcol in eccesso (l'alcol impedisce al gelato di indurirsi).</li>
-                  <li><strong>Metti le uvette su un piattino nel freezer per 20 minuti</strong> prima dello spin.</li>
-                  <li>Mantechi il gelato ("Gelato"), fai un foro al centro, versa le uvette ghiacciate e premi <strong>MIX</strong>.</li>
-                </ol>
-              </div>
-            </div>
-
+            <h2 class="font-title text-2xl font-bold text-brand-dark">Scegli il tuo Gelato</h2>
             <div class="space-y-4">
-              <h3 class="font-title text-sm font-bold text-brand-dark">Risoluzione dei Problemi</h3>
-              
-              <div class="space-y-3">
-                <div class="bg-white border rounded-3xl p-4.5 shadow-xs">
-                  <span class="text-xs font-bold text-red-600 bg-red-50 px-2 py-0.5 rounded">Texture Sabbiosa o Cristalli?</span>
-                  <p class="text-xs text-slate-800 font-semibold mt-1">
-                    💡 Soluzione: Attiva sempre il Neutro SaporePuro in liquidi caldi a 75°C-85°C frullando col mixer a immersione per formare il gel. Aggiungi latte in polvere magro.
-                  </p>
-                </div>
+              ${cards}
+            </div>
+          </div>
+        `;
+      }
 
-                <div class="bg-white border rounded-3xl p-4.5 shadow-xs">
-                  <span class="text-xs font-bold text-amber-600 bg-amber-50 px-2 py-0.5 rounded">Gelato farinoso o sbriciolato dopo lo spin?</span>
-                  <p class="text-xs text-slate-800 font-semibold mt-1">
-                    💡 Soluzione: Aggiungi un cucchiaino di latte liquido al centro della pinta e lancia il programma <strong>Re-spin</strong>.
-                  </p>
-                </div>
+      // --- SECTION DOLCI ---
+      else if (currentSection === 'dolci') {
+        content.innerHTML = `
+          <div class="space-y-6 py-6 text-center">
+            <div class="text-5xl">🍰</div>
+            <h2 class="font-title text-2xl font-bold text-brand-dark">Dolci Fit & Pasticceria</h2>
+            <div class="bg-amber-50 border-2 border-amber-200 p-6 rounded-3xl space-y-3">
+              <p class="text-base text-amber-900 leading-relaxed font-semibold">
+                Questa sezione è in fase di definizione (<strong>TBD</strong>).
+              </p>
+              <p class="text-sm text-amber-800 leading-relaxed">
+                Qui inseriremo le ricette dei dolci da forno e pasticceria fit non appena avremo bilanciato gli ingredienti con il Socio. Stay tuned!
+              </p>
+            </div>
+          </div>
+        `;
+      }
 
-                <div class="bg-white border rounded-3xl p-4.5 shadow-xs">
-                  <span class="text-xs font-bold text-orange-600 bg-orange-50 px-2 py-0.5 rounded">Gelato troppo molle, non gela?</span>
-                  <p class="text-xs text-slate-800 font-semibold mt-1">
-                    💡 Soluzione: Rispetta la dose di 30ml di Marsala. Troppo alcol abbassa eccessivamente il punto di congelamento impedendo all'acqua di ghiacciare.
-                  </p>
+      // --- SECTION MACCHINE ---
+      else if (currentSection === 'machines') {
+        content.innerHTML = `
+          <div class="space-y-5">
+            <h2 class="font-title text-2xl font-bold text-brand-dark">Attrezzatura Cucina</h2>
+            
+            <div class="space-y-4">
+              <div class="p-5 bg-slate-50 border border-slate-200 rounded-3xl space-y-3 shadow-xs">
+                <div class="flex justify-between items-center">
+                  <h3 class="font-title text-lg font-bold text-brand-dark">Moulinex Dolci</h3>
+                  <span class="px-2.5 py-0.5 bg-emerald-100 text-emerald-800 rounded text-xs font-bold">1-Step Perfector</span>
                 </div>
+                <p class="text-sm text-slate-600 leading-relaxed">
+                  Sistema a raschiamento di blocchi congelati (stile pinta/puck). Perfetto per gelati e sorbetti cremosi.
+                </p>
+                <div class="pt-2">
+                  <span class="text-xs font-bold text-slate-400 block mb-1 uppercase tracking-wider">Programmi Disponibili:</span>
+                  <div class="flex flex-wrap gap-1.5">
+                    <span class="bg-white border px-2 py-1 rounded text-xs font-semibold">Gelato</span>
+                    <span class="bg-white border px-2 py-1 rounded text-xs font-semibold">Sorbetto</span>
+                    <span class="bg-white border px-2 py-1 rounded text-xs font-semibold">Yogurt Gelato</span>
+                    <span class="bg-white border px-2 py-1 rounded text-xs font-semibold">Granita</span>
+                    <span class="bg-white border px-2 py-1 rounded text-xs font-semibold text-brand-accent">MIX (per Mix-in)</span>
+                    <span class="bg-white border px-2 py-1 rounded text-xs font-semibold">Re-spin</span>
+                  </div>
+                </div>
+              </div>
+
+              <div class="p-5 bg-slate-50 border border-slate-200 rounded-3xl space-y-3 shadow-xs">
+                <div class="flex justify-between items-center">
+                  <h3 class="font-title text-lg font-bold text-brand-dark">Russell Hobbs Adventure</h3>
+                  <span class="px-2.5 py-0.5 bg-amber-100 text-amber-800 rounded text-xs font-bold">Caffè Filtro</span>
+                </div>
+                <p class="text-sm text-slate-600 leading-relaxed">
+                  Macchina per caffè americano. Utilizzata per estrazioni calde a circa 85°C, perfette per idratare e attivare il Neutro per gelati ed evitare grumi.
+                </p>
               </div>
             </div>
           </div>
         `;
-        container.innerHTML = html;
+      }
+
+      // --- SECTION DISPENSA ---
+      else if (currentSection === 'pantry') {
+        let listHtml = '';
+        ingredients.forEach(ing => {
+          const isLow = ing.isCritical && ing.quantity <= 10;
+          listHtml += `
+            <div id="ing-card-${ing.id}" class="p-4.5 rounded-2xl flex items-center justify-between shadow-xs transition-all ${
+              isLow 
+                ? 'bg-orange-50 border-2 border-orange-200' 
+                : 'bg-slate-50 border border-slate-200'
+            }">
+              <div class="min-w-0 flex-1 pr-3">
+                <span class="font-bold text-lg text-brand-dark block truncate leading-tight">${ing.name}</span>
+                <div class="flex gap-2 items-center mt-1">
+                  ${ing.isCritical ? `<span class="bg-red-100 text-red-800 font-extrabold text-[9px] uppercase tracking-wider px-1.5 py-0.5 rounded">Fondamentale</span>` : ''}
+                  ${isLow ? `<span class="bg-orange-100 text-orange-800 font-extrabold text-[9px] uppercase tracking-wider px-1.5 py-0.5 rounded">Scorte Basse</span>` : ''}
+                </div>
+              </div>
+
+              <!-- Controlli Grandi e Rimuovi -->
+              <div class="flex items-center gap-3">
+                <div class="flex items-center bg-white border border-slate-200 rounded-xl p-0.5">
+                  <button onclick="adjustQty('${ing.id}', -10)" class="touch-target w-10 h-10 text-xl font-bold text-slate-600 rounded-lg active:bg-slate-100 flex items-center justify-center">-</button>
+                  <span id="qty-val-${ing.id}" class="w-16 text-center font-mono font-bold text-base text-slate-800">${ing.quantity} ${ing.unit}</span>
+                  <button onclick="adjustQty('${ing.id}', 10)" class="touch-target w-10 h-10 text-xl font-bold text-slate-600 rounded-lg active:bg-slate-100 flex items-center justify-center">+</button>
+                </div>
+                
+                <button onclick="deleteIngredient('${ing.id}')" class="touch-target p-2 text-red-500 hover:text-red-700 active:bg-red-50 rounded-xl transition-colors">
+                  🗑️
+                </button>
+              </div>
+            </div>
+          `;
+        });
+
+        content.innerHTML = `
+          <div class="space-y-5">
+            <div class="flex justify-between items-center">
+              <h2 class="font-title text-2xl font-bold text-brand-dark">Dispensa</h2>
+              <button onclick="openPantryModal()" class="touch-target px-4 py-2 bg-brand-dark text-white rounded-xl font-title font-bold text-sm shadow-sm active:scale-95 transition-all">
+                + Aggiungi Prodotto
+              </button>
+            </div>
+
+            <div class="space-y-3.5">
+              ${listHtml}
+            </div>
+          </div>
+        `;
       }
     }
 
-    // --- AZIONI RENDER & INTERAZIONE ---
-    function selectRecipe(id) {
-      selectedRecipe = initialRecipes.find(r => r.id === id);
-      completedSteps = {};
-      render();
-    }
-
-    function setSelectedRecipe(val) {
-      selectedRecipe = val;
-      render();
-    }
-
-    function triggerAddPint(recipeId, forceName) {
-      let pintaName = '';
-      if (forceName) {
-        pintaName = forceName;
-      } else {
-        const input = document.getElementById('input-pinta-name');
-        pintaName = input ? input.value : '';
-      }
-      handleAddPint(recipeId, pintaName);
-    }
-
-    function triggerAddPintManual() {
-      const select = document.getElementById('select-pinta-recipe');
-      const input = document.getElementById('input-pinta-name-manual');
-      const recipeId = select ? select.value : '';
-      const name = input ? input.value : '';
-      handleAddPint(recipeId, name);
-    }
-
-    function changeQty(id, delta) {
-      const ing = ingredients.find(i => i.id === id);
-      if (ing) {
-        const newQty = Math.max(0, ing.quantity + delta);
-        handleUpdateQuantity(id, newQty);
-        document.getElementById(`qty-display-${id}`).innerText = newQty;
-      }
-    }
-
-    // Timer Interval per i secondi del freezer
-    setInterval(() => {
-      if (currentTab === 'freezer') {
-        render();
-      }
-    }, 1000);
-
-    // Inizializza
-    initData();
-    render();
+    // Avvio
+    init();
   </script>
 </body>
 </html>
