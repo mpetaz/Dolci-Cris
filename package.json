@@ -1,9 +1,10 @@
 {
-  "name": "gelatiera-socio-fit",
+  "name": "dolci-cris",
   "version": "0.1.0",
   "private": true,
   "scripts": {
     "dev": "next dev",
+    "dolci-cris": "next dev",
     "build": "next build",
     "start": "next start",
     "lint": "eslint"
