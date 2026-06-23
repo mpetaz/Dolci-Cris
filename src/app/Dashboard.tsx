@@ -15,21 +15,20 @@ import {
   ChevronRight, 
   Clock, 
   TrendingUp, 
-  Coffee, 
-  Heart, 
   Save,
   HelpCircle,
   Package
 } from 'lucide-react';
 import { 
-  getKitchenData, 
-  updateIngredientQuantity, 
-  addPintToFreezer, 
-  spinPint, 
-  deleteTracker,
+  getLocalStorageData,
+  updateIngredientQtyClient,
+  addPintClient,
+  spinPintClient,
+  deleteTrackerClient,
   IngredientMeasure,
-  StepInstruction
-} from './actions';
+  StepInstruction,
+  Recipe
+} from '../lib/clientDb';
 
 // Mappatura colori per categoria di ricetta
 const categoryStyles: Record<string, { bg: string; text: string; border: string; accent: string; iconBg: string }> = {
@@ -75,65 +74,67 @@ const recipeMacros: Record<string, { protein: string; kcal: string }> = {
   'Gelato alla Mandorla Siciliano': { protein: '24g', kcal: '380' },
 };
 
-interface DashboardProps {
-  initialData: Awaited<ReturnType<typeof getKitchenData>>;
-}
-
-export default function Dashboard({ initialData }: DashboardProps) {
-  const [data, setData] = useState(initialData);
+export default function Dashboard() {
+  const [isClient, setIsClient] = useState(false);
+  const [data, setData] = useState({
+    equipment: [] as any[],
+    ingredients: [] as any[],
+    recipes: [] as Recipe[],
+    trackers: [] as any[]
+  });
+  
   const [activeTab, setActiveTab] = useState<'recipes' | 'freezer' | 'pantry' | 'trouble'>('recipes');
   
   // Ricetta selezionata per la preparazione passo-passo
-  const [selectedRecipe, setSelectedRecipe] = useState<typeof data.recipes[0] | null>(null);
+  const [selectedRecipe, setSelectedRecipe] = useState<Recipe | null>(null);
   const [completedSteps, setCompletedSteps] = useState<Record<number, boolean>>({});
   
   // Input per nuova pinta nel freezer tracker
   const [newPintName, setNewPintName] = useState('');
-  const [selectedRecipeForTracker, setSelectedRecipeForTracker] = useState(data.recipes[0]?.id || '');
+  const [selectedRecipeForTracker, setSelectedRecipeForTracker] = useState('');
   const [isSubmittingPint, setIsSubmittingPint] = useState(false);
   const [pintMessage, setPintMessage] = useState({ text: '', type: '' });
 
   // Stato per aggiornamento dispensa
-  const [updatingIngId, setUpdatingIngId] = useState<string | null>(null);
   const [tempQuantities, setTempQuantities] = useState<Record<string, number>>({});
 
   // Countdown timers in real time
   const [nowTime, setNowTime] = useState(new Date());
 
   useEffect(() => {
+    setIsClient(true);
+    const localData = getLocalStorageData();
+    setData(localData);
+    if (localData.recipes.length > 0) {
+      setSelectedRecipeForTracker(localData.recipes[0].id);
+    }
+  }, []);
+
+  useEffect(() => {
+    if (!isClient) return;
     const timer = setInterval(() => {
       setNowTime(new Date());
     }, 1000);
     return () => clearInterval(timer);
-  }, []);
-
-  // Ricarica i dati dal database
-  const refreshData = async () => {
-    const fresh = await getKitchenData();
-    setData(fresh);
-  };
+  }, [isClient]);
 
   // Salva quantità ingrediente
-  const handleUpdateQuantity = async (id: string, qty: number) => {
-    setUpdatingIngId(id);
-    try {
-      await updateIngredientQuantity(id, qty);
-      await refreshData();
-    } catch (err) {
-      console.error(err);
-    } finally {
-      setUpdatingIngId(null);
-    }
+  const handleUpdateQuantity = (id: string, qty: number) => {
+    const updated = updateIngredientQtyClient(id, qty);
+    setData(prev => ({ ...prev, ingredients: updated }));
   };
 
   // Registra una pinta nel Freezer Tracker
-  const handleAddPint = async (e?: React.FormEvent, customRecipeId?: string, customPintName?: string) => {
+  const handleAddPint = (e?: React.FormEvent, customRecipeId?: string, customPintName?: string) => {
     if (e) e.preventDefault();
     
     const rId = customRecipeId || selectedRecipeForTracker;
     const name = customPintName || newPintName;
 
-    if (!name.trim()) {
+    const recipe = data.recipes.find(r => r.id === rId);
+    if (!recipe) return;
+
+    if (!name.trim() && recipe.category !== 'NiceCream') {
       setPintMessage({ text: 'Inserisci un nome per la pinta!', type: 'error' });
       return;
     }
@@ -142,10 +143,15 @@ export default function Dashboard({ initialData }: DashboardProps) {
     setPintMessage({ text: '', type: '' });
 
     try {
-      await addPintToFreezer(rId, name);
+      const result = addPintClient(rId, name || `Pinta ${recipe.title}`);
+      setData(prev => ({
+        ...prev,
+        trackers: result.trackers,
+        ingredients: result.ingredients
+      }));
+
       setPintMessage({ text: 'Pinta posizionata in freezer con successo! Il countdown di 24 ore è attivo.', type: 'success' });
       setNewPintName('');
-      await refreshData();
       
       // Rimuovi messaggio dopo 4 secondi
       setTimeout(() => {
@@ -159,27 +165,19 @@ export default function Dashboard({ initialData }: DashboardProps) {
   };
 
   // Segna come spinnato
-  const handleSpinPint = async (id: string) => {
-    try {
-      await spinPint(id);
-      await refreshData();
-    } catch (err) {
-      console.error(err);
-    }
+  const handleSpinPint = (id: string) => {
+    const updated = spinPintClient(id);
+    setData(prev => ({ ...prev, trackers: updated }));
   };
 
   // Rimuovi pinta dal freezer
-  const handleDeleteTracker = async (id: string) => {
-    try {
-      await deleteTracker(id);
-      await refreshData();
-    } catch (err) {
-      console.error(err);
-    }
+  const handleDeleteTracker = (id: string) => {
+    const updated = deleteTrackerClient(id);
+    setData(prev => ({ ...prev, trackers: updated }));
   };
 
   // Controlla se gli ingredienti di una ricetta sono disponibili in dispensa
-  const checkRecipeAvailability = (recipe: typeof data.recipes[0]) => {
+  const checkRecipeAvailability = (recipe: Recipe) => {
     const warnings: string[] = [];
     let isFullyAvailable = true;
 
@@ -206,7 +204,7 @@ export default function Dashboard({ initialData }: DashboardProps) {
   };
 
   // Calcola i dettagli del timer per ciascun tracker
-  const getTimerDetails = (tracker: typeof data.trackers[0]) => {
+  const getTimerDetails = (tracker: any) => {
     const readyTime = new Date(tracker.readyAt).getTime();
     const startTime = new Date(tracker.createdAt).getTime();
     const nowMs = nowTime.getTime();
@@ -229,6 +227,15 @@ export default function Dashboard({ initialData }: DashboardProps) {
     return { percentage, isReady, countdownStr };
   };
 
+  if (!isClient) {
+    return (
+      <div className="flex-1 flex flex-col justify-center items-center bg-slate-50 min-h-screen text-slate-400 text-xs">
+        <div className="w-8 h-8 border-2 border-purple-accent border-t-transparent rounded-full animate-spin mb-2"></div>
+        Caricamento Gelateria Socio Fit...
+      </div>
+    );
+  }
+
   // Calcola quanti ingredienti in dispensa sono in esaurimento (isCritical = true e quantità vicino allo zero)
   const criticalItemsCount = data.ingredients.filter(ing => ing.isCritical && ing.quantity <= 10).length;
 
@@ -241,7 +248,7 @@ export default function Dashboard({ initialData }: DashboardProps) {
   return (
     <div className="flex-1 flex flex-col max-w-lg mx-auto w-full bg-white shadow-2xl min-h-screen relative overflow-hidden pb-12">
       
-      {/* HEADER DELLA SPLENDIDA DASHBOARD */}
+      {/* HEADER */}
       <header className="bg-slate-brand-dark text-white px-5 py-6 rounded-b-[2.5rem] shadow-lg relative overflow-hidden">
         <div className="absolute top-0 right-0 w-32 h-32 bg-purple-accent/10 rounded-full blur-2xl"></div>
         <div className="absolute bottom-0 left-0 w-24 h-24 bg-lime-accent/10 rounded-full blur-xl"></div>
@@ -262,7 +269,7 @@ export default function Dashboard({ initialData }: DashboardProps) {
           </div>
         </div>
 
-        {/* STATUS HARDWARE RAPIDO */}
+        {/* STATUS HARDWARE */}
         <div className="mt-6 bg-slate-brand/50 backdrop-blur-lg border border-slate-700/30 rounded-2xl p-4 relative z-10">
           <h3 className="text-xs font-bold uppercase tracking-wider text-purple-accent mb-2.5 flex items-center gap-1.5">
             <Sparkles className="w-3.5 h-3.5" /> Dotazione Hardware in Possesso
@@ -293,7 +300,7 @@ export default function Dashboard({ initialData }: DashboardProps) {
         </div>
       </header>
 
-      {/* TABS DI NAVIGAZIONE A FONDO ARROTONDATO (GLASSMORPHISM) */}
+      {/* TABS */}
       <nav className="px-4 mt-5">
         <div className="bg-slate-100/80 backdrop-blur-md p-1.5 rounded-2xl flex justify-between border border-slate-200/50">
           <button 
@@ -342,10 +349,9 @@ export default function Dashboard({ initialData }: DashboardProps) {
         </div>
       </nav>
 
-      {/* CONTENUTO PRINCIPALE TAB */}
+      {/* CONTENUTO TAB */}
       <main className="flex-1 px-4 py-4 overflow-y-auto">
         
-        {/* MESSAGGI DI NOTIFICA RAPIDI */}
         {pintMessage.text && (
           <div className={`mb-4 p-3.5 rounded-2xl text-xs font-medium border flex items-start gap-2.5 animate-fadeIn ${
             pintMessage.type === 'success' ? 'bg-emerald-50 border-emerald-200 text-emerald-800' : 'bg-red-50 border-red-200 text-red-800'
@@ -355,12 +361,12 @@ export default function Dashboard({ initialData }: DashboardProps) {
           </div>
         )}
 
-        {/* -------------------- TAB 1: RICETTE -------------------- */}
+        {/* TAB 1: RICETTE */}
         {activeTab === 'recipes' && !selectedRecipe && (
           <div className="space-y-4">
             <div className="flex justify-between items-center mb-1">
               <h2 className="font-title text-lg font-bold text-slate-brand-dark">Il Socio Ricettario Fit</h2>
-              <span className="text-[10px] bg-slate-100 text-slate-600 px-2.5 py-1 rounded-full font-medium">8 Ricette Integrate</span>
+              <span className="text-[10px] bg-slate-100 text-slate-600 px-2.5 py-1 rounded-full font-medium">{data.recipes.length} Ricette</span>
             </div>
 
             <div className="grid grid-cols-1 gap-4">
@@ -376,7 +382,6 @@ export default function Dashboard({ initialData }: DashboardProps) {
                     className={`group relative overflow-hidden rounded-3xl border ${styles.border} ${styles.bg} p-4 shadow-sm hover:shadow-md transition-all duration-300 cursor-pointer flex flex-col justify-between`}
                   >
                     <div>
-                      {/* HEADER CARD RICETTA */}
                       <div className="flex justify-between items-start gap-2">
                         <div className="flex items-center gap-2">
                           <span className={`px-2.5 py-1 rounded-full text-[10px] font-bold uppercase tracking-wider ${
@@ -387,20 +392,17 @@ export default function Dashboard({ initialData }: DashboardProps) {
                             {recipe.category}
                           </span>
                           
-                          {/* Program badge */}
                           <span className="text-[9px] bg-slate-800 text-white px-2 py-0.5 rounded font-mono">
                             {recipe.programUsed}
                           </span>
                         </div>
 
-                        {/* PROTEIN BADGE */}
                         <div className="flex items-center gap-1 bg-white/90 backdrop-blur px-2.5 py-0.5 rounded-full border border-slate-200/50 shadow-xs">
                           <TrendingUp className="w-3 h-3 text-emerald-500" />
                           <span className="text-[10px] font-bold text-slate-800">{macros.protein} PRO</span>
                         </div>
                       </div>
 
-                      {/* TITOLO E DESCRIZIONE */}
                       <h3 className="font-title text-base font-bold text-slate-brand-dark mt-2.5 group-hover:text-purple-accent transition-colors">
                         {recipe.title}
                       </h3>
@@ -409,7 +411,6 @@ export default function Dashboard({ initialData }: DashboardProps) {
                       </p>
                     </div>
 
-                    {/* PIE DI CARD: INGREDIENTI DISPONIBILI O AVVISI */}
                     <div className="mt-4 pt-3 border-t border-slate-200/30 flex justify-between items-center text-xs">
                       {isFullyAvailable ? (
                         <span className="text-emerald-700 font-medium flex items-center gap-1">
@@ -433,10 +434,9 @@ export default function Dashboard({ initialData }: DashboardProps) {
           </div>
         )}
 
-        {/* -------------------- TAB 1.1: DETTAGLIO RICETTA (STEP-BY-STEP) -------------------- */}
+        {/* TAB 1.1: DETTAGLIO RICETTA */}
         {activeTab === 'recipes' && selectedRecipe && (
           <div className="space-y-5 animate-slideUp">
-            {/* INTESTAZIONE DETTAGLIO */}
             <div className="flex justify-between items-center">
               <button 
                 onClick={() => setSelectedRecipe(null)}
@@ -447,7 +447,6 @@ export default function Dashboard({ initialData }: DashboardProps) {
               <span className="text-[10px] uppercase font-bold text-slate-400">Guida Passo-Passo</span>
             </div>
 
-            {/* CARD DI RIEPILOGO RICETTA */}
             <div className="bg-slate-brand-dark text-white rounded-3xl p-5 shadow-lg relative overflow-hidden">
               <div className="absolute top-0 right-0 w-32 h-32 bg-purple-accent/20 rounded-full blur-2xl"></div>
               
@@ -458,7 +457,6 @@ export default function Dashboard({ initialData }: DashboardProps) {
                 <h2 className="font-title text-xl font-bold text-white mt-1.5">{selectedRecipe.title}</h2>
                 <p className="text-xs text-slate-300 mt-1">{selectedRecipe.description}</p>
                 
-                {/* Valori nutrizionali rapidi */}
                 <div className="flex gap-4 mt-4 text-xs font-medium border-t border-slate-700/40 pt-3">
                   <div>
                     <span className="text-slate-400 block text-[9px] uppercase tracking-wider">Proteine totali</span>
@@ -476,7 +474,6 @@ export default function Dashboard({ initialData }: DashboardProps) {
               </div>
             </div>
 
-            {/* INGREDIENTI RICHIESTI */}
             <div className="bg-slate-50 rounded-3xl p-5 border border-slate-200/50">
               <h3 className="font-title text-sm font-bold text-slate-brand-dark mb-3 flex items-center gap-1.5">
                 <Package className="w-4 h-4 text-purple-accent" /> Ingredienti per 1 Vaschetta (Pinta)
@@ -508,7 +505,6 @@ export default function Dashboard({ initialData }: DashboardProps) {
               </ul>
             </div>
 
-            {/* STEPS GUIDA INTERATTIVA */}
             <div className="space-y-4">
               <h3 className="font-title text-sm font-bold text-slate-brand-dark flex items-center gap-1.5">
                 <CheckSquare className="w-4 h-4 text-lime-accent" /> Procedimento di Chimica del Gelo
@@ -521,7 +517,6 @@ export default function Dashboard({ initialData }: DashboardProps) {
 
                   return (
                     <div key={step.stepNumber} className="relative">
-                      {/* Pallino indicatore step */}
                       <button
                         onClick={() => setCompletedSteps(prev => ({ ...prev, [step.stepNumber]: !prev[step.stepNumber] }))}
                         className={`absolute -left-[27px] top-0.5 w-5 h-5 rounded-full flex items-center justify-center border text-[9px] font-bold transition-all duration-300 ${
@@ -533,11 +528,9 @@ export default function Dashboard({ initialData }: DashboardProps) {
                         {isCompleted ? <Check className="w-3 h-3" /> : step.stepNumber}
                       </button>
 
-                      {/* Contenuto dello step */}
                       <div className={`text-xs transition-colors duration-300 ${isCompleted ? 'text-slate-400 line-through' : 'text-slate-800'}`}>
                         <p className="leading-relaxed font-medium">{step.instruction}</p>
                         
-                        {/* Box temperature di attivazione se presenti */}
                         {hasTemp && (
                           <div className="mt-2 inline-flex items-center gap-1.5 bg-orange-50 border border-orange-200 text-orange-800 px-2.5 py-1 rounded-lg text-[10px] font-semibold">
                             <Clock className="w-3.5 h-3.5 text-orange-500" />
@@ -551,7 +544,6 @@ export default function Dashboard({ initialData }: DashboardProps) {
               </div>
             </div>
 
-            {/* SEZIONE SPECIALE MIX-IN / COMPILAZIONE */}
             {selectedRecipe.hasMixIn && selectedRecipe.mixInInstructions && (
               <div className="bg-amber-50/70 border border-amber-200 rounded-3xl p-4.5 text-xs text-amber-900">
                 <h4 className="font-bold flex items-center gap-1 mb-1 text-amber-900">
@@ -561,7 +553,6 @@ export default function Dashboard({ initialData }: DashboardProps) {
               </div>
             )}
 
-            {/* AZIONI DI RICETTA */}
             <div className="pt-4 border-t border-slate-200 flex flex-col gap-3">
               {selectedRecipe.category !== 'NiceCream' ? (
                 <div>
@@ -572,7 +563,7 @@ export default function Dashboard({ initialData }: DashboardProps) {
                       placeholder="es. Pinta 1 - Málaga"
                       value={newPintName}
                       onChange={(e) => setNewPintName(e.target.value)}
-                      className="flex-1 border border-slate-300 rounded-xl px-3 py-2 text-xs focus:outline-none focus:ring-1 focus:ring-purple-accent"
+                      className="flex-1 border border-slate-300 rounded-xl px-3 py-2 text-xs focus:outline-none focus:ring-1 focus:ring-purple-accent bg-white"
                     />
                     <button
                       onClick={() => handleAddPint(undefined, selectedRecipe.id, newPintName)}
@@ -603,7 +594,7 @@ export default function Dashboard({ initialData }: DashboardProps) {
           </div>
         )}
 
-        {/* -------------------- TAB 2: FREEZER TRACKER (SMART countdown) -------------------- */}
+        {/* TAB 2: FREEZER TRACKER */}
         {activeTab === 'freezer' && (
           <div className="space-y-5">
             <div className="flex justify-between items-center mb-1">
@@ -611,7 +602,6 @@ export default function Dashboard({ initialData }: DashboardProps) {
               <span className="text-[10px] bg-cyan-100 text-cyan-800 px-2.5 py-1 rounded-full font-medium">Countdown 24 Ore</span>
             </div>
 
-            {/* CARD NUOVA PINTA RAPIDA */}
             <form onSubmit={handleAddPint} className="bg-slate-50 border border-slate-200/50 rounded-3xl p-5 space-y-3.5">
               <h3 className="font-title text-xs font-bold text-slate-700 uppercase tracking-wider">Registra una Nuova Pinta in Freezer</h3>
               <div className="grid grid-cols-1 gap-3">
@@ -635,7 +625,7 @@ export default function Dashboard({ initialData }: DashboardProps) {
                     placeholder="es. Málaga Fit in Pinta 1"
                     value={newPintName}
                     onChange={(e) => setNewPintName(e.target.value)}
-                    className="w-full border border-slate-300 rounded-xl px-3 py-2 text-xs focus:outline-none focus:ring-1 focus:ring-purple-accent"
+                    className="w-full border border-slate-300 rounded-xl px-3 py-2 text-xs focus:outline-none focus:ring-1 focus:ring-purple-accent bg-white"
                   />
                 </div>
 
@@ -649,7 +639,6 @@ export default function Dashboard({ initialData }: DashboardProps) {
               </div>
             </form>
 
-            {/* LISTA DELLE PINTE ATTIVE */}
             <div className="space-y-4">
               <h3 className="font-title text-sm font-bold text-slate-brand-dark">Pinte Attualmente in Freezer</h3>
 
@@ -663,7 +652,6 @@ export default function Dashboard({ initialData }: DashboardProps) {
                 <div className="space-y-3.5">
                   {data.trackers.map((tracker) => {
                     const { percentage, isReady, countdownStr } = getTimerDetails(tracker);
-                    const styles = categoryStyles[tracker.recipe.category] || categoryStyles['Gelato'];
 
                     return (
                       <div 
@@ -672,7 +660,6 @@ export default function Dashboard({ initialData }: DashboardProps) {
                           tracker.isSpun ? 'opacity-65' : ''
                         }`}
                       >
-                        {/* Overlay colore categoria */}
                         <div className={`absolute top-0 left-0 w-1.5 h-full ${
                           tracker.recipe.category === 'Sorbetto' ? 'bg-cyan-400' :
                           tracker.recipe.category === 'Granita' ? 'bg-indigo-400' :
@@ -688,13 +675,11 @@ export default function Dashboard({ initialData }: DashboardProps) {
                               {tracker.pintaName}
                             </h4>
                             
-                            {/* Data di inserimento */}
                             <span className="text-[9px] text-slate-500 block mt-1 font-mono">
                               Inserito: {new Date(tracker.createdAt).toLocaleDateString('it-IT')} ore {new Date(tracker.createdAt).toLocaleTimeString('it-IT', { hour: '2-digit', minute: '2-digit' })}
                             </span>
                           </div>
 
-                          {/* CIRCOLINO DEL TIMER ANIMATO */}
                           <div className="flex flex-col items-center gap-1">
                             {!tracker.isSpun ? (
                               <div className="relative w-14 h-14">
@@ -730,7 +715,6 @@ export default function Dashboard({ initialData }: DashboardProps) {
                           </div>
                         </div>
 
-                        {/* RIGA DEL PROGRESSO / COUNTDOWN */}
                         <div className="mt-4 pt-3 border-t border-slate-100 flex justify-between items-center pl-2 text-xs">
                           <div>
                             {tracker.isSpun ? (
@@ -778,7 +762,7 @@ export default function Dashboard({ initialData }: DashboardProps) {
           </div>
         )}
 
-        {/* -------------------- TAB 3: DISPENSA & PANTRY -------------------- */}
+        {/* TAB 3: DISPENSA */}
         {activeTab === 'pantry' && (
           <div className="space-y-5 animate-fadeIn">
             <div className="flex justify-between items-center mb-1">
@@ -786,20 +770,18 @@ export default function Dashboard({ initialData }: DashboardProps) {
               <span className="text-[10px] bg-amber-100 text-amber-800 px-2.5 py-1 rounded-full font-medium">Stato Ingredienti</span>
             </div>
 
-            {/* ALERT CRITICO */}
             {criticalItemsCount > 0 && (
               <div className="bg-orange-50 border border-orange-200 rounded-3xl p-4.5 text-xs text-orange-950 flex items-start gap-3">
                 <AlertTriangle className="w-5 h-5 text-orange-600 shrink-0 mt-0.5" />
                 <div>
                   <h4 className="font-bold text-orange-900">Attenzione: Ingredienti Critici in Esaurimento!</h4>
                   <p className="mt-1 leading-relaxed">
-                    Alcuni ingredienti necessari per le ricette base (come il Neutro per Gelati o le Impact Whey) sono sotto la soglia minima. Aggiorna le scorte per non bloccare le preparazioni.
+                    Alcuni ingredienti necessari per le ricette base sono sotto la soglia minima. Aggiorna le scorte per non bloccare le preparazioni.
                   </p>
                 </div>
               </div>
             )}
 
-            {/* ELENCO DEGLI INGREDIENTI IN DISPENSA */}
             <div className="bg-white border rounded-3xl overflow-hidden shadow-xs">
               <div className="bg-slate-50 px-4.5 py-3 border-b text-[10px] font-bold uppercase tracking-wider text-slate-500 flex justify-between">
                 <span>Ingrediente</span>
@@ -808,9 +790,7 @@ export default function Dashboard({ initialData }: DashboardProps) {
 
               <div className="divide-y divide-slate-100">
                 {data.ingredients.map((ing) => {
-                  // Controlla se la quantità è critica (es. <= 10 per g/ml)
                   const isLow = ing.isCritical && ing.quantity <= 10;
-                  // Inizializza stato quantità temporanea se non presente
                   const currentTempQty = tempQuantities[ing.id] !== undefined ? tempQuantities[ing.id] : ing.quantity;
 
                   return (
@@ -831,7 +811,6 @@ export default function Dashboard({ initialData }: DashboardProps) {
                         </div>
                       </div>
 
-                      {/* CONTROLLO QUANTITA RAPIDO */}
                       <div className="flex items-center gap-2">
                         <div className="flex items-center border border-slate-300 rounded-xl bg-white p-0.5">
                           <button
@@ -856,7 +835,7 @@ export default function Dashboard({ initialData }: DashboardProps) {
                             onBlur={() => {
                               handleUpdateQuantity(ing.id, currentTempQty);
                             }}
-                            className="w-12 text-center text-xs font-semibold font-mono focus:outline-none"
+                            className="w-12 text-center text-xs font-semibold font-mono focus:outline-none bg-white"
                           />
                           
                           <button
@@ -872,11 +851,9 @@ export default function Dashboard({ initialData }: DashboardProps) {
                           </button>
                         </div>
 
-                        {/* Bottone Salva se c'è differenza */}
                         {currentTempQty !== ing.quantity && (
                           <button
                             onClick={() => handleUpdateQuantity(ing.id, currentTempQty)}
-                            disabled={updatingIngId === ing.id}
                             className="p-2 rounded-xl bg-purple-accent text-white hover:bg-purple-600 shadow-sm transition-all"
                             title="Salva"
                           >
@@ -892,7 +869,7 @@ export default function Dashboard({ initialData }: DashboardProps) {
           </div>
         )}
 
-        {/* -------------------- TAB 4: TROUBLESHOOTING & SPIN TIPS -------------------- */}
+        {/* TAB 4: TROUBLESHOOTING */}
         {activeTab === 'trouble' && (
           <div className="space-y-5 animate-slideUp">
             <div className="flex justify-between items-center mb-1">
@@ -900,7 +877,6 @@ export default function Dashboard({ initialData }: DashboardProps) {
               <span className="text-[10px] bg-orange-100 text-orange-800 px-2.5 py-1 rounded-full font-medium">Guida Risoluzione Problemi</span>
             </div>
 
-            {/* SEZIONE GUIDA MALAGA */}
             <div className="bg-amber-50 border border-amber-200 rounded-3xl p-5 space-y-3 shadow-xs">
               <h3 className="font-title text-sm font-bold text-amber-900 flex items-center gap-1.5">
                 🍇 Málaga e il Mix-In dell'Uvetta
@@ -915,19 +891,18 @@ export default function Dashboard({ initialData }: DashboardProps) {
                     Ammolla le uvette nel Marsala per almeno 4 ore.
                   </li>
                   <li>
-                    Scolale benissimo per rimuovere l'alcol in eccesso (l'alcol abbassa il punto di congelamento e renderebbe il gelato troppo molle).
+                    Scolale benissimo per rimuovere l'alcol in eccesso.
                   </li>
                   <li>
-                    <strong>Metti le uvette su un piattino nel freezer per 20 minuti</strong> prima di inserirle nella macchina. Devono essere gelide ma non incollate in un blocco unico.
+                    <strong>Metti le uvette su un piattino nel freezer per 20 minuti</strong> prima di inserirle nella macchina.
                   </li>
                   <li>
-                    Esegui lo spin del gelato, rimuovi la pinta, scava un foro largo 3cm al centro arrivando fino in fondo, versa le uvette ghiacciate e avvia il programma <strong>MIX</strong>.
+                    Esegui lo spin del gelato, rimuovi la pinta, scava un foro al centro, versa le uvette e avvia il programma <strong>MIX</strong>.
                   </li>
                 </ol>
               </div>
             </div>
 
-            {/* TROUBLESHOOTING PILLS */}
             <div className="space-y-4">
               <h3 className="font-title text-sm font-bold text-slate-brand-dark">Pillole di Risoluzione del Socio</h3>
               
@@ -938,17 +913,17 @@ export default function Dashboard({ initialData }: DashboardProps) {
                     <strong>Causa:</strong> Idratazione incompleta del Neutro per Gelati o mancanza di solidi magri del latte.
                   </p>
                   <p className="text-xs text-slate-800 font-semibold mt-1">
-                    💡 Soluzione: Attiva sempre il Neutro SaporePuro in liquidi caldi a 75°C-85°C frullando col mixer a immersione per formare il gel protettivo. Integra un cucchiaino di latte scremato in polvere.
+                    💡 Soluzione: Attiva sempre il Neutro SaporePuro in liquidi caldi a 75°C-85°C frullando col mixer a immersione. Integra un cucchiaino di latte scremato in polvere.
                   </p>
                 </div>
 
                 <div className="bg-white border rounded-3xl p-4.5 shadow-xs">
                   <span className="text-xs font-bold text-amber-600 bg-amber-50 px-2 py-0.5 rounded">Gelato farinoso, sbriciolato o asciutto dopo lo spin?</span>
                   <p className="text-xs text-slate-700 mt-2 leading-relaxed">
-                    <strong>Causa:</strong> La temperatura del freezer è troppo bassa (es. -22°C) e il blocco è eccessivamente duro per le lame.
+                    <strong>Causa:</strong> La temperatura del freezer è troppo bassa (es. -22°C) e il blocco è eccessivamente duro.
                   </p>
                   <p className="text-xs text-slate-800 font-semibold mt-1">
-                    💡 Soluzione: Aggiungi un cucchiaino di latte fresco parzialmente scremato al centro della pinta e lancia il programma <strong>Re-spin</strong>. Ottieni subito una consistenza liscissima.
+                    💡 Soluzione: Aggiungi un cucchiaino di latte fresco parzialmente scremato al centro della pinta e lancia il programma <strong>Re-spin</strong>.
                   </p>
                 </div>
 
@@ -958,7 +933,7 @@ export default function Dashboard({ initialData }: DashboardProps) {
                     <strong>Causa:</strong> Eccesso di zuccheri o di alcol (ad esempio troppo Marsala nella ricetta Málaga).
                   </p>
                   <p className="text-xs text-slate-800 font-semibold mt-1">
-                    💡 Soluzione: Rispetta rigorosamente la dose di 30ml di Marsala per la ricetta base. L'alcol abbassa il punto di congelamento dell'acqua libera; esagerare impedirà la corretta cristallizzazione della miscela.
+                    💡 Soluzione: Rispetta la dose di 30ml di Marsala per la ricetta base. L'alcol impedisce la corretta cristallizzazione dell'acqua.
                   </p>
                 </div>
               </div>
@@ -967,7 +942,6 @@ export default function Dashboard({ initialData }: DashboardProps) {
         )}
       </main>
 
-      {/* FOOTER DELICATO */}
       <footer className="absolute bottom-0 inset-x-0 h-10 bg-slate-50 border-t flex items-center justify-center text-[10px] text-slate-400">
         Gelateria Socio Fit v1.0 • Fatto con Antigravity & ❤️
       </footer>
