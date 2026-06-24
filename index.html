@@ -340,16 +340,16 @@
         kcal: 'Montersino',
         tips: 'Cottura a bagnomaria a 140°C. Inserisci carta assorbente sotto lo stampo come barriera termica. Il composto NON deve crescere in cottura: se succede, abbassa subito la temperatura del forno.',
         ingredients: [
-          { name: 'Latte intero (Dose ridotta: 400ml)', quantity: 1200, unit: 'g' },
-          { name: 'Panna fresca (Dose ridotta: 100ml)', quantity: 300, unit: 'ml' },
-          { name: 'Uova intere (Dose ridotta: 225g)', quantity: 675, unit: 'g' },
-          { name: 'Zucchero (Dose ridotta: 100g)', quantity: 300, unit: 'g' },
-          { name: 'Amaretti (Dose ridotta: 100g)', quantity: 300, unit: 'g' },
-          { name: 'Cacao amaro (Dose ridotta: 50g)', quantity: 150, unit: 'g' },
-          { name: 'Caffè espresso (Dose ridotta: 20g)', quantity: 60, unit: 'g' },
-          { name: 'Rum liquore (Dose ridotta: 10g)', quantity: 30, unit: 'g' },
-          { name: 'Zucchero per caramello', quantity: 150, unit: 'g' },
-          { name: 'Vaniglia in bacca', quantity: 2, unit: 'g' }
+          { name: 'Latte intero', original: '1200 g', reduced: '400 ml' },
+          { name: 'Panna fresca', original: '300 ml', reduced: '100 ml' },
+          { name: 'Uova intere', original: '675 g', reduced: '225 g' },
+          { name: 'Zucchero', original: '300 g', reduced: '100 g' },
+          { name: 'Amaretti', original: '300 g', reduced: '100 g' },
+          { name: 'Cacao amaro', original: '150 g', reduced: '50 g' },
+          { name: 'Caffè espresso', original: '60 g', reduced: '20 g' },
+          { name: 'Rum liquore', original: '30 g', reduced: '10 g' },
+          { name: 'Zucchero (caramello)', original: '150 g', reduced: '50 g' },
+          { name: 'Vaniglia in bacca', original: '2 g', reduced: 'Semi / 1/3 bacca' }
         ],
         steps: [
           'Preparare il caramello con 150g di zucchero e qualche cucchiaio di acqua nel pentolino. Non mescolare mai, muovere solo la pentola. Versarlo sul fondo dello stampo da plumcake.',
@@ -408,12 +408,20 @@
 
       let ingList = '';
       recipe.ingredients.forEach(ing => {
+        const hasOriginalReduced = ing.original !== undefined;
+        const valueBadge = hasOriginalReduced 
+          ? `<div class="flex flex-col items-end text-sm leading-tight shrink-0">
+               <span class="font-bold text-brand-dark text-base">${ing.original} <span class="text-[10px] text-slate-400 font-normal">Int.</span></span>
+               <span class="text-brand-accent font-extrabold text-sm mt-0.5">${ing.reduced} <span class="text-[9px] text-brand-accent/70 font-normal">1/3</span></span>
+             </div>`
+          : `<span class="font-bold text-brand-dark bg-slate-50 border border-slate-200 px-3.5 py-0.5 rounded-xl shrink-0">
+               ${ing.quantity}${ing.unit}
+             </span>`;
+
         ingList += `
-          <div class="flex justify-between py-2.5 border-b text-xl border-slate-100">
+          <div class="flex justify-between items-center py-2.5 border-b text-xl border-slate-100 gap-3">
             <span class="font-medium text-slate-800">${ing.name}</span>
-            <span class="font-bold text-brand-dark bg-slate-50 border border-slate-200 px-3.5 py-0.5 rounded-xl">
-              ${ing.quantity}${ing.unit}
-            </span>
+            ${valueBadge}
           </div>
         `;
       });
