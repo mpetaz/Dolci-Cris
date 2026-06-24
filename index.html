@@ -77,7 +77,7 @@
         <!-- Pulsante Dolci -->
         <button onclick="selectSection('dolci')" id="btn-sec-dolci" class="touch-target py-5 px-3 rounded-2xl bg-slate-100 text-brand-dark font-title font-bold text-lg flex flex-col items-center justify-center gap-2 border-2 border-slate-200 active:scale-95 transition-all">
           <span class="text-2xl">🍰</span>
-          Dolci (TBD)
+          I Dolci
         </button>
         
         <!-- Pulsante Ricette Ufficiali Moulinex (Esterno) -->
@@ -123,6 +123,7 @@
         id: 'rec-1',
         title: 'Cioccolato Fit Protein',
         category: 'Gelato',
+        section: 'recipes',
         description: 'Un gelato proteico al cioccolato denso e cremoso, bilanciato con eritritolo e neutro.',
         programUsed: 'Gelato',
         protein: '28g',
@@ -148,6 +149,7 @@
         id: 'rec-2',
         title: 'Malaga Fit (Marsala & Uvetta)',
         category: 'Gelato',
+        section: 'recipes',
         description: 'Il classico gusto Malaga rivisitato in chiave proteica con yogurt greco e un tocco alcolico di Marsala.',
         programUsed: 'Gelato',
         protein: '18g',
@@ -175,6 +177,7 @@
         id: 'rec-3',
         title: 'Crema Caffè Russell-Moulinex',
         category: 'Gelato',
+        section: 'recipes',
         description: 'Una crema caffè proteica e vellutata che unisce caffè a filtro e yogurt greco.',
         programUsed: 'Yogurt Gelato',
         protein: '32g',
@@ -201,6 +204,7 @@
         id: 'rec-4',
         title: 'Sorbetto alla Pesca Matura',
         category: 'Sorbetto',
+        section: 'recipes',
         description: 'Sorbetto rinfrescante con pesche fresche e stabilizzato a caldo.',
         programUsed: 'Sorbetto',
         protein: '2g',
@@ -214,7 +218,7 @@
         ],
         steps: [
           'Scalda 80ml di acqua a 80°C.',
-          'Sciogli il neutro e l\'eritritolo nell\'acqua calda frullando.',
+          'Sciogli il neutro e l\'eritritolo dell\'acqua calda frullando.',
           'Sbuccia le pesche, tagliale a pezzi e frullale con un po\' di succo di limone.',
           'Unisci lo sciroppo caldo alla polpa di pesca e frulla bene.',
           'Versa nella pinta e congela in freezer per 24 ore.'
@@ -224,6 +228,7 @@
         id: 'rec-5',
         title: 'Sorbetto ai Frutti di Bosco "Sanificato"',
         category: 'Sorbetto',
+        section: 'recipes',
         description: 'Sorbetto frutti di bosco cotto a caldo contro virus per la massima sicurezza alimentare.',
         programUsed: 'Sorbetto',
         protein: '3g',
@@ -246,6 +251,7 @@
         id: 'rec-6',
         title: 'Nice Cream Choco-Banana Istantaneo',
         category: 'NiceCream',
+        section: 'recipes',
         description: 'Gelato velocissimo senza attesa di 24 ore, cremoso ed emulsionato al volo.',
         programUsed: 'MIX',
         protein: '6g',
@@ -267,6 +273,7 @@
         id: 'rec-7',
         title: 'Granita Siciliana al Caffè (con Panna)',
         category: 'Granita',
+        section: 'recipes',
         description: 'Una granita al caffè tradizionale dolcificata con eritritolo, stabilizzata con neutro e servita con panna.',
         programUsed: 'Granita',
         protein: '4g',
@@ -290,6 +297,7 @@
         id: 'rec-8',
         title: 'Gelato alla Mandorla Siciliano',
         category: 'Gelato',
+        section: 'recipes',
         description: 'Gelato proteico e ricco con pasta pura di mandorle, yogurt greco e whey vaniglia.',
         programUsed: 'Gelato',
         protein: '24g',
@@ -311,6 +319,39 @@
           'Versa nella pinta e congela in freezer per 24 ore.'
         ]
       },
+      {
+        id: 'rec-9',
+        title: 'Bonet di Luca Montersino',
+        category: 'Tradizionale',
+        section: 'dolci',
+        description: 'Il classico dolce al cucchiaio piemontese ricco di amaretti, cacao, caffè e rum. Ricetta originale del maestro Luca Montersino.',
+        programUsed: 'Forno Bagnomaria',
+        protein: 'Uova Intere',
+        kcal: 'Montersino',
+        tips: 'Cottura a bagnomaria a 140°C. Inserisci carta assorbente sotto lo stampo come barriera termica. Il composto NON deve crescere in cottura: se succede, abbassa subito la temperatura del forno.',
+        ingredients: [
+          { name: 'Latte intero (Dose ridotta: 400ml)', quantity: 1200, unit: 'g' },
+          { name: 'Panna fresca (Dose ridotta: 100ml)', quantity: 300, unit: 'ml' },
+          { name: 'Uova intere (Dose ridotta: 225g)', quantity: 675, unit: 'g' },
+          { name: 'Zucchero (Dose ridotta: 100g)', quantity: 300, unit: 'g' },
+          { name: 'Amaretti (Dose ridotta: 100g)', quantity: 300, unit: 'g' },
+          { name: 'Cacao amaro (Dose ridotta: 50g)', quantity: 150, unit: 'g' },
+          { name: 'Caffè espresso (Dose ridotta: 20g)', quantity: 60, unit: 'g' },
+          { name: 'Rum liquore (Dose ridotta: 10g)', quantity: 30, unit: 'g' },
+          { name: 'Zucchero per caramello', quantity: 150, unit: 'g' },
+          { name: 'Vaniglia in bacca', quantity: 2, unit: 'g' }
+        ],
+        steps: [
+          'Preparare il caramello con 150g di zucchero e qualche cucchiaio di acqua nel pentolino. Non mescolare mai, muovere solo la pentola. Versarlo sul fondo dello stampo da plumcake.',
+          'Portare a bollore il latte con la panna, lo zucchero e il baccello di vaniglia vuoto.',
+          'In una ciotola, mescolare accuratamente il cacao amaro con il rum e il caffè espresso tiepido (sciogliere benissimo per evitare grumi).',
+          'In una ciotola grande, mescolare le uova intere con i semi di vaniglia delicatamente, senza montare e senza incorporare aria.',
+          'Filtrare il latte bollente e versarlo a filo sulle uova mescolando. Unire il composto di cacao e gli amaretti sbriciolati finemente.',
+          'Versare il composto nello stampo sopra il caramello solidificato.',
+          'Cuocere a bagnomaria in una teglia con acqua fredda, inserendo dei fogli di carta assorbente sotto lo stampo come barriera termica.',
+          'Infornare a 140°C. Forno tradizionale: 1 ora (max 1h 10m). Forno ventilato: 45-50 minuti. Il dolce NON deve crescere in superficie.'
+        ]
+      }
     ];
 
     let currentSection = 'recipes';
@@ -388,12 +429,12 @@
           <!-- MACROS GRANDI -->
           <div class="grid grid-cols-2 gap-4 bg-slate-50 p-4.5 rounded-2xl border border-slate-200">
             <div class="text-center">
-              <span class="text-xs text-slate-400 font-bold uppercase">Proteine</span>
-              <span class="block text-2xl font-extrabold text-brand-dark">${recipe.protein}</span>
+              <span class="text-xs text-slate-400 font-bold uppercase">${recipe.section === 'recipes' ? 'Proteine' : 'Base'}</span>
+              <span class="block text-xl font-extrabold text-brand-dark truncate">${recipe.protein}</span>
             </div>
             <div class="text-center border-l border-slate-200">
-              <span class="text-xs text-slate-400 font-bold uppercase">Calorie</span>
-              <span class="block text-2xl font-extrabold text-brand-dark">${recipe.kcal} kcal</span>
+              <span class="text-xs text-slate-400 font-bold uppercase">${recipe.section === 'recipes' ? 'Calorie' : 'Autore'}</span>
+              <span class="block text-xl font-extrabold text-brand-dark truncate">${recipe.kcal}</span>
             </div>
           </div>
 
@@ -529,7 +570,9 @@
       // --- TAB 1: RICETTE GELATI ---
       if (currentSection === 'recipes') {
         let cards = '';
-        initialRecipes.forEach(recipe => {
+        const recipesList = initialRecipes.filter(r => r.section === 'recipes' || r.section === undefined);
+        
+        recipesList.forEach(recipe => {
           cards += `
             <div onclick="openRecipeModal('${recipe.id}')" class="p-5 bg-white border-2 border-slate-200 rounded-3xl shadow-sm hover:shadow-md active:scale-[0.98] transition-all cursor-pointer space-y-4">
               <div class="flex justify-between items-center">
@@ -554,7 +597,7 @@
 
         content.innerHTML = `
           <div class="space-y-5">
-            <h2 class="font-title text-2xl font-bold text-brand-dark">Scegli il tuo Gelato</h2>
+            <h2 class="font-title text-2xl font-bold text-brand-dark">Scegli il tuo Gelato Fit</h2>
             <div class="space-y-4">
               ${cards}
             </div>
@@ -562,19 +605,52 @@
         `;
       }
 
-      // --- TAB 2: DOLCI (TBD) ---
+      // --- TAB 2: I DOLCI GOLOSI ---
       else if (currentSection === 'dolci') {
-        content.innerHTML = `
-          <div class="space-y-6 py-8 text-center">
-            <div class="text-6xl">🍰</div>
-            <h2 class="font-title text-2xl font-bold text-brand-dark">Pasticceria & Dolci Fit</h2>
-            <div class="bg-amber-50 border-2 border-amber-200 p-6 rounded-3xl space-y-3">
+        let cards = '';
+        const dolciList = initialRecipes.filter(r => r.section === 'dolci');
+        
+        if (dolciList.length === 0) {
+          cards = `
+            <div class="bg-amber-50 border-2 border-amber-200 p-6 rounded-3xl space-y-3 text-center">
               <p class="text-base text-amber-900 leading-relaxed font-bold">
-                Sezione in fase di bilanciamento (TBD)
+                Nessuna ricetta inserita al momento
               </p>
               <p class="text-sm text-amber-800 leading-relaxed">
-                Qui aggiungeremo le torte, i muffin e i dolci fit cotti al forno non appena avremo terminato i test di laboratorio con il Socio. Stay tuned!
+                Le ricette tradizionali e golose di pasticceria di Cris verranno visualizzate qui.
               </p>
+            </div>
+          `;
+        } else {
+          dolciList.forEach(recipe => {
+            cards += `
+              <div onclick="openRecipeModal('${recipe.id}')" class="p-5 bg-white border-2 border-slate-200 rounded-3xl shadow-sm hover:shadow-md active:scale-[0.98] transition-all cursor-pointer space-y-4">
+                <div class="flex justify-between items-center">
+                  <span class="px-2.5 py-0.5 bg-slate-100 text-brand-dark rounded-md text-[11px] font-extrabold uppercase font-mono tracking-wider">${recipe.programUsed}</span>
+                  <span class="text-sm font-bold text-purple-600 bg-purple-50 px-2.5 py-1 rounded-full">
+                    🍰 ${recipe.protein}
+                  </span>
+                </div>
+                
+                <div>
+                  <h3 class="font-title text-xl font-bold text-brand-dark leading-tight">${recipe.title}</h3>
+                  <p class="text-sm text-slate-500 mt-1 line-clamp-2 leading-relaxed">${recipe.description}</p>
+                </div>
+
+                <div class="pt-3 border-t border-slate-100 flex justify-between items-center">
+                  <span class="text-xs font-bold text-slate-400 font-mono">${recipe.kcal}</span>
+                  <span class="text-sm font-bold text-brand-accent flex items-center gap-0.5">Apri ricetta →</span>
+                </div>
+              </div>
+            `;
+          });
+        }
+
+        content.innerHTML = `
+          <div class="space-y-5">
+            <h2 class="font-title text-2xl font-bold text-brand-dark">La Pasticceria Golosa</h2>
+            <div class="space-y-4">
+              ${cards}
             </div>
           </div>
         `;
