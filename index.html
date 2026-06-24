@@ -128,6 +128,8 @@
 
   <!-- CODICE LOGICA APPLICAZIONE -->
   <script>
+    const APP_VERSION = "20260624-1009";
+
     const initialRecipes = [
       {
         id: 'rec-1',
@@ -366,9 +368,37 @@
 
     let currentSection = 'recipes';
 
+    function checkForUpdates() {
+      // Esegui il controllo in background dopo un breve ritardo per non bloccare l'interfaccia iniziale
+      setTimeout(() => {
+        const path = window.location.pathname;
+        const buster = Date.now();
+        fetch(`${path}?cb=${buster}`, { cache: 'no-store' })
+          .then(response => {
+            if (!response.ok) throw new Error('Errore di rete');
+            return response.text();
+          })
+          .then(html => {
+            // Cerca la definizione di APP_VERSION nel codice scaricato dal server
+            const match = html.match(/const\s+APP_VERSION\s*=\s*["']([^"']+)["']/);
+            if (match && match[1]) {
+              const serverVersion = match[1];
+              if (serverVersion !== APP_VERSION) {
+                console.log(`Rilevata nuova versione: ${serverVersion}. Ricarico...`);
+                const url = new URL(window.location.href);
+                url.searchParams.set('v', serverVersion);
+                window.location.href = url.toString();
+              }
+            }
+          })
+          .catch(err => console.log('Controllo aggiornamenti offline o non riuscito:', err));
+      }, 1500);
+    }
+
     // Inizializzazione
     function init() {
       selectSection('recipes');
+      checkForUpdates();
     }
 
     // Navigazione
