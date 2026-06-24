@@ -136,7 +136,7 @@
 
   <!-- CODICE LOGICA APPLICAZIONE -->
   <script>
-    const APP_VERSION = "20260624-1009";
+    const APP_VERSION = "20260624-1305";
 
     const initialRecipes = [
       {
@@ -436,6 +436,79 @@
       render();
     }
 
+    // Genera l'HTML del pulsante della macchina Moulinex
+    function getProgramButtonHtml(program) {
+      if (!program) return '';
+      
+      let icon = '🍦';
+      let bgColor = 'bg-slate-950';
+      let borderGlow = 'border-brand-accent/50 shadow-[0_0_12px_rgba(188,132,238,0.35)]';
+      let textColor = 'text-brand-accent';
+      let description = 'Mantecatura per gelato classico, denso e cremoso.';
+
+      switch (program.toUpperCase()) {
+        case 'GELATO':
+          icon = '🍦';
+          borderGlow = 'border-brand-accent/50 shadow-[0_0_12px_rgba(188,132,238,0.35)]';
+          textColor = 'text-brand-accent';
+          description = 'Mantecatura standard per gelati cremosi e densi.';
+          break;
+        case 'SORBETTO':
+          icon = '🍧';
+          borderGlow = 'border-accent-lime/50 shadow-[0_0_12px_rgba(220,253,139,0.35)]';
+          textColor = 'text-accent-lime';
+          description = 'Mantecatura per sorbetti di frutta ghiacciata, freschi e vellutati.';
+          break;
+        case 'MIX':
+          icon = '🌪️';
+          borderGlow = 'border-brand-orange/50 shadow-[0_0_12px_rgba(255,130,58,0.35)]';
+          textColor = 'text-brand-orange';
+          description = 'Programma veloce per amalgamare pezzetti, cioccolato o per nice cream istantanei.';
+          break;
+        case 'GRANITA':
+          icon = '🥤';
+          borderGlow = 'border-sky-400/50 shadow-[0_0_12px_rgba(56,189,248,0.35)]';
+          textColor = 'text-sky-400';
+          description = 'Programma specifico per rompere i cristalli di ghiaccio e creare granite della giusta consistenza.';
+          break;
+        default:
+          icon = '♨️';
+          bgColor = 'bg-slate-50';
+          borderGlow = 'border-slate-300';
+          textColor = 'text-slate-700';
+          description = 'Cottura tradizionale a bagnomaria in forno.';
+          return `
+            <div class="p-4 bg-slate-50 border border-slate-200 rounded-2xl flex items-center gap-3">
+              <span class="text-3xl">${icon}</span>
+              <div>
+                <span class="block text-xs text-slate-400 font-bold uppercase font-mono">Metodo di Cottura</span>
+                <span class="text-lg font-extrabold text-slate-700 font-title">${program}</span>
+                <p class="text-xs text-slate-500 font-medium mt-0.5">${description}</p>
+              </div>
+            </div>
+          `;
+      }
+
+      return `
+        <div class="p-4.5 bg-slate-950 border-2 ${borderGlow} rounded-3xl flex flex-col gap-3 relative overflow-hidden shadow-md">
+          <div class="absolute inset-0 bg-gradient-to-tr from-transparent via-white/5 to-white/10 pointer-events-none"></div>
+          <div class="flex items-center justify-between z-10">
+            <div class="flex items-center gap-3">
+              <div class="w-12 h-12 rounded-2xl ${bgColor} border-2 ${borderGlow} flex items-center justify-center text-2xl shadow-inner active:scale-95 transition-all">
+                ${icon}
+              </div>
+              <div>
+                <span class="block text-[10px] text-slate-400 font-bold uppercase tracking-wider font-mono">Pulsante Moulinex Dolci</span>
+                <span class="text-lg font-black tracking-widest uppercase ${textColor} font-title">${program}</span>
+              </div>
+            </div>
+            <span class="px-2.5 py-0.5 bg-slate-800 text-white rounded-md text-[10px] font-extrabold uppercase tracking-wider font-mono border border-slate-700 animate-pulse">PRONTO</span>
+          </div>
+          <p class="text-xs text-slate-400 font-medium z-10 leading-relaxed pl-1">${description}</p>
+        </div>
+      `;
+    }
+
     // Apri Dettaglio Ricetta
     function openRecipeModal(recipeId) {
       const recipe = initialRecipes.find(r => r.id === recipeId);
@@ -474,6 +547,27 @@
         `;
       });
 
+      // Se è un gelato/sorbetto/granita/nicecream (quindi ha un programma macchina specifico), aggiungiamo il passo finale nelle istruzioni
+      if (recipe.programUsed && recipe.programUsed !== 'Forno Bagnomaria') {
+        let progIcon = '🍦';
+        if (recipe.programUsed.toUpperCase() === 'SORBETTO') progIcon = '🍧';
+        if (recipe.programUsed.toUpperCase() === 'MIX') progIcon = '🌪️';
+        if (recipe.programUsed.toUpperCase() === 'GRANITA') progIcon = '🥤';
+        
+        stepsList += `
+          <div class="flex gap-3 text-lg leading-relaxed text-slate-800 mt-3 p-3.5 bg-slate-50 border border-slate-200 rounded-2xl">
+            <span class="text-brand-accent font-extrabold text-xl">${recipe.steps.length + 1}.</span>
+            <p class="font-bold text-brand-dark flex items-center gap-1.5 flex-wrap">
+              Inserisci la pinta nella macchina e premi il pulsante 
+              <span class="inline-flex items-center gap-1 bg-slate-950 text-white px-2.5 py-0.5 rounded-lg text-sm font-black tracking-widest font-title border border-slate-800 uppercase shadow-sm">
+                ${progIcon} ${recipe.programUsed}
+              </span> 
+              per mantecare!
+            </p>
+          </div>
+        `;
+      }
+
       content.innerHTML = `
         <div class="space-y-6">
           <div class="mt-2">
@@ -504,6 +598,14 @@
             </div>
           </div>
 
+          <!-- PROGRAMMA CONSIGLIATO -->
+          <div class="space-y-3">
+            <h3 class="font-title text-xl font-bold text-brand-dark flex items-center gap-2">
+              🎛️ Programma Moulinex Dolci
+            </h3>
+            ${getProgramButtonHtml(recipe.programUsed)}
+          </div>
+
           <!-- PROCEDIMENTO -->
           <div class="space-y-4">
             <h3 class="font-title text-xl font-bold text-brand-dark">
@@ -515,7 +617,7 @@
           </div>
 
           <!-- CHICCHE E TIPS -->
-          <div class="bg-accent-orange/15 border-2 border-accent-orange/30 p-5 rounded-2xl space-y-2">
+          <div class="bg-brand-orange/15 border-2 border-brand-orange/30 p-5 rounded-2xl space-y-2">
             <h4 class="font-title font-bold text-lg text-brand-dark flex items-center gap-1.5">
               💡 Chicche e Tips del Socio
             </h4>
