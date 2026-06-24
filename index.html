@@ -89,7 +89,7 @@
         <!-- Pulsante Gelati -->
         <button onclick="selectSection('recipes')" id="btn-sec-recipes" class="touch-target py-5 px-3 rounded-2xl bg-brand-dark text-white font-title font-bold text-lg flex flex-col items-center justify-center gap-2 border-2 border-brand-dark shadow-md active:scale-95 transition-all">
           <span class="text-2xl">🍦</span>
-          Gelati Fit
+          I Gelati
         </button>
         
         <!-- Pulsante Dolci -->
@@ -136,12 +136,12 @@
 
   <!-- CODICE LOGICA APPLICAZIONE -->
   <script>
-    const APP_VERSION = "20260624-1415";
+    const APP_VERSION = "20260624-1420";
 
     const initialRecipes = [
       {
         id: 'rec-1',
-        title: 'Cioccolato Fit Protein',
+        title: '[FIT] Cioccolato Protein',
         category: 'Gelato',
         section: 'recipes',
         description: 'Un gelato proteico al cioccolato denso e cremoso, bilanciato con eritritolo e neutro.',
@@ -154,7 +154,7 @@
           { name: 'Latte fresco parzialmente scremato', quantity: 300, unit: 'ml' },
           { name: 'Cacao Amaro', quantity: 10, unit: 'g' },
           { name: 'Eritritolo', quantity: 25, unit: 'g' },
-          { name: 'Neutro per Gelati SaporePuro', quantity: 2, unit: 'g' },
+          { name: 'Neutro per Gelati SaporePuro (Stabilizzante)', quantity: 2, unit: 'g' },
         ],
         steps: [
           'Miscela a secco il Neutro SaporePuro e l\'eritritolo.',
@@ -167,7 +167,7 @@
       },
       {
         id: 'rec-2',
-        title: 'Malaga Fit (Marsala & Uvetta)',
+        title: '[FIT] Malaga Proteico (Marsala & Uvetta)',
         category: 'Gelato',
         section: 'recipes',
         description: 'Il classico gusto Malaga rivisitato in chiave proteica con yogurt greco e un tocco alcolico di Marsala.',
@@ -178,43 +178,44 @@
         ingredients: [
           { name: 'Yogurt Greco 0% Bianco', quantity: 200, unit: 'g' },
           { name: 'Latte fresco parzialmente scremato', quantity: 150, unit: 'ml' },
-          { name: 'Marsala', quantity: 30, unit: 'ml' },
+          { name: 'Marsala (per l\'uvetta e la base)', quantity: 30, unit: 'ml' },
           { name: 'Eritritolo', quantity: 30, unit: 'g' },
-          { name: 'Neutro per Gelati SaporePuro', quantity: 3, unit: 'g' },
+          { name: 'Neutro per Gelati SaporePuro (Stabilizzante)', quantity: 3, unit: 'g' },
           { name: 'Uvetta', quantity: 40, unit: 'g' },
         ],
         steps: [
-          'Metti le uvette a bagno in 20-30ml di Marsala per almeno 4 ore.',
+          'Metti le uvette a bagno nei 30ml di Marsala per almeno 4 ore.',
           'Miscela a secco il Neutro SaporePuro e l\'eritritolo.',
-          'Scalda 50ml di latte a 80-85°C, unisci il neutro/eritritolo e frulla col mixer.',
-          'Unisci lo yogurt greco 0%, il latte freddo rimanente, i 30ml di Marsala e frulla bene.',
-          'Versa la base nella pinta, livella la superficie e congela per 24 ore.',
-          'Scola le uvette e mettile in freezer per 20 minuti su un piattino.',
+          'Scalda 50ml di latte a 80-85°C, unisci il neutro/eritritolo e frulla col mixer per attivarlo.',
+          'Scola le uvette trattenendo il Marsala. Unisci lo yogurt greco 0%, il latte freddo rimanente, il Marsala scolato e frulla bene.',
+          'Versa la base nella pinta, livella la superficie e congela in freezer per 24 ore.',
+          'Metti le uvette scolate nel congelatore per 20 minuti su un piattino.',
           'Esegui lo spin "Gelato", scava un foro al centro, versa le uvette ghiacciate e premi MIX.'
         ]
       },
       {
         id: 'rec-3',
-        title: 'Crema Caffè Russell-Moulinex',
+        title: '[FIT] Crema Caffè (Russell-Moulinex)',
         category: 'Gelato',
         section: 'recipes',
         description: 'Una crema caffè proteica e vellutata che unisce caffè a filtro e yogurt greco.',
         programUsed: 'Gelato',
         protein: '32g',
         kcal: '260',
-        tips: 'Sciogli il neutro e l\'eritritolo direttamente nel caffè bollente appena estratto dalla Russell Hobbs Adventure (perfetto per attivarlo a 85°C).',
+        tips: 'Sciogli il neutro e l\'eritritolo direttamente nel caffè bollente appena estratto dalla Russell Hobbs Adventure (perfetto per attivarlo a 85°C). Se desideri un sapore di caffè extra intenso, aggiungi il cucchiaino di caffè solubile!',
         ingredients: [
           { name: 'Caffè in grani/polvere', quantity: 15, unit: 'g' },
           { name: 'Acqua', quantity: 150, unit: 'ml' },
           { name: 'Yogurt Greco 0% al Caffè', quantity: 170, unit: 'g' },
           { name: 'Latte fresco parzialmente scremato', quantity: 100, unit: 'ml' },
           { name: 'Eritritolo', quantity: 25, unit: 'g' },
-          { name: 'Neutro per Gelati SaporePuro', quantity: 2, unit: 'g' },
+          { name: 'Neutro per Gelati SaporePuro (Stabilizzante)', quantity: 2, unit: 'g' },
           { name: 'Impact Whey Protein (Vaniglia)', quantity: 20, unit: 'g' },
+          { name: 'Caffè solubile istantaneo (opzionale, per intensificare)', quantity: 1, unit: 'cucchiaino' },
         ],
         steps: [
           'Esegui un\'estrazione a filtro calda per ottenere 150ml di caffè.',
-          'Sciogli subito il neutro e l\'eritritolo nel caffè bollente frullando bene col mixer.',
+          'Sciogli subito il neutro, l\'eritritolo (e il caffè solubile se usato) nel caffè bollente frullando bene col mixer.',
           'Lascia intiepidire la miscela per qualche minuto.',
           'Aggiungi lo yogurt greco al caffè, il latte freddo e le whey protein e frulla.',
           'Versa nella pinta e congela in freezer per 24 ore.'
@@ -222,7 +223,7 @@
       },
       {
         id: 'rec-4',
-        title: 'Sorbetto alla Pesca Matura',
+        title: '[FIT] Sorbetto alla Pesca Matura',
         category: 'Sorbetto',
         section: 'recipes',
         description: 'Sorbetto rinfrescante con pesche fresche e stabilizzato a caldo.',
@@ -234,11 +235,11 @@
           { name: 'Pesche Mature', quantity: 350, unit: 'g' },
           { name: 'Acqua', quantity: 80, unit: 'ml' },
           { name: 'Eritritolo', quantity: 30, unit: 'g' },
-          { name: 'Neutro per Gelati SaporePuro', quantity: 2, unit: 'g' },
+          { name: 'Neutro per Gelati SaporePuro (Stabilizzante)', quantity: 2, unit: 'g' },
         ],
         steps: [
           'Scalda 80ml di acqua a 80°C.',
-          'Sciogli il neutro e l\'eritritolo dell\'acqua calda frullando.',
+          'Sciogli il neutro e l\'eritritolo nell\'acqua calda frullando.',
           'Sbuccia le pesche, tagliale a pezzi e frullale con un po\' di succo di limone.',
           'Unisci lo sciroppo caldo alla polpa di pesca e frulla bene.',
           'Versa nella pinta e congela in freezer per 24 ore.'
@@ -246,7 +247,7 @@
       },
       {
         id: 'rec-5',
-        title: 'Sorbetto ai Frutti di Bosco "Sanificato"',
+        title: '[FIT] Sorbetto ai Frutti di Bosco',
         category: 'Sorbetto',
         section: 'recipes',
         description: 'Sorbetto frutti di bosco cotto a caldo contro virus per la massima sicurezza alimentare.',
@@ -258,7 +259,7 @@
           { name: 'Frutti di Bosco Congelati', quantity: 300, unit: 'g' },
           { name: 'Acqua', quantity: 100, unit: 'ml' },
           { name: 'Eritritolo', quantity: 40, unit: 'g' },
-          { name: 'Neutro per Gelati SaporePuro', quantity: 2.5, unit: 'g' },
+          { name: 'Neutro per Gelati SaporePuro (Stabilizzante)', quantity: 2.5, unit: 'g' },
         ],
         steps: [
           'Bollisci i frutti di bosco congelati per 2-3 minuti in 100ml di acqua ed eritritolo.',
@@ -269,7 +270,7 @@
       },
       {
         id: 'rec-6',
-        title: 'Nice Cream Choco-Banana Istantaneo',
+        title: '[FIT] Nice Cream Choco-Banana',
         category: 'NiceCream',
         section: 'recipes',
         description: 'Gelato velocissimo senza attesa di 24 ore, cremoso ed emulsionato al volo.',
@@ -291,10 +292,10 @@
       },
       {
         id: 'rec-7',
-        title: 'Granita Siciliana al Caffè (con Panna)',
+        title: '[FIT] Granita Siciliana al Caffè',
         category: 'Granita',
         section: 'recipes',
-        description: 'Una granita al caffè tradizionale dolcificata con eritritolo, stabilizzata con neutro e servita con panna.',
+        description: 'Una granita al caffè di tipo tradizionale dolcificata con eritritolo, stabilizzata con neutro e servita con panna.',
         programUsed: 'Granita',
         protein: '4g',
         kcal: '180',
@@ -303,7 +304,7 @@
           { name: 'Caffè in grani/polvere', quantity: 30, unit: 'g' },
           { name: 'Acqua', quantity: 300, unit: 'ml' },
           { name: 'Eritritolo', quantity: 45, unit: 'g' },
-          { name: 'Neutro per Gelati SaporePuro', quantity: 1.5, unit: 'g' },
+          { name: 'Neutro per Gelati SaporePuro (Stabilizzante)', quantity: 1.5, unit: 'g' },
           { name: 'Panna da montare', quantity: 50, unit: 'ml' },
         ],
         steps: [
@@ -315,7 +316,7 @@
       },
       {
         id: 'rec-8',
-        title: 'Gelato alla Mandorla Siciliano',
+        title: '[FIT] Gelato alla Mandorla Siciliano',
         category: 'Gelato',
         section: 'recipes',
         description: 'Gelato proteico e ricco con pasta pura di mandorle, yogurt greco e whey vaniglia.',
@@ -329,7 +330,7 @@
           { name: 'Latte fresco parzialmente scremato', quantity: 150, unit: 'ml' },
           { name: 'Impact Whey Protein (Vaniglia)', quantity: 20, unit: 'g' },
           { name: 'Eritritolo', quantity: 35, unit: 'g' },
-          { name: 'Neutro per Gelati SaporePuro', quantity: 2.5, unit: 'g' },
+          { name: 'Neutro per Gelati SaporePuro (Stabilizzante)', quantity: 2.5, unit: 'g' },
         ],
         steps: [
           'Miscela a secco il Neutro SaporePuro e l\'eritritolo.',
@@ -340,8 +341,40 @@
         ]
       },
       {
+        id: 'rec-10',
+        title: '[TRADIZIONALE] Malaga Ricco all\'Uovo',
+        category: 'Gelato',
+        section: 'recipes',
+        description: 'La ricetta tradizionale e ricchissima del gelato Malaga, preparata con una crema inglese all\'uovo, panna fresca e uvetta al Marsala.',
+        programUsed: 'Gelato',
+        protein: 'Tuorli & Latte',
+        kcal: 'Classico',
+        tips: 'Cottura a fuoco lento della crema fino a 82-84°C per pastorizzare i tuorli. Attiva il neutro direttamente nella crema calda frullando col mixer a immersione.',
+        ingredients: [
+          { name: 'Tuorli d\'uovo freschi', quantity: 3, unit: 'pcs' },
+          { name: 'Zucchero semolato', quantity: 80, unit: 'g' },
+          { name: 'Panna fresca liquida (35% grassi)', quantity: 150, unit: 'ml' },
+          { name: 'Latte intero fresco', quantity: 150, unit: 'ml' },
+          { name: 'Marsala (per l\'uvetta e la base)', quantity: 35, unit: 'ml' },
+          { name: 'Uvetta', quantity: 50, unit: 'g' },
+          { name: 'Neutro per Gelati SaporePuro (Stabilizzante)', quantity: 2, unit: 'g' },
+        ],
+        steps: [
+          'Metti le uvette a bagno nei 35ml di Marsala per almeno 4 ore (o tutta la notte).',
+          'In un pentolino, sbatti i tuorli d\'uovo con lo zucchero.',
+          'Aggiungi il latte intero e la panna fresca, miscela bene.',
+          'Scalda la miscela a fuoco medio-basso mescolando continuamente fino a raggiungere 82-84°C (senza far bollire, per creare una crema inglese vellutata).',
+          'Togli dal fuoco, aggiungi il neutro SaporePuro e frulla accuratamente col mixer a immersione per attivarlo ed evitare grumi.',
+          'Lascia raffreddare completamente il composto (meglio se riposa in frigorifero per 2 ore).',
+          'Scola le uvette trattenendo il Marsala. Unisci il Marsala scolato alla base di crema fredda e mescola bene.',
+          'Versa la base nella pinta, livella la superficie e congela in freezer per 24 ore a -20°C.',
+          'Metti le uvette scolate nel congelatore per 20 minuti su un piattino.',
+          'Esegui lo spin "Gelato", scava un foro al centro, versa le uvette ghiacciate e premi MIX.'
+        ]
+      },
+      {
         id: 'rec-9',
-        title: 'Bonet di Luca Montersino',
+        title: '[TRADIZIONALE] Bonet di Luca Montersino',
         category: 'Tradizionale',
         section: 'dolci',
         description: 'Il classico dolce al cucchiaio piemontese ricco di amaretti, cacao, caffè e rum. Ricetta originale del maestro Luca Montersino.',
@@ -755,7 +788,7 @@
 
         content.innerHTML = `
           <div class="space-y-5">
-            <h2 class="font-title text-2xl font-bold text-brand-dark">Scegli il tuo Gelato Fit</h2>
+            <h2 class="font-title text-2xl font-bold text-brand-dark">Scegli il tuo Gelato</h2>
             <div class="space-y-4">
               ${cards}
             </div>
