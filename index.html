@@ -38,13 +38,9 @@
   <style>
     body {
       background-color: #FDFBF7; /* Crema caldissimo per stancare meno gli occhi */
-      font-size: 17px; /* Dimensione base generosa per iPhone */
+      font-size: 18px; /* Dimensione base generosa per iPhone */
     }
-    /* Impedisce lo zoom involontario sui campi di testo nei dispositivi iOS */
-    input, select, textarea {
-      font-size: 16px !important;
-    }
-    /* Touch target ottimali per le dita (minimo 44px) */
+    /* Touch target ottimali per le dita (minimo 48px) */
     .touch-target {
       min-height: 48px;
       min-width: 48px;
@@ -64,33 +60,32 @@
           Dolci <span class="text-accent-lime">Crisi</span>
         </h1>
         <p class="text-sm text-slate-300 font-sans tracking-wide mt-2 font-medium">
-          La cucina Fit di Cris & del Socio
+          Le ricette Fit di Cris & del Socio
         </p>
       </div>
     </header>
 
-    <!-- MENU PRINCIPALE A PULSANTI GRANDI (GRIGLIA TATTILE) -->
+    <!-- MENU PRINCIPALE A PULSANTI GRANDI ED ENORMI (OTTIMIZZATO) -->
     <section class="px-5 mt-6">
-      <div class="grid grid-cols-2 gap-4">
-        <button onclick="selectSection('recipes')" id="btn-sec-recipes" class="touch-target py-5 px-4 rounded-2xl bg-brand-dark text-white font-title font-bold text-lg flex flex-col items-center justify-center gap-2 border-2 border-brand-dark shadow-md active:scale-95 transition-all">
-          <span class="text-2xl">🍦</span>
-          Gelati
+      <div class="space-y-4">
+        <!-- Pulsantone principale per i Gelati (l'attività principale) -->
+        <button onclick="selectSection('recipes')" id="btn-sec-recipes" class="w-full touch-target py-6 px-4 rounded-3xl bg-brand-dark text-white font-title font-bold text-2xl flex items-center justify-center gap-3 border-2 border-brand-dark shadow-md active:scale-95 transition-all">
+          <span class="text-3xl">🍦</span>
+          I Gelati Fit
         </button>
         
-        <button onclick="selectSection('dolci')" id="btn-sec-dolci" class="touch-target py-5 px-4 rounded-2xl bg-slate-100 text-brand-dark font-title font-bold text-lg flex flex-col items-center justify-center gap-2 border-2 border-slate-200 active:scale-95 transition-all">
-          <span class="text-2xl">🍰</span>
-          Dolci (TBD)
-        </button>
-        
-        <button onclick="selectSection('machines')" id="btn-sec-machines" class="touch-target py-5 px-4 rounded-2xl bg-slate-100 text-brand-dark font-title font-bold text-lg flex flex-col items-center justify-center gap-2 border-2 border-slate-200 active:scale-95 transition-all">
-          <span class="text-2xl">🔌</span>
-          Macchine
-        </button>
-        
-        <button onclick="selectSection('pantry')" id="btn-sec-pantry" class="touch-target py-5 px-4 rounded-2xl bg-slate-100 text-brand-dark font-title font-bold text-lg flex flex-col items-center justify-center gap-2 border-2 border-slate-200 active:scale-95 transition-all">
-          <span class="text-2xl">🛒</span>
-          Dispensa
-        </button>
+        <div class="grid grid-cols-2 gap-4">
+          <!-- Altri due pulsanti di supporto -->
+          <button onclick="selectSection('dolci')" id="btn-sec-dolci" class="touch-target py-5 px-3 rounded-2xl bg-slate-100 text-brand-dark font-title font-bold text-lg flex flex-col items-center justify-center gap-1.5 border-2 border-slate-200 active:scale-95 transition-all">
+            <span class="text-2xl">🍰</span>
+            Dolci (TBD)
+          </button>
+          
+          <button onclick="selectSection('machines')" id="btn-sec-machines" class="touch-target py-5 px-3 rounded-2xl bg-slate-100 text-brand-dark font-title font-bold text-lg flex flex-col items-center justify-center gap-1.5 border-2 border-slate-200 active:scale-95 transition-all">
+            <span class="text-2xl">🔌</span>
+            Le Macchine
+          </button>
+        </div>
       </div>
     </section>
 
@@ -108,48 +103,8 @@
           ✕
         </button>
 
-        <div id="modal-content-area">
+        <div id="modal-content-area" class="pb-4">
           <!-- Riempito dinamicamente -->
-        </div>
-      </div>
-    </div>
-
-    <!-- POPUP AGGIUNGI INGREDIENTE -->
-    <div id="pantry-modal" class="fixed inset-0 bg-brand-dark/80 backdrop-blur-sm z-50 hidden flex items-center justify-center p-4">
-      <div class="bg-white w-full max-w-sm rounded-3xl shadow-2xl p-6 relative">
-        <button onclick="closePantryModal()" class="absolute top-4 right-4 touch-target w-10 h-10 rounded-full bg-slate-100 hover:bg-slate-200 flex items-center justify-center text-slate-800 text-xl font-bold">
-          ✕
-        </button>
-        
-        <h3 class="font-title text-xl font-bold text-brand-dark mb-4">Aggiungi Prodotto</h3>
-        
-        <div class="space-y-4">
-          <div>
-            <label class="block text-xs font-bold text-slate-500 uppercase tracking-wider mb-1">Nome Ingrediente</label>
-            <input id="new-ing-name" type="text" placeholder="es. Latte Scremato in Polvere" class="w-full border-2 border-slate-200 rounded-xl p-3 text-base focus:outline-none focus:border-brand-accent bg-slate-50 font-semibold" />
-          </div>
-          <div class="grid grid-cols-2 gap-3">
-            <div>
-              <label class="block text-xs font-bold text-slate-500 uppercase tracking-wider mb-1">Quantità</label>
-              <input id="new-ing-qty" type="number" placeholder="500" class="w-full border-2 border-slate-200 rounded-xl p-3 text-base focus:outline-none focus:border-brand-accent bg-slate-50 font-semibold font-mono" />
-            </div>
-            <div>
-              <label class="block text-xs font-bold text-slate-500 uppercase tracking-wider mb-1">Unità</label>
-              <select id="new-ing-unit" class="w-full border-2 border-slate-200 rounded-xl p-3 text-base focus:outline-none focus:border-brand-accent bg-slate-50 font-semibold">
-                <option value="g">grammi (g)</option>
-                <option value="ml">millilitri (ml)</option>
-                <option value="pcs">pezzi (pz)</option>
-              </select>
-            </div>
-          </div>
-          <div class="flex items-center gap-2 py-1">
-            <input id="new-ing-critical" type="checkbox" class="w-5 h-5 rounded border-slate-300 text-brand-accent focus:ring-brand-accent" />
-            <label for="new-ing-critical" class="text-sm font-semibold text-slate-700 select-none">È un ingrediente fondamentale (Critico)</label>
-          </div>
-          
-          <button onclick="saveNewIngredient()" class="w-full bg-brand-dark text-white font-title font-bold text-base py-3.5 rounded-xl shadow-md active:scale-95 transition-all mt-2">
-            Salva in Dispensa
-          </button>
         </div>
       </div>
     </div>
@@ -158,29 +113,6 @@
 
   <!-- CODICE LOGICA APPLICAZIONE -->
   <script>
-    // -------------------- DATI DI SEED --------------------
-    const initialIngredients = [
-      { id: 'ing-1', name: 'Neutro per Gelati SaporePuro', quantity: 200, unit: 'g', isCritical: true },
-      { id: 'ing-2', name: 'Latte Scremato in Polvere SaporePuro', quantity: 500, unit: 'g', isCritical: false },
-      { id: 'ing-3', name: 'Impact Whey Protein (Cioccolato)', quantity: 450, unit: 'g', isCritical: true },
-      { id: 'ing-4', name: 'Impact Whey Protein (Vaniglia)', quantity: 300, unit: 'g', isCritical: false },
-      { id: 'ing-5', name: 'Impact Whey Protein (Neutro)', quantity: 250, unit: 'g', isCritical: false },
-      { id: 'ing-6', name: 'Yogurt Greco 0% Bianco', quantity: 800, unit: 'g', isCritical: true },
-      { id: 'ing-7', name: 'Yogurt Greco 0% al Caffè', quantity: 500, unit: 'g', isCritical: false },
-      { id: 'ing-8', name: 'Latte fresco parzialmente scremato', quantity: 1500, unit: 'ml', isCritical: true },
-      { id: 'ing-9', name: 'Cacao Amaro', quantity: 200, unit: 'g', isCritical: false },
-      { id: 'ing-10', name: 'Uvetta', quantity: 300, unit: 'g', isCritical: false },
-      { id: 'ing-11', name: 'Marsala', quantity: 500, unit: 'ml', isCritical: false },
-      { id: 'ing-12', name: 'Pesche Mature', quantity: 1200, unit: 'g', isCritical: false },
-      { id: 'ing-13', name: 'Frutti di Bosco Congelati', quantity: 1000, unit: 'g', isCritical: false },
-      { id: 'ing-14', name: 'Pasta Pura di Mandorle 100%', quantity: 250, unit: 'g', isCritical: false },
-      { id: 'ing-15', name: 'Eritritolo', quantity: 400, unit: 'g', isCritical: true },
-      { id: 'ing-16', name: 'Banane', quantity: 8, unit: 'pcs', isCritical: false },
-      { id: 'ing-17', name: 'Panna da montare', quantity: 500, unit: 'ml', isCritical: false },
-      { id: 'ing-18', name: 'Acqua', quantity: 5000, unit: 'ml', isCritical: false },
-      { id: 'ing-19', name: 'Caffè in grani/polvere', quantity: 250, unit: 'g', isCritical: false },
-    ];
-
     const initialRecipes = [
       {
         id: 'rec-1',
@@ -376,19 +308,10 @@
       },
     ];
 
-    // -------------------- STATO --------------------
     let currentSection = 'recipes';
-    let ingredients = [];
 
-    // Inizializzazione dati
+    // Inizializzazione
     function init() {
-      const storedIng = localStorage.getItem('dolcicris_ingredients');
-      if (storedIng) {
-        ingredients = JSON.parse(storedIng);
-      } else {
-        ingredients = [...initialIngredients];
-        localStorage.setItem('dolcicris_ingredients', JSON.stringify(ingredients));
-      }
       selectSection('recipes');
     }
 
@@ -396,99 +319,28 @@
     function selectSection(sectionId) {
       currentSection = sectionId;
       
-      const sections = ['recipes', 'dolci', 'machines', 'pantry'];
-      sections.forEach(s => {
-        const btn = document.getElementById(`btn-sec-${s}`);
-        if (s === sectionId) {
-          btn.className = "touch-target py-5 px-4 rounded-2xl bg-brand-dark text-white font-title font-bold text-lg flex flex-col items-center justify-center gap-2 border-2 border-brand-dark shadow-md active:scale-95 transition-all";
-        } else {
-          btn.className = "touch-target py-5 px-4 rounded-2xl bg-slate-100 text-brand-dark font-title font-bold text-lg flex flex-col items-center justify-center gap-2 border-2 border-slate-200 active:scale-95 transition-all";
-        }
-      });
+      const btnRecipes = document.getElementById('btn-sec-recipes');
+      const btnDolci = document.getElementById('btn-sec-dolci');
+      const btnMachines = document.getElementById('btn-sec-machines');
+
+      // Reset stili
+      btnRecipes.className = "w-full touch-target py-6 px-4 rounded-3xl bg-slate-100 text-brand-dark font-title font-bold text-2xl flex items-center justify-center gap-3 border-2 border-slate-200 active:scale-[0.97] transition-all";
+      btnDolci.className = "touch-target py-5 px-3 rounded-2xl bg-slate-100 text-brand-dark font-title font-bold text-lg flex flex-col items-center justify-center gap-1.5 border-2 border-slate-200 active:scale-95 transition-all";
+      btnMachines.className = "touch-target py-5 px-3 rounded-2xl bg-slate-100 text-brand-dark font-title font-bold text-lg flex flex-col items-center justify-center gap-1.5 border-2 border-slate-200 active:scale-95 transition-all";
+
+      // Attiva selezionato
+      if (sectionId === 'recipes') {
+        btnRecipes.className = "w-full touch-target py-6 px-4 rounded-3xl bg-brand-dark text-white font-title font-bold text-2xl flex items-center justify-center gap-3 border-2 border-brand-dark shadow-md active:scale-[0.97] transition-all";
+      } else if (sectionId === 'dolci') {
+        btnDolci.className = "touch-target py-5 px-3 rounded-2xl bg-brand-dark text-white font-title font-bold text-lg flex flex-col items-center justify-center gap-1.5 border-2 border-brand-dark shadow-md active:scale-95 transition-all";
+      } else if (sectionId === 'machines') {
+        btnMachines.className = "touch-target py-5 px-3 rounded-2xl bg-brand-dark text-white font-title font-bold text-lg flex flex-col items-center justify-center gap-1.5 border-2 border-brand-dark shadow-md active:scale-95 transition-all";
+      }
 
       render();
     }
 
-    // Controlla disponibilità ingredienti
-    function checkAvailability(recipe) {
-      let missingCount = 0;
-      recipe.ingredients.forEach(req => {
-        const match = ingredients.find(p => p.name.toLowerCase().includes(req.name.toLowerCase().split(' (')[0]));
-        if (req.name.toLowerCase() !== 'acqua' && (!match || match.quantity < req.quantity)) {
-          missingCount++;
-        }
-      });
-      return missingCount;
-    }
-
-    // Aggiungi ingrediente
-    function saveNewIngredient() {
-      const nameInput = document.getElementById('new-ing-name');
-      const qtyInput = document.getElementById('new-ing-qty');
-      const unitSelect = document.getElementById('new-ing-unit');
-      const criticalCheck = document.getElementById('new-ing-critical');
-
-      const name = nameInput.value.trim();
-      const qty = parseFloat(qtyInput.value) || 0;
-      const unit = unitSelect.value;
-      const isCritical = criticalCheck.checked;
-
-      if (!name) {
-        alert('Inserisci il nome del prodotto!');
-        return;
-      }
-
-      const newId = 'ing-' + Math.random().toString(36).substr(2, 9);
-      ingredients.push({
-        id: newId,
-        name: name,
-        quantity: qty,
-        unit: unit,
-        isCritical: isCritical
-      });
-
-      // Ordina per nome
-      ingredients.sort((a, b) => a.name.localeCompare(b.name));
-
-      localStorage.setItem('dolcicris_ingredients', JSON.stringify(ingredients));
-      
-      // Resetta campi
-      nameInput.value = '';
-      qtyInput.value = '';
-      criticalCheck.checked = false;
-
-      closePantryModal();
-      render();
-    }
-
-    // Regola quantità
-    function adjustQty(id, delta) {
-      const ing = ingredients.find(i => i.id === id);
-      if (ing) {
-        ing.quantity = Math.max(0, ing.quantity + delta);
-        localStorage.setItem('dolcicris_ingredients', JSON.stringify(ingredients));
-        document.getElementById(`qty-val-${id}`).innerText = `${ing.quantity} ${ing.unit}`;
-        
-        // Colora se critico scarso
-        const ingCard = document.getElementById(`ing-card-${id}`);
-        if (ing.isCritical && ing.quantity <= 10) {
-          ingCard.className = "p-4.5 bg-orange-50 border-2 border-orange-200 rounded-2xl flex items-center justify-between shadow-xs";
-        } else {
-          ingCard.className = "p-4.5 bg-slate-50 border border-slate-200 rounded-2xl flex items-center justify-between shadow-xs";
-        }
-      }
-    }
-
-    // Rimuovi ingrediente
-    function deleteIngredient(id) {
-      if (confirm('Sei sicuro di voler eliminare questo prodotto dalla dispensa?')) {
-        ingredients = ingredients.filter(i => i.id !== id);
-        localStorage.setItem('dolcicris_ingredients', JSON.stringify(ingredients));
-        render();
-      }
-    }
-
-    // Modali
+    // Apri Dettaglio Ricetta
     function openRecipeModal(recipeId) {
       const recipe = initialRecipes.find(r => r.id === recipeId);
       if (!recipe) return;
@@ -498,12 +350,10 @@
 
       let ingList = '';
       recipe.ingredients.forEach(ing => {
-        const match = ingredients.find(p => p.name.toLowerCase().includes(ing.name.toLowerCase().split(' (')[0]));
-        const isOk = ing.name.toLowerCase() === 'acqua' || (match && match.quantity >= ing.quantity);
         ingList += `
-          <div class="flex justify-between py-2 border-b text-lg border-slate-100">
+          <div class="flex justify-between py-2.5 border-b text-xl border-slate-100">
             <span class="font-medium text-slate-800">${ing.name}</span>
-            <span class="font-bold text-slate-900 bg-slate-50 border px-3 py-0.5 rounded-lg ${isOk ? '' : 'text-red-600 bg-red-50 border-red-200'}">
+            <span class="font-bold text-brand-dark bg-slate-50 border border-slate-200 px-3.5 py-0.5 rounded-xl">
               ${ing.quantity}${ing.unit}
             </span>
           </div>
@@ -515,35 +365,35 @@
         stepsList += `
           <div class="flex gap-3 text-lg leading-relaxed text-slate-800">
             <span class="text-brand-accent font-extrabold text-xl">${idx + 1}.</span>
-            <p>${step}</p>
+            <p class="font-medium">${step}</p>
           </div>
         `;
       });
 
       content.innerHTML = `
         <div class="space-y-6">
-          <div>
+          <div class="mt-2">
             <span class="px-3 py-1 bg-brand-dark text-white rounded-full text-xs font-bold uppercase tracking-wider">${recipe.category}</span>
-            <h2 class="font-title text-2xl font-bold text-brand-dark mt-2">${recipe.title}</h2>
+            <h2 class="font-title text-3xl font-bold text-brand-dark mt-3 leading-tight">${recipe.title}</h2>
             <p class="text-base text-slate-500 mt-1">${recipe.description}</p>
           </div>
 
-          <!-- MACROS -->
-          <div class="grid grid-cols-2 gap-4 bg-slate-50 p-4 rounded-2xl border">
+          <!-- MACROS GRANDI -->
+          <div class="grid grid-cols-2 gap-4 bg-slate-50 p-4.5 rounded-2xl border border-slate-200">
             <div class="text-center">
               <span class="text-xs text-slate-400 font-bold uppercase">Proteine</span>
               <span class="block text-2xl font-extrabold text-brand-dark">${recipe.protein}</span>
             </div>
-            <div class="text-center border-l">
+            <div class="text-center border-l border-slate-200">
               <span class="text-xs text-slate-400 font-bold uppercase">Calorie</span>
               <span class="block text-2xl font-extrabold text-brand-dark">${recipe.kcal} kcal</span>
             </div>
           </div>
 
-          <!-- SEZIONE INGREDIENTI -->
+          <!-- INGREDIENTI -->
           <div class="space-y-3">
             <h3 class="font-title text-xl font-bold text-brand-dark flex items-center gap-2">
-              📋 Ingredienti
+              📋 Ingredienti Necessari
             </h3>
             <div class="space-y-1">
               ${ingList}
@@ -553,7 +403,7 @@
           <!-- PROCEDIMENTO -->
           <div class="space-y-4">
             <h3 class="font-title text-xl font-bold text-brand-dark">
-              ⚡ Procedimento
+              ⚡ Procedimento Passo-Passo
             </h3>
             <div class="space-y-4">
               ${stepsList}
@@ -565,7 +415,7 @@
             <h4 class="font-title font-bold text-lg text-brand-dark flex items-center gap-1.5">
               💡 Chicche e Tips del Socio
             </h4>
-            <p class="text-base text-slate-800 leading-relaxed font-medium">
+            <p class="text-base text-slate-800 leading-relaxed font-semibold">
               ${recipe.tips}
             </p>
           </div>
@@ -581,45 +431,31 @@
       document.body.classList.remove('overflow-hidden');
     }
 
-    function openPantryModal() {
-      document.getElementById('pantry-modal').classList.remove('hidden');
-    }
-
-    function closePantryModal() {
-      document.getElementById('pantry-modal').classList.add('hidden');
-    }
-
-    // -------------------- SCHERMATE DI RENDERING --------------------
+    // -------------------- RENDER SCHERMATE --------------------
     function render() {
       const content = document.getElementById('section-content');
 
-      // --- SECTION GELATI ---
+      // --- TAB 1: RICETTE GELATI ---
       if (currentSection === 'recipes') {
         let cards = '';
         initialRecipes.forEach(recipe => {
-          const missingCount = checkAvailability(recipe);
-          const isReady = missingCount === 0;
-
           cards += `
             <div onclick="openRecipeModal('${recipe.id}')" class="p-5 bg-white border-2 border-slate-200 rounded-3xl shadow-sm hover:shadow-md active:scale-[0.98] transition-all cursor-pointer space-y-4">
-              <div class="flex justify-between items-start">
+              <div class="flex justify-between items-center">
                 <span class="px-2.5 py-0.5 bg-slate-100 text-brand-dark rounded-md text-[11px] font-extrabold uppercase font-mono tracking-wider">${recipe.programUsed}</span>
-                <span class="text-sm font-bold text-emerald-600 bg-emerald-50 px-2.5 py-1 rounded-full flex items-center gap-1">
+                <span class="text-sm font-bold text-emerald-600 bg-emerald-50 px-2.5 py-1 rounded-full">
                   💪 ${recipe.protein}
                 </span>
               </div>
               
               <div>
                 <h3 class="font-title text-xl font-bold text-brand-dark leading-tight">${recipe.title}</h3>
-                <p class="text-sm text-slate-500 mt-1 line-clamp-2">${recipe.description}</p>
+                <p class="text-sm text-slate-500 mt-1 line-clamp-2 leading-relaxed">${recipe.description}</p>
               </div>
 
               <div class="pt-3 border-t border-slate-100 flex justify-between items-center">
-                ${isReady 
-                  ? `<span class="text-sm text-emerald-700 font-bold flex items-center gap-1">✓ Pronto da preparare</span>`
-                  : `<span class="text-sm text-accent-orange font-bold flex items-center gap-1">⚠️ Mancano ${missingCount} ingredienti</span>`
-                }
-                <span class="text-xs font-bold text-brand-accent flex items-center gap-0.5">Apri ricetta →</span>
+                <span class="text-xs font-bold text-slate-400 font-mono">Pronto in 24h</span>
+                <span class="text-sm font-bold text-brand-accent flex items-center gap-0.5">Apri ricetta →</span>
               </div>
             </div>
           `;
@@ -635,29 +471,29 @@
         `;
       }
 
-      // --- SECTION DOLCI ---
+      // --- TAB 2: DOLCI (TBD) ---
       else if (currentSection === 'dolci') {
         content.innerHTML = `
-          <div class="space-y-6 py-6 text-center">
-            <div class="text-5xl">🍰</div>
-            <h2 class="font-title text-2xl font-bold text-brand-dark">Dolci Fit & Pasticceria</h2>
+          <div class="space-y-6 py-8 text-center">
+            <div class="text-6xl">🍰</div>
+            <h2 class="font-title text-2xl font-bold text-brand-dark">Pasticceria & Dolci Fit</h2>
             <div class="bg-amber-50 border-2 border-amber-200 p-6 rounded-3xl space-y-3">
-              <p class="text-base text-amber-900 leading-relaxed font-semibold">
-                Questa sezione è in fase di definizione (<strong>TBD</strong>).
+              <p class="text-base text-amber-900 leading-relaxed font-bold">
+                Sezione in fase di bilanciamento (TBD)
               </p>
               <p class="text-sm text-amber-800 leading-relaxed">
-                Qui inseriremo le ricette dei dolci da forno e pasticceria fit non appena avremo bilanciato gli ingredienti con il Socio. Stay tuned!
+                Qui aggiungeremo le torte, i muffin e i dolci fit cotti al forno non appena avremo terminato i test di laboratorio con il Socio. Stay tuned!
               </p>
             </div>
           </div>
         `;
       }
 
-      // --- SECTION MACCHINE ---
+      // --- TAB 3: LE MACCHINE ---
       else if (currentSection === 'machines') {
         content.innerHTML = `
           <div class="space-y-5">
-            <h2 class="font-title text-2xl font-bold text-brand-dark">Attrezzatura Cucina</h2>
+            <h2 class="font-title text-2xl font-bold text-brand-dark">Le Nostre Macchine</h2>
             
             <div class="space-y-4">
               <div class="p-5 bg-slate-50 border border-slate-200 rounded-3xl space-y-3 shadow-xs">
@@ -666,16 +502,16 @@
                   <span class="px-2.5 py-0.5 bg-emerald-100 text-emerald-800 rounded text-xs font-bold">1-Step Perfector</span>
                 </div>
                 <p class="text-sm text-slate-600 leading-relaxed">
-                  Sistema a raschiamento di blocchi congelati (stile pinta/puck). Perfetto per gelati e sorbetti cremosi.
+                  Sistema a raschiamento di blocchi congelati. Le lame rimuovono micro-strati di miscela congelata per ottenere la massima cremosità.
                 </p>
                 <div class="pt-2">
-                  <span class="text-xs font-bold text-slate-400 block mb-1 uppercase tracking-wider">Programmi Disponibili:</span>
+                  <span class="text-xs font-bold text-slate-400 block mb-1.5 uppercase tracking-wider">Programmi Chiave:</span>
                   <div class="flex flex-wrap gap-1.5">
                     <span class="bg-white border px-2 py-1 rounded text-xs font-semibold">Gelato</span>
                     <span class="bg-white border px-2 py-1 rounded text-xs font-semibold">Sorbetto</span>
                     <span class="bg-white border px-2 py-1 rounded text-xs font-semibold">Yogurt Gelato</span>
                     <span class="bg-white border px-2 py-1 rounded text-xs font-semibold">Granita</span>
-                    <span class="bg-white border px-2 py-1 rounded text-xs font-semibold text-brand-accent">MIX (per Mix-in)</span>
+                    <span class="bg-white border px-2 py-1 rounded text-xs font-semibold text-brand-accent">MIX (per incorporare extra)</span>
                     <span class="bg-white border px-2 py-1 rounded text-xs font-semibold">Re-spin</span>
                   </div>
                 </div>
@@ -687,60 +523,9 @@
                   <span class="px-2.5 py-0.5 bg-amber-100 text-amber-800 rounded text-xs font-bold">Caffè Filtro</span>
                 </div>
                 <p class="text-sm text-slate-600 leading-relaxed">
-                  Macchina per caffè americano. Utilizzata per estrazioni calde a circa 85°C, perfette per idratare e attivare il Neutro per gelati ed evitare grumi.
+                  Macchina per estrazione a filtro calda. Ottima per preparare estrazioni bollenti (85°C) ideali per sciogliere e attivare termicamente i neutri istantaneamente.
                 </p>
               </div>
-            </div>
-          </div>
-        `;
-      }
-
-      // --- SECTION DISPENSA ---
-      else if (currentSection === 'pantry') {
-        let listHtml = '';
-        ingredients.forEach(ing => {
-          const isLow = ing.isCritical && ing.quantity <= 10;
-          listHtml += `
-            <div id="ing-card-${ing.id}" class="p-4.5 rounded-2xl flex items-center justify-between shadow-xs transition-all ${
-              isLow 
-                ? 'bg-orange-50 border-2 border-orange-200' 
-                : 'bg-slate-50 border border-slate-200'
-            }">
-              <div class="min-w-0 flex-1 pr-3">
-                <span class="font-bold text-lg text-brand-dark block truncate leading-tight">${ing.name}</span>
-                <div class="flex gap-2 items-center mt-1">
-                  ${ing.isCritical ? `<span class="bg-red-100 text-red-800 font-extrabold text-[9px] uppercase tracking-wider px-1.5 py-0.5 rounded">Fondamentale</span>` : ''}
-                  ${isLow ? `<span class="bg-orange-100 text-orange-800 font-extrabold text-[9px] uppercase tracking-wider px-1.5 py-0.5 rounded">Scorte Basse</span>` : ''}
-                </div>
-              </div>
-
-              <!-- Controlli Grandi e Rimuovi -->
-              <div class="flex items-center gap-3">
-                <div class="flex items-center bg-white border border-slate-200 rounded-xl p-0.5">
-                  <button onclick="adjustQty('${ing.id}', -10)" class="touch-target w-10 h-10 text-xl font-bold text-slate-600 rounded-lg active:bg-slate-100 flex items-center justify-center">-</button>
-                  <span id="qty-val-${ing.id}" class="w-16 text-center font-mono font-bold text-base text-slate-800">${ing.quantity} ${ing.unit}</span>
-                  <button onclick="adjustQty('${ing.id}', 10)" class="touch-target w-10 h-10 text-xl font-bold text-slate-600 rounded-lg active:bg-slate-100 flex items-center justify-center">+</button>
-                </div>
-                
-                <button onclick="deleteIngredient('${ing.id}')" class="touch-target p-2 text-red-500 hover:text-red-700 active:bg-red-50 rounded-xl transition-colors">
-                  🗑️
-                </button>
-              </div>
-            </div>
-          `;
-        });
-
-        content.innerHTML = `
-          <div class="space-y-5">
-            <div class="flex justify-between items-center">
-              <h2 class="font-title text-2xl font-bold text-brand-dark">Dispensa</h2>
-              <button onclick="openPantryModal()" class="touch-target px-4 py-2 bg-brand-dark text-white rounded-xl font-title font-bold text-sm shadow-sm active:scale-95 transition-all">
-                + Aggiungi Prodotto
-              </button>
-            </div>
-
-            <div class="space-y-3.5">
-              ${listHtml}
             </div>
           </div>
         `;
