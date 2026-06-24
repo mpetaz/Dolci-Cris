@@ -267,7 +267,7 @@
         id: 'rec-7',
         title: 'Granita Siciliana al Caffè (con Panna)',
         category: 'Granita',
-        description: 'Una granita al caffè tradizionale dolcificata con eritritolo, stabilizzata con neutro e servita con panna.',
+        description: 'Una granita al caffè tradicional dolcificata con eritritolo, stabilizzata con neutro e servita con panna.',
         programUsed: 'Granita',
         protein: '4g',
         kcal: '180',
@@ -337,7 +337,7 @@
       render();
     }
 
-    // Apri Dettaglio Ricetta o Documento
+    // Apri Dettaglio Ricetta
     function openRecipeModal(recipeId) {
       const recipe = initialRecipes.find(r => r.id === recipeId);
       if (!recipe) return;
@@ -593,7 +593,7 @@
         `;
       }
 
-      // --- TAB 4: DOCUMENTI (CAMBUSA E GARANZIE) ---
+      // --- TAB 4: DOCUMENTI (CAMBUSA, GARANZIE E RICETTARI PDF) ---
       else if (currentSection === 'documents') {
         content.innerHTML = `
           <div class="space-y-5">
@@ -612,6 +612,32 @@
                 </div>
                 <span class="text-brand-accent text-xl font-bold">→</span>
               </div>
+
+              <!-- Ricettario Ufficiale Volume 1 -->
+              <a href="moulinex%20dolci%20ricette%20fit.pdf" target="_blank" class="p-5 bg-white border-2 border-slate-200 rounded-3xl shadow-sm hover:shadow-md active:scale-[0.98] transition-all cursor-pointer flex items-center justify-between block">
+                <div class="space-y-1">
+                  <h3 class="font-title text-lg font-bold text-brand-dark flex items-center gap-2">
+                    📖 Ricettario Moulinex Fit Vol. 1
+                  </h3>
+                  <p class="text-sm text-slate-500">
+                    Apri il PDF ufficiale del primo ricettario.
+                  </p>
+                </div>
+                <span class="text-emerald-500 text-xl font-bold">↓</span>
+              </a>
+
+              <!-- Ricettario Ufficiale Volume 2 -->
+              <a href="moulinex%20dolci%20ricette%20fit_2.pdf" target="_blank" class="p-5 bg-white border-2 border-slate-200 rounded-3xl shadow-sm hover:shadow-md active:scale-[0.98] transition-all cursor-pointer flex items-center justify-between block">
+                <div class="space-y-1">
+                  <h3 class="font-title text-lg font-bold text-brand-dark flex items-center gap-2">
+                    📖 Ricettario Moulinex Fit Vol. 2
+                  </h3>
+                  <p class="text-sm text-slate-500">
+                    Apri il PDF ufficiale del secondo ricettario.
+                  </p>
+                </div>
+                <span class="text-emerald-500 text-xl font-bold">↓</span>
+              </a>
 
               <!-- Le Garanzie -->
               <div onclick="openDocumentModal('garanzie')" class="p-5 bg-white border-2 border-slate-200 rounded-3xl shadow-sm hover:shadow-md active:scale-[0.98] transition-all cursor-pointer flex items-center justify-between">
