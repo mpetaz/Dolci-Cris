@@ -80,11 +80,11 @@
           Dolci (TBD)
         </button>
         
-        <!-- Pulsante Macchine -->
-        <button onclick="selectSection('machines')" id="btn-sec-machines" class="touch-target py-5 px-3 rounded-2xl bg-slate-100 text-brand-dark font-title font-bold text-lg flex flex-col items-center justify-center gap-2 border-2 border-slate-200 active:scale-95 transition-all">
-          <span class="text-2xl">🔌</span>
-          Macchine
-        </button>
+        <!-- Pulsante Ricette Ufficiali Moulinex (Esterno) -->
+        <a href="https://www.moulinex.it/ricette/elenco/crp/gelatiere-ricette" target="_blank" class="touch-target py-5 px-3 rounded-2xl bg-slate-100 text-brand-dark font-title font-bold text-lg flex flex-col items-center justify-center gap-2 border-2 border-slate-200 active:scale-95 transition-all text-center">
+          <span class="text-2xl">🌐</span>
+          Ricette Moulinex
+        </a>
 
         <!-- Pulsante Documenti -->
         <button onclick="selectSection('documents')" id="btn-sec-documents" class="touch-target py-5 px-3 rounded-2xl bg-slate-100 text-brand-dark font-title font-bold text-lg flex flex-col items-center justify-center gap-2 border-2 border-slate-200 active:scale-95 transition-all">
@@ -324,15 +324,25 @@
     function selectSection(sectionId) {
       currentSection = sectionId;
       
-      const sections = ['recipes', 'dolci', 'machines', 'documents'];
+      const sections = ['recipes', 'dolci', 'documents'];
       sections.forEach(s => {
         const btn = document.getElementById(`btn-sec-${s}`);
-        if (s === sectionId) {
-          btn.className = "touch-target py-5 px-3 rounded-2xl bg-brand-dark text-white font-title font-bold text-lg flex flex-col items-center justify-center gap-2 border-2 border-brand-dark shadow-md active:scale-95 transition-all";
-        } else {
-          btn.className = "touch-target py-5 px-3 rounded-2xl bg-slate-100 text-brand-dark font-title font-bold text-lg flex flex-col items-center justify-center gap-2 border-2 border-slate-200 active:scale-95 transition-all";
+        if (btn) {
+          if (s === sectionId) {
+            btn.className = "touch-target py-5 px-3 rounded-2xl bg-brand-dark text-white font-title font-bold text-lg flex flex-col items-center justify-center gap-2 border-2 border-brand-dark shadow-md active:scale-95 transition-all";
+          } else {
+            btn.className = "touch-target py-5 px-3 rounded-2xl bg-slate-100 text-brand-dark font-title font-bold text-lg flex flex-col items-center justify-center gap-2 border-2 border-slate-200 active:scale-95 transition-all";
+          }
         }
       });
+
+      // Gestione pulsante documenti per l'estetica
+      const btnDoc = document.getElementById('btn-sec-documents');
+      if (sectionId === 'documents') {
+        btnDoc.className = "touch-target py-5 px-3 rounded-2xl bg-brand-dark text-white font-title font-bold text-lg flex flex-col items-center justify-center gap-2 border-2 border-brand-dark shadow-md active:scale-95 transition-all";
+      } else {
+        btnDoc.className = "touch-target py-5 px-3 rounded-2xl bg-slate-100 text-brand-dark font-title font-bold text-lg flex flex-col items-center justify-center gap-2 border-2 border-slate-200 active:scale-95 transition-all";
+      }
 
       render();
     }
@@ -464,28 +474,47 @@
             </div>
           </div>
         `;
-      } else if (docId === 'garanzie') {
+      } else if (docId === 'machines-warranties') {
         content.innerHTML = `
           <div class="space-y-5 mt-2">
             <div>
-              <span class="px-3 py-1 bg-brand-dark text-white rounded-full text-xs font-bold uppercase tracking-wider">Garanzie</span>
-              <h2 class="font-title text-2xl font-bold text-brand-dark mt-3">Garanzie Attrezzatura</h2>
-              <p class="text-sm text-slate-500 mt-1">Ricevute e dettagli di acquisto (TBD).</p>
+              <span class="px-3 py-1 bg-brand-dark text-white rounded-full text-xs font-bold uppercase tracking-wider">Hardware</span>
+              <h2 class="font-title text-2xl font-bold text-brand-dark mt-3">Macchine & Garanzie</h2>
+              <p class="text-sm text-slate-500 mt-1">Dettagli tecnici dell'attrezzatura e certificati.</p>
             </div>
 
-            <div class="bg-amber-50 border-2 border-amber-200 p-5 rounded-2xl text-center space-y-2">
-              <span class="text-3xl">🧾</span>
-              <h4 class="font-bold text-amber-900">Nessun documento caricato</h4>
-              <p class="text-sm text-amber-800 leading-relaxed">
-                In questa sezione potremo caricare le foto o i PDF delle ricevute e dei certificati di garanzia di Moulinex Dolci e Russell Hobbs per averli sempre a portata di mano.
-              </p>
+            <div class="space-y-4 text-base text-slate-800 leading-relaxed">
+              <!-- Moulinex Dolci -->
+              <div class="p-4 bg-slate-50 border rounded-2xl space-y-2">
+                <h4 class="font-bold text-brand-dark border-b pb-1">🔌 Moulinex Dolci (1-Step Perfector)</h4>
+                <p class="text-sm text-slate-600 leading-relaxed">
+                  Sistema a raschiamento di blocchi congelati. Le lame rimuovono micro-strati di composto gelato precedentemente congelato per 24 ore.
+                </p>
+                <span class="text-xs font-bold text-slate-400 block mt-1 uppercase">Programmi principali:</span>
+                <p class="text-xs font-semibold text-slate-700">
+                  Gelato, Sorbetto, Yogurt Gelato, Granita, MIX (per mix-in), Re-spin.
+                </p>
+              </div>
+
+              <!-- Russell Hobbs -->
+              <div class="p-4 bg-slate-50 border rounded-2xl space-y-2">
+                <h4 class="font-bold text-brand-dark border-b pb-1">🔌 Russell Hobbs Adventure</h4>
+                <p class="text-sm text-slate-600 leading-relaxed">
+                  Macchina per estrazione di caffè americano a filtro. Utilizzata per estrazioni calde (circa 85°C), perfette per l'idratazione e l'attivazione termica istantanea del Neutro SaporePuro per gelati.
+                </p>
+              </div>
+
+              <!-- Sezione Garanzie -->
+              <div class="bg-amber-50 border-2 border-amber-200 p-4 rounded-2xl space-y-1">
+                <h4 class="font-bold text-amber-900 flex items-center gap-1.5">🧾 Garanzie Attrezzature (TBD)</h4>
+                <p class="text-xs text-amber-800 leading-relaxed">
+                  Qui inseriremo le ricevute di acquisto e i dettagli per l'assistenza tecnica dei due apparecchi per averli sempre a portata di mano.
+                </p>
+              </div>
             </div>
           </div>
         `;
       }
-
-      modal.classList.remove('hidden');
-      document.body.classList.add('overflow-hidden');
     }
 
     function closeRecipeModal() {
@@ -551,49 +580,7 @@
         `;
       }
 
-      // --- TAB 3: LE MACCHINE ---
-      else if (currentSection === 'machines') {
-        content.innerHTML = `
-          <div class="space-y-5">
-            <h2 class="font-title text-2xl font-bold text-brand-dark">Le Nostre Macchine</h2>
-            
-            <div class="space-y-4">
-              <div class="p-5 bg-slate-50 border border-slate-200 rounded-3xl space-y-3 shadow-xs">
-                <div class="flex justify-between items-center">
-                  <h3 class="font-title text-lg font-bold text-brand-dark">Moulinex Dolci</h3>
-                  <span class="px-2.5 py-0.5 bg-emerald-100 text-emerald-800 rounded text-xs font-bold">1-Step Perfector</span>
-                </div>
-                <p class="text-sm text-slate-600 leading-relaxed">
-                  Sistema a raschiamento di blocchi congelati. Le lame rimuovono micro-strati di miscela congelata per ottenere la massima cremosità.
-                </p>
-                <div class="pt-2">
-                  <span class="text-xs font-bold text-slate-400 block mb-1.5 uppercase tracking-wider">Programmi Chiave:</span>
-                  <div class="flex flex-wrap gap-1.5">
-                    <span class="bg-white border px-2 py-1 rounded text-xs font-semibold">Gelato</span>
-                    <span class="bg-white border px-2 py-1 rounded text-xs font-semibold">Sorbetto</span>
-                    <span class="bg-white border px-2 py-1 rounded text-xs font-semibold">Yogurt Gelato</span>
-                    <span class="bg-white border px-2 py-1 rounded text-xs font-semibold">Granita</span>
-                    <span class="bg-white border px-2 py-1 rounded text-xs font-semibold text-brand-accent">MIX (per incorporare extra)</span>
-                    <span class="bg-white border px-2 py-1 rounded text-xs font-semibold">Re-spin</span>
-                  </div>
-                </div>
-              </div>
-
-              <div class="p-5 bg-slate-50 border border-slate-200 rounded-3xl space-y-3 shadow-xs">
-                <div class="flex justify-between items-center">
-                  <h3 class="font-title text-lg font-bold text-brand-dark">Russell Hobbs Adventure</h3>
-                  <span class="px-2.5 py-0.5 bg-amber-100 text-amber-800 rounded text-xs font-bold">Caffè Filtro</span>
-                </div>
-                <p class="text-sm text-slate-600 leading-relaxed">
-                  Macchina per estrazione a filtro calda. Ottima per preparare estrazioni bollenti (85°C) ideali per sciogliere e attivare termicamente i neutri istantaneamente.
-                </p>
-              </div>
-            </div>
-          </div>
-        `;
-      }
-
-      // --- TAB 4: DOCUMENTI (CAMBUSA, GARANZIE E INFOGRAFICHE PDF) ---
+      // --- TAB 3: DOCUMENTI (CAMBUSA, GARANZIE E INFOGRAFICHE PDF) ---
       else if (currentSection === 'documents') {
         content.innerHTML = `
           <div class="space-y-5">
@@ -608,6 +595,19 @@
                   </h3>
                   <p class="text-sm text-slate-500">
                     La lista degli ingredienti attivi e come usarli.
+                  </p>
+                </div>
+                <span class="text-brand-accent text-xl font-bold">→</span>
+              </div>
+
+              <!-- Macchine & Garanzie -->
+              <div onclick="openDocumentModal('machines-warranties')" class="p-5 bg-white border-2 border-slate-200 rounded-3xl shadow-sm hover:shadow-md active:scale-[0.98] transition-all cursor-pointer flex items-center justify-between">
+                <div class="space-y-1">
+                  <h3 class="font-title text-lg font-bold text-brand-dark flex items-center gap-2">
+                    🔌 Macchine & Garanzie
+                  </h3>
+                  <p class="text-sm text-slate-500">
+                    Dettagli delle apparecchiature e documenti di garanzia.
                   </p>
                 </div>
                 <span class="text-brand-accent text-xl font-bold">→</span>
@@ -638,32 +638,6 @@
                 </div>
                 <span class="text-emerald-500 text-xl font-bold">↓</span>
               </a>
-
-              <!-- Link al sito ufficiale Moulinex -->
-              <a href="https://www.moulinex.it/ricette/elenco/crp/gelatiere-ricette" target="_blank" class="p-5 bg-white border-2 border-slate-200 rounded-3xl shadow-sm hover:shadow-md active:scale-[0.98] transition-all cursor-pointer flex items-center justify-between block">
-                <div class="space-y-1">
-                  <h3 class="font-title text-lg font-bold text-brand-dark flex items-center gap-2">
-                    🌐 Ricette Ufficiali Moulinex
-                  </h3>
-                  <p class="text-sm text-slate-500">
-                    Consulta il catalogo ricette per gelatiera sul sito Moulinex.
-                  </p>
-                </div>
-                <span class="text-brand-accent text-xl font-bold">↗</span>
-              </a>
-
-              <!-- Le Garanzie -->
-              <div onclick="openDocumentModal('garanzie')" class="p-5 bg-white border-2 border-slate-200 rounded-3xl shadow-sm hover:shadow-md active:scale-[0.98] transition-all cursor-pointer flex items-center justify-between">
-                <div class="space-y-1">
-                  <h3 class="font-title text-lg font-bold text-brand-dark flex items-center gap-2">
-                    🧾 Garanzie Attrezzatura
-                  </h3>
-                  <p class="text-sm text-slate-500">
-                    Ricevute e certificati di garanzia dei macchinari.
-                  </p>
-                </div>
-                <span class="text-brand-accent text-xl font-bold">→</span>
-              </div>
             </div>
           </div>
         `;
