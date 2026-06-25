@@ -136,7 +136,53 @@
 
   <!-- CODICE LOGICA APPLICAZIONE -->
   <script>
-    const APP_VERSION = "20260625-1635";
+    const APP_VERSION = "20260625-1655";
+
+    // Ottiene le informazioni grafiche basate sulla categoria della ricetta
+    function getRecipeCategoryInfo(recipe) {
+      const titleLower = recipe.title.toLowerCase();
+      const isSorbetto = titleLower.includes('sorbetto') || recipe.category.toLowerCase() === 'sorbetto' || (recipe.programUsed && recipe.programUsed.toLowerCase() === 'sorbetto');
+      const isTradizionale = titleLower.includes('[tradizionale]');
+      const isFit = titleLower.includes('[fit]');
+
+      if (isSorbetto) {
+        return {
+          bgClass: 'bg-orange-600 text-white',
+          textClass: 'text-orange-700',
+          lightBgClass: 'bg-orange-50',
+          label: 'SORBETTO',
+          labelEmoji: '🍧',
+          color: '#ea580c'
+        };
+      } else if (isTradizionale) {
+        return {
+          bgClass: 'bg-[#004B87] text-white', // Blu Italia
+          textClass: 'text-[#004B87]',
+          lightBgClass: 'bg-blue-50',
+          label: 'TRADIZIONALE',
+          labelEmoji: '🇮🇹',
+          color: '#004B87'
+        };
+      } else if (isFit) {
+        return {
+          bgClass: 'bg-emerald-600 text-white',
+          textClass: 'text-emerald-700',
+          lightBgClass: 'bg-emerald-50',
+          label: 'FIT',
+          labelEmoji: '💪',
+          color: '#059669'
+        };
+      } else {
+        return {
+          bgClass: 'bg-slate-700 text-white',
+          textClass: 'text-slate-700',
+          lightBgClass: 'bg-slate-50',
+          label: recipe.category ? recipe.category.toUpperCase() : 'RICETTA',
+          labelEmoji: '📋',
+          color: '#475569'
+        };
+      }
+    }
 
     const initialRecipes = [
       {
@@ -584,6 +630,7 @@
       const recipe = initialRecipes.find(r => r.id === recipeId);
       if (!recipe) return;
 
+      const catInfo = getRecipeCategoryInfo(recipe);
       const modal = document.getElementById('recipe-modal');
       const content = document.getElementById('modal-content-area');
 
@@ -640,10 +687,13 @@
 
       content.innerHTML = `
         <div class="space-y-6">
-          <div class="mt-2">
-            <span class="px-3 py-1 bg-brand-dark text-white rounded-full text-xs font-bold uppercase tracking-wider">${recipe.category}</span>
-            <h2 class="font-title text-3xl font-bold text-brand-dark mt-3 leading-tight">${recipe.title}</h2>
-            <p class="text-base text-slate-500 mt-1">${recipe.description}</p>
+          <div class="mt-2 space-y-3">
+            <div class="flex items-center gap-2">
+              <span class="px-3 py-1 bg-brand-dark text-white rounded-full text-xs font-bold uppercase tracking-wider">${recipe.category}</span>
+              <span class="px-3 py-1 ${catInfo.bgClass} rounded-full text-xs font-extrabold uppercase tracking-wider">${catInfo.label}</span>
+            </div>
+            <h2 class="font-title text-2xl font-bold leading-tight ${catInfo.bgClass} px-4 py-3 rounded-2xl shadow-sm border border-black/5">${recipe.title}</h2>
+            <p class="text-base text-slate-500 mt-2 px-1">${recipe.description}</p>
           </div>
 
           <!-- MACROS GRANDI -->
@@ -801,21 +851,22 @@
         const recipesList = initialRecipes.filter(r => r.section === 'recipes' || r.section === undefined);
         
         recipesList.forEach(recipe => {
+          const catInfo = getRecipeCategoryInfo(recipe);
           cards += `
             <div onclick="openRecipeModal('${recipe.id}')" class="p-5 bg-white border-2 border-slate-200 rounded-3xl shadow-sm hover:shadow-md active:scale-[0.98] transition-all cursor-pointer space-y-4">
               <div class="flex justify-between items-center">
                 <span class="px-2.5 py-0.5 bg-slate-100 text-brand-dark rounded-md text-[11px] font-extrabold uppercase font-mono tracking-wider">${recipe.programUsed}</span>
-                <span class="text-sm font-bold text-emerald-600 bg-emerald-50 px-2.5 py-1 rounded-full">
-                  💪 ${recipe.protein}
+                <span class="text-sm font-bold ${catInfo.textClass} ${catInfo.lightBgClass} px-2.5 py-1 rounded-full">
+                  ${catInfo.labelEmoji} ${recipe.protein}
                 </span>
               </div>
               
-              <div>
-                <h3 class="font-title text-xl font-bold text-brand-dark leading-tight">${recipe.title}</h3>
-                <p class="text-sm text-slate-500 mt-1 line-clamp-2 leading-relaxed">${recipe.description}</p>
+              <div class="space-y-2">
+                <h3 class="font-title text-lg font-bold leading-tight ${catInfo.bgClass} px-3.5 py-2.5 rounded-2xl shadow-sm border border-black/5">${recipe.title}</h3>
+                <p class="text-sm text-slate-500 mt-1 line-clamp-2 leading-relaxed px-1">${recipe.description}</p>
               </div>
 
-              <div class="pt-3 border-t border-slate-100 flex justify-between items-center">
+              <div class="pt-3 border-t border-slate-100 flex justify-between items-center px-1">
                 <span class="text-xs font-bold text-slate-400 font-mono">Pronto in 24h</span>
                 <span class="text-sm font-bold text-brand-accent flex items-center gap-0.5">Apri ricetta →</span>
               </div>
@@ -851,21 +902,22 @@
           `;
         } else {
           dolciList.forEach(recipe => {
+            const catInfo = getRecipeCategoryInfo(recipe);
             cards += `
               <div onclick="openRecipeModal('${recipe.id}')" class="p-5 bg-white border-2 border-slate-200 rounded-3xl shadow-sm hover:shadow-md active:scale-[0.98] transition-all cursor-pointer space-y-4">
                 <div class="flex justify-between items-center">
                   <span class="px-2.5 py-0.5 bg-slate-100 text-brand-dark rounded-md text-[11px] font-extrabold uppercase font-mono tracking-wider">${recipe.programUsed}</span>
-                  <span class="text-sm font-bold text-purple-600 bg-purple-50 px-2.5 py-1 rounded-full">
-                    🍰 ${recipe.protein}
+                  <span class="text-sm font-bold ${catInfo.textClass} ${catInfo.lightBgClass} px-2.5 py-1 rounded-full">
+                    ${catInfo.labelEmoji} ${recipe.protein}
                   </span>
                 </div>
                 
-                <div>
-                  <h3 class="font-title text-xl font-bold text-brand-dark leading-tight">${recipe.title}</h3>
-                  <p class="text-sm text-slate-500 mt-1 line-clamp-2 leading-relaxed">${recipe.description}</p>
+                <div class="space-y-2">
+                  <h3 class="font-title text-lg font-bold leading-tight ${catInfo.bgClass} px-3.5 py-2.5 rounded-2xl shadow-sm border border-black/5">${recipe.title}</h3>
+                  <p class="text-sm text-slate-500 mt-1 line-clamp-2 leading-relaxed px-1">${recipe.description}</p>
                 </div>
 
-                <div class="pt-3 border-t border-slate-100 flex justify-between items-center">
+                <div class="pt-3 border-t border-slate-100 flex justify-between items-center px-1">
                   <span class="text-xs font-bold text-slate-400 font-mono">${recipe.kcal}</span>
                   <span class="text-sm font-bold text-brand-accent flex items-center gap-0.5">Apri ricetta →</span>
                 </div>
