@@ -136,7 +136,7 @@
 
   <!-- CODICE LOGICA APPLICAZIONE -->
   <script>
-    const APP_VERSION = "20260625-1345";
+    const APP_VERSION = "20260625-1635";
 
     const initialRecipes = [
       {
@@ -144,25 +144,27 @@
         title: '[FIT] Cioccolato Protein',
         category: 'Gelato',
         section: 'recipes',
-        description: 'Un gelato proteico al cioccolato denso e cremoso, bilanciato con eritritolo e neutro.',
+        description: 'Un gelato proteico al cioccolato denso e cremoso, ricalibrato a pinta piena con cacao potenziato per coprire il retrogusto delle whey.',
         programUsed: 'Gelato',
-        protein: '28g',
-        kcal: '240',
-        tips: 'Attivazione a caldo del neutro in 50ml di latte. Frulla col mixer a immersione per formare il gel protettivo ed evitare grumi fastidiosi.',
+        protein: '33g',
+        kcal: '300',
+        tips: 'Attivazione a caldo del neutro in 60ml di latte. Il pizzico di sale e l\'aumento del cacao amaro a 25g sono pensati per eliminare completamente il sapore artificiale delle proteine in polvere!',
         ingredients: [
-          { name: 'Impact Whey Protein (Cioccolato)', quantity: 30, unit: 'g' },
-          { name: 'Latte fresco parzialmente scremato', quantity: 300, unit: 'ml' },
-          { name: 'Cacao Amaro', quantity: 10, unit: 'g' },
-          { name: 'Eritritolo', quantity: 25, unit: 'g' },
-          { name: 'Neutro per Gelati SaporePuro (Stabilizzante)', quantity: 2, unit: 'g' },
+          { name: 'Impact Whey Protein (Cioccolato)', quantity: 35, unit: 'g' },
+          { name: 'Latte fresco parzialmente scremato', quantity: 360, unit: 'ml' },
+          { name: 'Cacao Amaro', quantity: 25, unit: 'g' },
+          { name: 'Eritritolo', quantity: 35, unit: 'g' },
+          { name: 'Neutro per Gelati SaporePuro (Stabilizzante)', quantity: 2.5, unit: 'g' },
+          { name: 'Sale fino', quantity: 1, unit: 'pizzico' }
         ],
         steps: [
-          'Miscela a secco il Neutro SaporePuro e l\'eritritolo.',
-          'Scalda 50ml di latte a 80-85°C (temperatura di attivazione del neutro).',
-          'Versa la miscela di neutro ed eritritolo nel latte caldo e frulla col mixer per attivare i gelificanti.',
-          'Unisci le Impact Whey, il cacao amaro e il restante latte freddo (250ml) nel frullatore.',
-          'Frulla tutto accuratamente per emulsionare le due basi.',
-          'Versa nella pinta e congela in freezer per 24 ore.'
+          'Miscela a secco il Neutro SaporePuro, l\'eritritolo e il cacao amaro.',
+          'Scalda 60ml di latte a 80-85°C (temperatura di attivazione del neutro).',
+          'Versa la miscela di polveri nel latte caldo e frulla molto bene col mixer a immersione per attivare lo stabilizzante.',
+          'Unisci le Impact Whey, il restante latte freddo (300ml) e il pizzico di sale nel frullatore.',
+          'Frulla tutto accuratamente per ottenere un composto omogeneo, lucido e denso.',
+          'Versa nella pinta (arriverà quasi al limite massimo di riempimento) e congela in freezer per 24 ore.',
+          'Estrai la pinta dal freezer e lasciala riposare a temperatura ambiente per 10-15 minuti (o 10 secondi in microonde) per temperarla, quindi esegui lo spin sul programma "Gelato".'
         ]
       },
       {
@@ -190,7 +192,7 @@
           'Scola le uvette trattenendo il Marsala. Unisci lo yogurt greco 0%, il latte freddo rimanente, il Marsala scolato e frulla bene.',
           'Versa la base nella pinta, livella la superficie e congela in freezer per 24 ore.',
           'Metti le uvette scolate nel congelatore per 20 minuti su un piattino.',
-          'Esegui lo spin "Gelato", scava un foro al centro, versa le uvette ghiacciate e premi MIX.'
+          'Estrai la pinta dal freezer e lasciala riposare a temperatura ambiente per 10-15 minuti (o 10 secondi in microonde) per temperarla. Esegui lo spin "Gelato", scava un foro al centro, versa le uvette ghiacciate e premi MIX.'
         ]
       },
       {
@@ -217,7 +219,8 @@
           'Sciogli subito il neutro, l\'eritritolo (e il caffè solubile se usato) nel caffè bollente frullando bene col mixer.',
           'Lascia intiepidire la miscela per qualche minuto.',
           'Aggiungi lo yogurt greco al caffè, il latte freddo e frulla bene col mixer.',
-          'Versa nella pinta e congela in freezer per 24 ore.'
+          'Versa nella pinta e congela in freezer per 24 ore.',
+          'Estrai la pinta dal freezer e lasciala riposare a temperatura ambiente per 10-15 minuti (o 10 secondi in microonde) per temperarla, quindi esegui lo spin sul programma "Gelato".'
         ]
       },
       {
@@ -225,23 +228,25 @@
         title: '[FIT] Sorbetto alla Pesca Matura',
         category: 'Sorbetto',
         section: 'recipes',
-        description: 'Sorbetto rinfrescante con pesche fresche e stabilizzato a caldo.',
+        description: 'Sorbetto rinfrescante con sole pesche fresche e pochissima acqua per ridurre al minimo i cristalli di ghiaccio.',
         programUsed: 'Sorbetto',
         protein: '2g',
         kcal: '140',
-        tips: 'Aggiungi un cucchiaio di succo di limone fresco mentre frulli le pesche per evitare l\'ossidazione e mantenere un colore vivo.',
+        tips: 'Abbiamo ridotto l\'acqua da 80ml a 30ml! Questo trucco da gelatiere evita la formazione di ghiaccio duro e valorizza al massimo la cremosità naturale delle pesche mature.',
         ingredients: [
-          { name: 'Pesche Mature', quantity: 350, unit: 'g' },
-          { name: 'Acqua', quantity: 80, unit: 'ml' },
-          { name: 'Eritritolo', quantity: 30, unit: 'g' },
-          { name: 'Neutro per Gelati SaporePuro (Stabilizzante)', quantity: 2, unit: 'g' },
+          { name: 'Pesche Mature', quantity: 380, unit: 'g' },
+          { name: 'Acqua', quantity: 30, unit: 'ml' },
+          { name: 'Eritritolo', quantity: 40, unit: 'g' },
+          { name: 'Neutro per Gelati SaporePuro (Stabilizzante)', quantity: 2.5, unit: 'g' },
+          { name: 'Succo di limone fresco', quantity: 15, unit: 'ml' }
         ],
         steps: [
-          'Scalda 80ml di acqua a 80°C.',
-          'Sciogli il neutro e l\'eritritolo nell\'acqua calda frullando.',
-          'Sbuccia le pesche, tagliale a pezzi e frullale con un po\' di succo di limone.',
-          'Unisci lo sciroppo caldo alla polpa di pesca e frulla bene.',
-          'Versa nella pinta e congela in freezer per 24 ore.'
+          'Scalda 30ml di acqua a 80°C.',
+          'Sciogli il neutro e l\'eritritolo nell\'acqua calda frullando bene col mixer per attivarli.',
+          'Sbuccia le pesche, tagliale a pezzi e frullale molto finemente con il succo di limone fino a ottenere una purea liscissima.',
+          'Unisci lo sciroppo caldo alla polpa di pesca e frulla col mixer a immersione.',
+          'Versa nella pinta e congela in freezer per 24 ore.',
+          'Estrai la pinta dal freezer e lasciala riposare a temperatura ambiente per 10-15 minuti (o 10 secondi in microonde) per temperarla, quindi esegui lo spin sul programma "Sorbetto".'
         ]
       },
       {
@@ -264,7 +269,8 @@
           'Bollisci i frutti di bosco congelati per 2-3 minuti in 100ml di acqua ed eritritolo.',
           'Raggiunti gli 85°C in raffreddamento, sciogli il neutro direttamente nella purea calda frullando col mixer.',
           'Lascia raffreddare a temperatura ambiente.',
-          'Versa nella pinta e congela per 24 ore.'
+          'Versa nella pinta e congela per 24 ore.',
+          'Estrai la pinta dal freezer e lasciala riposare a temperatura ambiente per 10-15 minuti (o 10 secondi in microonde) per temperarla, quindi esegui lo spin sul programma "Sorbetto".'
         ]
       },
       {
@@ -294,7 +300,7 @@
         title: '[FIT] Granita Siciliana al Caffè',
         category: 'Granita',
         section: 'recipes',
-        description: 'Una granita al caffè di tipo tradizionale dolcificata con eritritolo, stabilizzata con neutro e servita con panna.',
+        description: 'Una granita al caffè di tipo tradicional dolcificata con eritritolo, stabilizzata con neutro e servita con panna.',
         programUsed: 'Granita',
         protein: '4g',
         kcal: '180',
@@ -310,7 +316,7 @@
           'Prepara 300ml di caffè caldo a filtro.',
           'Sciogli eritritolo e neutro nel caffè bollente frullando.',
           'Lascia raffreddare e poi versa nella pinta.',
-          'Congela per 24 ore e poi mantechi col programma "Granita".'
+          'Congela per 24 ore. Estrai la pinta, lasciala riposare per 5 minuti a temperatura ambiente per temperarla, quindi esegui lo spin sul programma "Granita".'
         ]
       },
       {
@@ -336,7 +342,8 @@
           'Scalda 50ml di latte a 80-85°C e sciogli la miscela frullando.',
           'Diluisci la pasta di mandorla con il latte freddo rimanente a filo.',
           'Unisci yogurt greco, whey, sciroppo caldo e pasta di mandorle frullando.',
-          'Versa nella pinta e congela in freezer per 24 ore.'
+          'Versa nella pinta e congela in freezer per 24 ore.',
+          'Estrai la pinta dal freezer e lasciala riposare a temperatura ambiente per 10-15 minuti (o 10 secondi in microonde) per temperarla, quindi esegui lo spin sul programma "Gelato".'
         ]
       },
       {
@@ -362,13 +369,13 @@
           'Metti le uvette a bagno nei 35ml di Marsala per almeno 4 ore (o tutta la notte).',
           'In un pentolino, sbatti i tuorli d\'uovo con lo zucchero.',
           'Aggiungi il latte intero e la panna fresca, miscela bene.',
-          'Scalda la miscela a fuoco medio-basso mescolando continuamente fino a raggiungere 82-84°C (senza far bollire, per creare una crema inglese vellutata).',
+          'Scalda la miscela a fuoco medium-basso mescolando continuamente fino a raggiungere 82-84°C (senza far bollire, per creare una crema inglese vellutata).',
           'Togli dal fuoco, aggiungi il neutro SaporePuro e frulla accuratamente col mixer a immersione per attivarlo ed evitare grumi.',
           'Lascia raffreddare completamente il composto (meglio se riposa in frigorifero per 2 ore).',
           'Scola le uvette trattenendo il Marsala. Unisci il Marsala scolato alla base di crema fredda e mescola bene.',
           'Versa la base nella pinta, livella la superficie e congela in freezer per 24 ore a -20°C.',
           'Metti le uvette scolate nel congelatore per 20 minuti su un piattino.',
-          'Esegui lo spin "Gelato", scava un foro al centro, versa le uvette ghiacciate e premi MIX.'
+          'Estrai la pinta dal freezer e lasciala riposare a temperatura ambiente per 10-15 minuti (o 10 secondi in microonde) per temperarla. Esegui lo spin "Gelato", scava un foro al centro, versa le uvette ghiacciate e premi MIX.'
         ]
       },
       {
@@ -399,7 +406,7 @@
           'Lasciare riposare per 1 minuto, quindi frullare accuratamente con il mixer a immersione per creare un\'emulsione lucida, liscia e senza grumi.',
           'Lasciare raffreddare completamente la miscela a temperatura ambiente, poi metterla in frigorifero per 2 ore.',
           'Versare la base nella pinta, livellare la superficie e congelare in freezer per 24 ore a -20°C.',
-          'Eseguire lo spin "Gelato", e se necessario (se si presenta leggermente granuloso o farinoso) lanciare un "RESPIN" con un cucchiaio di latte.'
+          'Estrai la pinta dal freezer e lasciala riposare a temperatura ambiente per 10-15 minuti (o 10 secondi in microonde) per temperarla. Esegui lo spin "Gelato" (se necessario, lancia un "RESPIN" con un cucchiaio di latte).'
         ]
       },
       {
