@@ -136,7 +136,7 @@
 
   <!-- CODICE LOGICA APPLICAZIONE -->
   <script>
-    const APP_VERSION = "20260626-1350";
+    const APP_VERSION = "20260626-1355";
 
     // Ottiene le informazioni grafiche basate sulla categoria della ricetta
     function getRecipeCategoryInfo(recipe) {
@@ -243,30 +243,35 @@
       },
       {
         id: 'rec-3',
-        title: '[TRADIZIONALE] Crema Caffè Ricca',
+        title: '[TRADIZIONALE] Gelato al Caffè (Maestra Citro)',
         category: 'Gelato',
         section: 'recipes',
-        description: 'La vera crema caffè della tradizione italiana, vellutata e intensa, preparata con latte intero, panna e caffè moka ristretto.',
+        description: 'Il sublime gelato al caffè della tradizione italiana, bilanciato dalla maestra Grazia Citro. Cremoso, intenso e strutturato alla perfezione con tuorlo d\'uovo e latte in polvere.',
         programUsed: 'Gelato',
-        protein: 'Panna & Latte',
-        kcal: 'Tradizionale',
-        tips: 'Sciogli il neutro e lo zucchero direttamente nel caffè caldo della moka per attivarli alla perfezione. L\'aggiunta del caffè solubile permette di intensificare l\'aroma a dismisura senza aggiungere ulteriore acqua libera!',
+        protein: 'Tuorlo & Panna',
+        kcal: 'Citro Classico',
+        tips: 'Ricetta originale di Grazia Citro riequilibrata a 420g per la pinta Moulinex. Se non hai il destrosio, puoi sostituirlo con 15g di miele d\'acacia o aumentando lo zucchero a 50g (ma il destrosio garantisce una morbidezza unica!). Cuoci a fuoco lento o bagnomaria fino a 85°C per pastorizzare e attivare il neutro.',
         ingredients: [
-          { name: 'Latte intero fresco', quantity: 180, unit: 'ml' },
-          { name: 'Panna fresca liquida (35% grassi)', quantity: 150, unit: 'ml' },
-          { name: 'Caffè moka ristretto (o espresso)', quantity: 60, unit: 'ml' },
-          { name: 'Zucchero semolato', quantity: 80, unit: 'g' },
+          { name: 'Latte intero fresco', quantity: 240, unit: 'ml' },
+          { name: 'Panna fresca liquida (35% grassi)', quantity: 60, unit: 'ml' },
+          { name: 'Latte scremato in polvere', quantity: 24, unit: 'g' },
+          { name: 'Zucchero semolato', quantity: 38, unit: 'g' },
+          { name: 'Destrosio (o miele/zucchero extra)', quantity: 20, unit: 'g' },
+          { name: 'Caffè espresso caldo', quantity: 12, unit: 'ml' },
+          { name: 'Caffè solubile istantaneo (di qualità)', quantity: 8, unit: 'g' },
           { name: 'Neutro per Gelati SaporePuro (Stabilizzante)', quantity: 2, unit: 'g' },
-          { name: 'Caffè solubile istantaneo (per intensificare)', quantity: 1.5, unit: 'cucchiaini' }
+          { name: 'Tuorli d\'uovo freschi', quantity: 1, unit: 'tuorlo' }
         ],
         steps: [
-          'Prepara 60ml di caffè moka ristretto o espresso ben caldo.',
-          'Miscela a secco lo zucchero e il neutro SaporePuro.',
-          'Unisci la miscela di zucchero/neutro e il caffè solubile direttamente nel caffè bollente appena estratto, frullando vigorosamente col mixer a immersione per attivare lo stabilizzante.',
-          'Aggiungi il latte intero freddo e la panna fresca fredda alla miscela di caffè e frulla ancora per qualche secondo per amalgamare ed emulsionare.',
-          'Lascia raffreddare completamente la miscela a temperatura ambiente, poi falla riposare in frigorifero per 1-2 ore.',
-          'Versa la base nella pinta e congela in freezer per 24 ore a -20°C.',
-          'Estrai la pinta dal freezer e lasciala riposare a temperatura ambiente per 10-15 minuti (o 10 secondi in microonde) per temperarla, quindi esegui lo spin sul programma "Gelato".'
+          'In una ciotola, sbatti leggermente il tuorlo d\'uovo con lo zucchero semolato e il destrosio.',
+          'In un pentolino, miscela a secco il latte in polvere, il caffè solubile e il neutro SaporePuro.',
+          'Versa il latte intero, la panna fresca e il caffè espresso nel pentolino, mescolando bene con una frusta per evitare grumi.',
+          'Riscalda la miscela liquida sul fuoco fino a circa 60-70°C, quindi unisci a filo una parte del liquido caldo nella ciotola con il tuorlo e gli zuccheri, stemperando bene.',
+          'Riversa tutto nel pentolino e cuoci a fuoco lento, mescolando continuamente, fino a raggiungere gli 85°C per attivare il neutro e pastorizzare il tuorlo.',
+          'Togli subito dal fuoco e frulla accuratamente con il mixer a immersione per 1 minuto per emulsionare i grassi.',
+          'Raffredda il composto il più velocemente possibile (anche in un bagnomaria freddo con ghiaccio), quindi riponi in frigorifero a maturare per almeno 6 ore (meglio tutta la notte).',
+          'Versa la base fredda nella pinta e congela in freezer per 24 ore a -20°C.',
+          'Estrai la pinta dal freezer e lasciala riposare a temperatura ambiente per 10-15 minuti (o 10 secondi in microonde) per temperarla, quindi manteca sul programma "Gelato".'
         ]
       },
       {
