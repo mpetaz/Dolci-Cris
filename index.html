@@ -136,14 +136,14 @@
 
   <!-- CODICE LOGICA APPLICAZIONE -->
   <script>
-    const APP_VERSION = "20260627-0815";
+    const APP_VERSION = "20260627-0820";
 
     // Ottiene le informazioni grafiche basate sulla categoria della ricetta
     function getRecipeCategoryInfo(recipe) {
       const titleLower = recipe.title.toLowerCase();
       const isSorbetto = titleLower.includes('sorbetto') || recipe.category.toLowerCase() === 'sorbetto' || (recipe.programUsed && recipe.programUsed.toLowerCase() === 'sorbetto');
       const isTradizionale = titleLower.includes('[tradizionale]');
-      const isFit = titleLower.includes('[fit]');
+      const isLight = titleLower.includes('[light]') || titleLower.includes('[fit]');
 
       if (isSorbetto) {
         return {
@@ -163,13 +163,13 @@
           labelEmoji: '🇮🇹',
           color: '#004B87'
         };
-      } else if (isFit) {
+      } else if (isLight) {
         return {
           bgClass: 'bg-emerald-600 text-white',
           textClass: 'text-emerald-700',
           lightBgClass: 'bg-emerald-50',
-          label: 'FIT',
-          labelEmoji: '💪',
+          label: 'LIGHT',
+          labelEmoji: '🍃',
           color: '#059669'
         };
       } else {
@@ -187,7 +187,7 @@
     const initialRecipes = [
       {
         id: 'rec-1',
-        title: '[FIT] Cioccolato Protein',
+        title: '[LIGHT] Cioccolato Protein',
         category: 'Gelato',
         section: 'recipes',
         description: 'Un gelato proteico al cioccolato denso e cremoso, ricalibrato a pinta piena con cacao potenziato per coprire il retrogusto delle whey.',
@@ -215,7 +215,7 @@
       },
       {
         id: 'rec-2',
-        title: '[FIT] Malaga Proteico (Marsala & Uvetta)',
+        title: '[LIGHT] Malaga Proteico (Marsala & Uvetta)',
         category: 'Gelato',
         section: 'recipes',
         description: 'Il classico gusto Malaga rivisitato in chiave proteica con yogurt greco e un tocco alcolico di Marsala.',
@@ -276,7 +276,7 @@
       },
       {
         id: 'rec-4',
-        title: '[FIT] Sorbetto alla Pesca Matura',
+        title: '[LIGHT] Sorbetto alla Pesca Matura',
         category: 'Sorbetto',
         section: 'recipes',
         description: 'Sorbetto rinfrescante con sole pesche fresche e pochissima acqua per ridurre al minimo i cristalli di ghiaccio.',
@@ -302,7 +302,7 @@
       },
       {
         id: 'rec-5',
-        title: '[FIT] Sorbetto ai Frutti di Bosco',
+        title: '[LIGHT] Sorbetto ai Frutti di Bosco',
         category: 'Sorbetto',
         section: 'recipes',
         description: 'Sorbetto frutti di bosco cotto a caldo contro virus per la massima sicurezza alimentare.',
@@ -326,7 +326,7 @@
       },
       {
         id: 'rec-6',
-        title: '[FIT] Nice Cream Choco-Banana',
+        title: '[LIGHT] Nice Cream Choco-Banana',
         category: 'NiceCream',
         section: 'recipes',
         description: 'Gelato velocissimo senza attesa di 24 ore, cremoso ed emulsionato al volo.',
@@ -348,7 +348,7 @@
       },
       {
         id: 'rec-7',
-        title: '[FIT] Granita Siciliana al Caffè',
+        title: '[LIGHT] Granita Siciliana al Caffè',
         category: 'Granita',
         section: 'recipes',
         description: 'Una granita al caffè di tipo tradicional dolcificata con eritritolo, stabilizzata con neutro e servita con panna.',
@@ -372,7 +372,7 @@
       },
       {
         id: 'rec-8',
-        title: '[FIT] Gelato alla Mandorla Siciliano',
+        title: '[LIGHT] Gelato alla Mandorla Siciliano',
         category: 'Gelato',
         section: 'recipes',
         description: 'Gelato proteico e ricco con pasta pura di mandorle, yogurt greco e whey vaniglia.',
@@ -461,7 +461,7 @@
       },
       {
         id: 'rec-12',
-        title: '[FIT] Stracciatella Cremosa Low-Sugar',
+        title: '[LIGHT] Stracciatella Cremosa Low-Sugar',
         category: 'Gelato',
         section: 'recipes',
         description: 'Gelato fiordilatte cremosissimo a ridotto contenuto di zuccheri, arricchito con scaglie sottili di cioccolato fondente.',
