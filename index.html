@@ -136,7 +136,7 @@
 
   <!-- CODICE LOGICA APPLICAZIONE -->
   <script>
-    const APP_VERSION = "20260626-1400";
+    const APP_VERSION = "20260627-0815";
 
     // Ottiene le informazioni grafiche basate sulla categoria della ricetta
     function getRecipeCategoryInfo(recipe) {
@@ -458,6 +458,36 @@
           'Lasciare raffreddare completamente la miscela a temperatura ambiente, poi metterla in frigorifero per 2 ore.',
           'Versare la base nella pinta, livellare la superficie e congelare in freezer per 24 ore a -20°C.',
           'Estrai la pinta dal freezer e lasciala riposare a temperatura ambiente per 10-15 minuti (o 10 secondi in microonde) per temperarla. Esegui lo spin "Gelato" (se necessario, lancia un "RESPIN" con un cucchiaio di latte).'
+      },
+      {
+        id: 'rec-12',
+        title: '[FIT] Stracciatella Cremosa Low-Sugar',
+        category: 'Gelato',
+        section: 'recipes',
+        description: 'Gelato fiordilatte cremosissimo a ridotto contenuto di zuccheri, arricchito con scaglie sottili di cioccolato fondente.',
+        programUsed: 'Gelato',
+        protein: 'Leggera & Fit',
+        kcal: 'Low Sugar',
+        tips: 'Ricetta dal manuale Moulinex rielaborata senza amido di mais: usiamo 2g di Neutro SaporePuro, che non lascia sapori pastosi! Sostituito il 66% dello zucchero con eritritolo per renderla leggera. Per scaglie perfette che non si induriscono, sciogli il cioccolato con mezzo cucchiaino di olio di cocco prima di congelarlo o tritalo finemente.',
+        ingredients: [
+          { name: 'Latte intero fresco', quantity: 200, unit: 'ml' },
+          { name: 'Panna fresca liquida (35% grassi)', quantity: 200, unit: 'ml' },
+          { name: 'Zucchero semolato', quantity: 20, unit: 'g' },
+          { name: 'Eritritolo', quantity: 40, unit: 'g' },
+          { name: 'Neutro per Gelati SaporePuro (Stabilizzante)', quantity: 2, unit: 'g' },
+          { name: 'Vaniglia (estratto o polvere)', quantity: 0.5, unit: 'cucchiaino' },
+          { name: 'Cioccolato fondente 70% (per le scaglie)', quantity: 30, unit: 'g' }
+        ],
+        steps: [
+          'Miscela a secco lo zucchero semolato, l\'eritritolo e il neutro SaporePuro in una ciotolina.',
+          'In un pentolino, unisci il latte intero fresco e la panna fresca liquida. Riscalda fino a circa 80-85°C.',
+          'Aggiungi la miscela di polveri e la vaniglia nei liquidi caldi, quindi frulla energicamente col mixer a immersione per 1 minuto per attivare lo stabilizzante.',
+          'Lascia raffreddare la miscela a temperatura ambiente, poi lasciala maturare in frigorifero per 2 ore.',
+          'Versa la miscela fredda nella pinta e congelala in freezer per 24 ore a -20°C.',
+          'Prepara le scaglie tritando finemente il cioccolato fondente con un coltello (o sciogliendolo con un velo di olio di cocco per renderlo morbido al morso, stendendolo sottile su carta forno e poi spezzettandolo una volta freddo).',
+          'Estrai la pinta dal freezer e lasciala riposare a temperatura ambiente per 10-15 minuti (o 10 secondi in microonde) per temperarla.',
+          'Esegui lo spin sul programma "Gelato".',
+          'Scava un foro al centro del gelato, inserisci le scaglie di cioccolato fondente e premi il programma "MIX" per distribuirle uniformemente.'
         ]
       },
       {
