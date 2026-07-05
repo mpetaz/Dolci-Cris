@@ -112,6 +112,27 @@
       </div>
     </section>
 
+    <!-- SEZIONE RICERCA INTERATTIVA -->
+    <div id="search-container" class="px-5 mt-5 hidden">
+      <div class="relative flex items-center">
+        <span class="absolute left-4 text-slate-400 text-lg">🔍</span>
+        <input 
+          type="text" 
+          id="search-input" 
+          oninput="handleSearch(this.value)" 
+          placeholder="Cerca ricetta o ingrediente (es. caffè)..." 
+          class="w-full pl-10 pr-10 py-3 bg-slate-100 border-2 border-slate-200 rounded-2xl text-sm focus:outline-none focus:border-brand-accent transition-all font-medium placeholder-slate-400"
+        />
+        <button 
+          onclick="clearSearch()" 
+          id="search-clear-btn" 
+          class="absolute right-4 text-slate-400 text-sm hidden font-bold hover:text-slate-600"
+        >
+          ✕
+        </button>
+      </div>
+    </div>
+
     <!-- SEZIONE CONTENUTO -->
     <main id="section-content" class="flex-1 px-5 py-6">
       <!-- Il contenuto delle tab verrà inserito qui -->
@@ -136,7 +157,7 @@
 
   <!-- CODICE LOGICA APPLICAZIONE -->
   <script>
-    const APP_VERSION = "20260705-1850";
+    const APP_VERSION = "20260705-1900";
 
     // Ottiene le informazioni grafiche basate sulla categoria della ricetta
     function getRecipeCategoryInfo(recipe) {
@@ -580,6 +601,51 @@
     ];
 
     let currentSection = 'recipes';
+    let searchQuery = '';
+
+    function handleSearch(val) {
+      searchQuery = val;
+      const clearBtn = document.getElementById('search-clear-btn');
+      if (clearBtn) {
+        if (val) {
+          clearBtn.classList.remove('hidden');
+        } else {
+          clearBtn.classList.add('hidden');
+        }
+      }
+      render();
+    }
+
+    function clearSearch() {
+      const input = document.getElementById('search-input');
+      if (input) input.value = '';
+      searchQuery = '';
+      const clearBtn = document.getElementById('search-clear-btn');
+      if (clearBtn) clearBtn.classList.add('hidden');
+      render();
+    }
+
+    function clearSearchWithoutRender() {
+      const input = document.getElementById('search-input');
+      if (input) input.value = '';
+      searchQuery = '';
+      const clearBtn = document.getElementById('search-clear-btn');
+      if (clearBtn) clearBtn.classList.add('hidden');
+    }
+
+    function matchesSearch(recipe) {
+      if (!searchQuery) return true;
+      const q = searchQuery.toLowerCase().trim();
+      
+      // Controlla titolo
+      if (recipe.title.toLowerCase().includes(q)) return true;
+      
+      // Controlla descrizione
+      if (recipe.description.toLowerCase().includes(q)) return true;
+      
+      // Controlla ingredienti
+      return recipe.ingredients.some(ing => ing.name.toLowerCase().includes(q));
+    }
 
     function checkForUpdates() {
       // Esegui il controllo in background dopo un breve ritardo per non bloccare l'interfaccia iniziale
@@ -636,6 +702,19 @@
         btnDoc.className = "touch-target py-5 px-3 rounded-2xl bg-brand-dark text-white font-title font-bold text-lg flex flex-col items-center justify-center gap-2 border-2 border-brand-dark shadow-md active:scale-95 transition-all";
       } else {
         btnDoc.className = "touch-target py-5 px-3 rounded-2xl bg-slate-100 text-brand-dark font-title font-bold text-lg flex flex-col items-center justify-center gap-2 border-2 border-slate-200 active:scale-95 transition-all";
+      }
+
+      // Pulisci ricerca al cambio tab
+      clearSearchWithoutRender();
+
+      // Gestione visibilità barra di ricerca
+      const searchContainer = document.getElementById('search-container');
+      if (searchContainer) {
+        if (sectionId === 'recipes' || sectionId === 'dolci') {
+          searchContainer.classList.remove('hidden');
+        } else {
+          searchContainer.classList.add('hidden');
+        }
       }
 
       render();
@@ -937,31 +1016,44 @@
       // --- TAB 1: RICETTE GELATI ---
       if (currentSection === 'recipes') {
         let cards = '';
-        const recipesList = initialRecipes.filter(r => r.section === 'recipes' || r.section === undefined);
+        const recipesList = initialRecipes.filter(r => (r.section === 'recipes' || r.section === undefined) && matchesSearch(r));
         
-        recipesList.forEach(recipe => {
-          const catInfo = getRecipeCategoryInfo(recipe);
-          cards += `
-            <div onclick="openRecipeModal('${recipe.id}')" class="p-5 bg-white border-2 border-slate-200 rounded-3xl shadow-sm hover:shadow-md active:scale-[0.98] transition-all cursor-pointer space-y-4">
-              <div class="flex justify-between items-center">
-                <span class="px-2.5 py-0.5 bg-slate-100 text-brand-dark rounded-md text-[11px] font-extrabold uppercase font-mono tracking-wider">${recipe.programUsed}</span>
-                <span class="text-sm font-bold ${catInfo.textClass} ${catInfo.lightBgClass} px-2.5 py-1 rounded-full">
-                  ${catInfo.labelEmoji} ${recipe.protein}
-                </span>
-              </div>
-              
-              <div class="space-y-2">
-                <h3 class="font-title text-lg font-bold leading-tight ${catInfo.bgClass} px-3.5 py-2.5 rounded-2xl shadow-sm border border-black/5">${recipe.title}</h3>
-                <p class="text-sm text-slate-500 mt-1 line-clamp-2 leading-relaxed px-1">${recipe.description}</p>
-              </div>
-
-              <div class="pt-3 border-t border-slate-100 flex justify-between items-center px-1">
-                <span class="text-xs font-bold text-slate-400 font-mono">Pronto in 24h</span>
-                <span class="text-sm font-bold text-brand-accent flex items-center gap-0.5">Apri ricetta →</span>
-              </div>
+        if (recipesList.length === 0) {
+          cards = `
+            <div class="bg-slate-50 border-2 border-slate-200 p-6 rounded-3xl space-y-2 text-center col-span-full">
+              <p class="text-base text-slate-700 leading-relaxed font-bold">
+                Nessun gelato trovato
+              </p>
+              <p class="text-sm text-slate-500 leading-relaxed">
+                Prova a cercare qualcos'altro o cancella la ricerca.
+              </p>
             </div>
           `;
-        });
+        } else {
+          recipesList.forEach(recipe => {
+            const catInfo = getRecipeCategoryInfo(recipe);
+            cards += `
+              <div onclick="openRecipeModal('${recipe.id}')" class="p-5 bg-white border-2 border-slate-200 rounded-3xl shadow-sm hover:shadow-md active:scale-[0.98] transition-all cursor-pointer space-y-4">
+                <div class="flex justify-between items-center">
+                  <span class="px-2.5 py-0.5 bg-slate-100 text-brand-dark rounded-md text-[11px] font-extrabold uppercase font-mono tracking-wider">${recipe.programUsed}</span>
+                  <span class="text-sm font-bold ${catInfo.textClass} ${catInfo.lightBgClass} px-2.5 py-1 rounded-full">
+                    ${catInfo.labelEmoji} ${recipe.protein}
+                  </span>
+                </div>
+                
+                <div class="space-y-2">
+                  <h3 class="font-title text-lg font-bold leading-tight ${catInfo.bgClass} px-3.5 py-2.5 rounded-2xl shadow-sm border border-black/5">${recipe.title}</h3>
+                  <p class="text-sm text-slate-500 mt-1 line-clamp-2 leading-relaxed px-1">${recipe.description}</p>
+                </div>
+
+                <div class="pt-3 border-t border-slate-100 flex justify-between items-center px-1">
+                  <span class="text-xs font-bold text-slate-400 font-mono">Pronto in 24h</span>
+                  <span class="text-sm font-bold text-brand-accent flex items-center gap-0.5">Apri ricetta →</span>
+                </div>
+              </div>
+            `;
+          });
+        }
 
         content.innerHTML = `
           <div class="space-y-5">
@@ -976,16 +1068,16 @@
       // --- TAB 2: I DOLCI GOLOSI ---
       else if (currentSection === 'dolci') {
         let cards = '';
-        const dolciList = initialRecipes.filter(r => r.section === 'dolci');
+        const dolciList = initialRecipes.filter(r => r.section === 'dolci' && matchesSearch(r));
         
         if (dolciList.length === 0) {
           cards = `
-            <div class="bg-amber-50 border-2 border-amber-200 p-6 rounded-3xl space-y-3 text-center">
+            <div class="bg-amber-50 border-2 border-amber-200 p-6 rounded-3xl space-y-3 text-center col-span-full">
               <p class="text-base text-amber-900 leading-relaxed font-bold">
-                Nessuna ricetta inserita al momento
+                Nessun dolce trovato
               </p>
               <p class="text-sm text-amber-800 leading-relaxed">
-                Le ricette tradizionali e golose di pasticceria di Cris verranno visualizzate qui.
+                Prova a cercare qualcos'altro o cancella la ricerca.
               </p>
             </div>
           `;
