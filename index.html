@@ -157,7 +157,7 @@
 
   <!-- CODICE LOGICA APPLICAZIONE -->
   <script>
-    const APP_VERSION = "20260706-1520";
+    const APP_VERSION = "20260707-0845";
 
     // Ottiene le informazioni grafiche basate sulla categoria della ricetta
     function getRecipeCategoryInfo(recipe) {
@@ -215,20 +215,21 @@
         programUsed: 'Gelato',
         protein: '33g',
         kcal: '300',
-        tips: 'Attivazione a caldo del neutro in 60ml di latte. Il pizzico di sale e l\'aumento del cacao amaro a 25g sono pensati per eliminare completamente il sapore artificiale delle proteine in polvere!',
+        tips: 'Attivazione a caldo del neutro e dell\'inulina in 80ml di latte. L\'inulina crea una struttura cremosa e riduce la consistenza farinosa tipica delle whey. Il pizzico di sale e l\'aumento del cacao amaro a 25g eliminano il sapore artificiale delle proteine.',
         ingredients: [
           { name: 'Impact Whey Protein (Cioccolato)', quantity: 35, unit: 'g' },
           { name: 'Latte fresco parzialmente scremato', quantity: 360, unit: 'ml' },
           { name: 'Cacao Amaro', quantity: 25, unit: 'g' },
           { name: 'Eritritolo', quantity: 35, unit: 'g' },
+          { name: 'Inulina (fibra di cicoria solubile)', quantity: 12, unit: 'g' },
           { name: 'Neutro per Gelati SaporePuro (Stabilizzante)', quantity: 2.5, unit: 'g' },
           { name: 'Sale fino', quantity: 1, unit: 'pizzico' }
         ],
         steps: [
-          'Miscela a secco il Neutro SaporePuro, l\'eritritolo e il cacao amaro.',
-          'Scalda 60ml di latte a 80-85°C (temperatura di attivazione del neutro).',
-          'Versa la miscela di polveri nel latte caldo e frulla molto bene col mixer a immersione per attivare lo stabilizzante.',
-          'Unisci le Impact Whey, il restante latte freddo (300ml) e il pizzico di sale nel frullatore.',
+          'Miscela a secco il Neutro SaporePuro, l\'eritritolo, l\'inulina e il cacao amaro.',
+          'Scalda 80ml di latte a 80-85°C (temperatura di attivazione del neutro e dell\'inulina).',
+          'Versa la miscela di polveri nel latte caldo e frulla molto bene col mixer a immersione per attivare lo stabilizzante e l\'inulina.',
+          'Unisci le Impact Whey, il restante latte freddo (280ml) e il pizzico di sale nel frullatore.',
           'Frulla tutto accuratamente per ottenere un composto omogeneo, lucido e denso.',
           'Versa nella pinta (arriverà quasi al limite massimo di riempimento) e congela in freezer per 24 ore.',
           'Estrai la pinta dal freezer e lasciala riposare a temperatura ambiente per 10-15 minuti (o 10 secondi in microonde) per temperarla, quindi esegui lo spin sul programma "Gelato".'
@@ -243,20 +244,21 @@
         programUsed: 'Gelato',
         protein: '18g',
         kcal: '290',
-        tips: 'Shock Termico dell\'uvetta: metti le uvette scolate nel freezer per 20 minuti prima di inserirle nel foro centrale del gelato spinnato, così non scioglieranno il gelato.',
+        tips: 'Shock Termico dell\'uvetta: metti le uvette scolate nel freezer per 20 minuti prima di inserirle nel gelato. L\'uso dell\'inulina combinato allo yogurt greco assicura un corpo cremoso e previene il congelamento eccessivo.',
         ingredients: [
           { name: 'Yogurt Greco 0% Bianco', quantity: 200, unit: 'g' },
           { name: 'Latte fresco parzialmente scremato', quantity: 150, unit: 'ml' },
           { name: 'Marsala (per l\'uvetta e la base)', quantity: 30, unit: 'ml' },
           { name: 'Eritritolo', quantity: 30, unit: 'g' },
+          { name: 'Inulina (fibra di cicoria solubile)', quantity: 12, unit: 'g' },
           { name: 'Neutro per Gelati SaporePuro (Stabilizzante)', quantity: 3, unit: 'g' },
           { name: 'Uvetta', quantity: 40, unit: 'g' },
         ],
         steps: [
           'Metti le uvette a bagno nei 30ml di Marsala per almeno 4 ore.',
-          'Miscela a secco il Neutro SaporePuro e l\'eritritolo.',
-          'Scalda 50ml di latte a 80-85°C, unisci il neutro/eritritolo e frulla col mixer per attivarlo.',
-          'Scola le uvette trattenendo il Marsala. Unisci lo yogurt greco 0%, il latte freddo rimanente, il Marsala scolato e frulla bene.',
+          'Miscela a secco il Neutro SaporePuro, l\'inulina e l\'eritritolo.',
+          'Scalda 70ml di latte a 80-85°C, unisci la miscela di polveri e frulla col mixer per attivare gli stabilizzanti.',
+          'Scola le uvette trattenendo il Marsala. Unisci lo yogurt greco 0%, il latte freddo rimanente (80ml), il Marsala scolato e frulla bene.',
           'Versa la base nella pinta, livella la superficie e congela in freezer per 24 ore.',
           'Metti le uvette scolate nel congelatore per 20 minuti su un piattino.',
           'Estrai la pinta dal freezer e lasciala riposare a temperatura ambiente per 10-15 minuti (o 10 secondi in microonde) per temperarla. Esegui lo spin "Gelato", scava un foro al centro, versa le uvette ghiacciate e premi MIX.'
@@ -304,19 +306,19 @@
         programUsed: 'Sorbetto',
         protein: '2g',
         kcal: '140',
-        tips: 'Abbiamo ridotto l\'acqua da 80ml a 30ml! Questo trucco da gelatiere evita la formazione di ghiaccio duro e valorizza al massimo la cremosità naturale delle pesche mature.',
+        tips: 'Per eliminare i cristalli di ghiaccio, attiviamo il neutro e l\'inulina riscaldando direttamente una parte della purea di pesca (senza aggiungere acqua diluente!). L\'inulina regala al sorbetto la texture ricca tipica del gelato.',
         ingredients: [
           { name: 'Pesche Mature', quantity: 380, unit: 'g' },
-          { name: 'Acqua', quantity: 30, unit: 'ml' },
           { name: 'Eritritolo', quantity: 40, unit: 'g' },
+          { name: 'Inulina (fibra di cicoria solubile)', quantity: 10, unit: 'g' },
           { name: 'Neutro per Gelati SaporePuro (Stabilizzante)', quantity: 2.5, unit: 'g' },
           { name: 'Succo di limone fresco', quantity: 15, unit: 'ml' }
         ],
         steps: [
-          'Scalda 30ml di acqua a 80°C.',
-          'Sciogli il neutro e l\'eritritolo nell\'acqua calda frullando bene col mixer per attivarli.',
           'Sbuccia le pesche, tagliale a pezzi e frullale molto finemente con il succo di limone fino a ottenere una purea liscissima.',
-          'Unisci lo sciroppo caldo alla polpa di pesca e frulla col mixer a immersione.',
+          'Miscela a secco l\'eritritolo, l\'inulina e il neutro SaporePuro.',
+          'Preleva 120g della purea di pesche e riscaldala in un pentolino a 80-85°C. Unisci la miscela di polveri e frulla energicamente col mixer a immersione per attivare gli stabilizzanti a caldo.',
+          'Unisci la purea calda di pesca alla restante purea di pesca fredda e frulla accuratamente con il mixer per amalgamare.',
           'Versa nella pinta e congela in freezer per 24 ore.',
           'Estrai la pinta dal freezer e lasciala riposare a temperatura ambiente per 10-15 minuti (o 10 secondi in microonde) per temperarla, quindi esegui lo spin sul programma "Sorbetto".'
         ]
@@ -330,16 +332,18 @@
         programUsed: 'Sorbetto',
         protein: '3g',
         kcal: '150',
-        tips: 'La bollitura di 2-3 minuti dei frutti di bosco congelati è fondamentale per eliminare virus (Epatite A/Norovirus) e sanificare la frutta.',
+        tips: 'La bollitura di 2-3 minuti sanifica la frutta ed idrata l\'inulina, che assorbendo l\'acqua libera dei frutti di bosco previene la formazione di ghiaccio duro.',
         ingredients: [
           { name: 'Frutti di Bosco Congelati', quantity: 300, unit: 'g' },
           { name: 'Acqua', quantity: 100, unit: 'ml' },
           { name: 'Eritritolo', quantity: 40, unit: 'g' },
+          { name: 'Inulina (fibra di cicoria solubile)', quantity: 10, unit: 'g' },
           { name: 'Neutro per Gelati SaporePuro (Stabilizzante)', quantity: 2.5, unit: 'g' },
         ],
         steps: [
           'Bollisci i frutti di bosco congelati per 2-3 minuti in 100ml di acqua ed eritritolo.',
-          'Raggiunti gli 85°C in raffreddamento, sciogli il neutro direttamente nella purea calda frullando col mixer.',
+          'Miscela a secco l\'inulina e il neutro SaporePuro.',
+          'Raggiunti gli 85°C in raffreddamento, sciogli la miscela di inulina/neutro direttamente nella purea calda frullando col mixer.',
           'Lascia raffreddare a temperatura ambiente.',
           'Versa nella pinta e congela per 24 ore.',
           'Estrai la pinta dal freezer e lasciala riposare a temperatura ambiente per 10-15 minuti (o 10 secondi in microonde) per temperarla, quindi esegui lo spin sul programma "Sorbetto".'
@@ -376,17 +380,19 @@
         programUsed: 'Granita',
         protein: '4g',
         kcal: '180',
-        tips: 'Monta la panna freschissima e dolcificala con pochissimo eritritolo a velo per una guarnizione spettacolare.',
+        tips: 'L\'inulina (8g) dona alla granita un corpo vellutato tipico siciliano ed evita la separazione del caffè dal ghiaccio. Monta la panna con pochissimo eritritolo a velo.',
         ingredients: [
           { name: 'Caffè in grani/polvere', quantity: 30, unit: 'g' },
           { name: 'Acqua', quantity: 300, unit: 'ml' },
           { name: 'Eritritolo', quantity: 45, unit: 'g' },
+          { name: 'Inulina (fibra di cicoria solubile)', quantity: 8, unit: 'g' },
           { name: 'Neutro per Gelati SaporePuro (Stabilizzante)', quantity: 1.5, unit: 'g' },
           { name: 'Panna da montare', quantity: 50, unit: 'ml' },
         ],
         steps: [
           'Prepara 300ml di caffè caldo a filtro.',
-          'Sciogli eritritolo e neutro nel caffè bollente frullando.',
+          'Miscela a secco l\'eritritolo, l\'inulina e il neutro SaporePuro.',
+          'Sciogli la miscela di polveri nel caffè bollente frullando col mixer a immersione.',
           'Lascia raffreddare e poi versa nella pinta.',
           'Congela per 24 ore. Estrai la pinta, lasciala riposare per 5 minuti a temperatura ambiente per temperarla, quindi esegui lo spin sul programma "Granita".'
         ]
@@ -400,20 +406,21 @@
         programUsed: 'Gelato',
         protein: '24g',
         kcal: '380',
-        tips: 'Diluisci la pasta pura di mandorle 100% aggiungendo il latte freddo a filo un po\' alla volta per ottenere un\'emulsione senza grumi oleosi.',
+        tips: 'Diluisci la pasta pura di mandorle aggiungendo il latte freddo a filo. L\'inulina integrata a secco si lega alle mandorle e alle whey donando una morbidezza eccezionale.',
         ingredients: [
           { name: 'Pasta Pura di Mandorle 100%', quantity: 80, unit: 'g' },
           { name: 'Yogurt Greco 0% Bianco', quantity: 200, unit: 'g' },
           { name: 'Latte fresco parzialmente scremato', quantity: 150, unit: 'ml' },
           { name: 'Impact Whey Protein (Vaniglia)', quantity: 20, unit: 'g' },
           { name: 'Eritritolo', quantity: 35, unit: 'g' },
+          { name: 'Inulina (fibra di cicoria solubile)', quantity: 12, unit: 'g' },
           { name: 'Neutro per Gelati SaporePuro (Stabilizzante)', quantity: 2.5, unit: 'g' },
         ],
         steps: [
-          'Miscela a secco il Neutro SaporePuro e l\'eritritolo.',
-          'Scalda 50ml di latte a 80-85°C e sciogli la miscela frullando.',
-          'Diluisci la pasta di mandorla con il latte freddo rimanente a filo.',
-          'Unisci yogurt greco, whey, sciroppo caldo e pasta di mandorle frullando.',
+          'Miscela a secco il Neutro SaporePuro, l\'inulina e l\'eritritolo.',
+          'Scalda 80ml di latte a 80-85°C, unisci la miscela di polveri e frulla col mixer per attivarla.',
+          'Diluisci la pasta di mandorla con il latte freddo rimanente (70ml) a filo per ottenere un\'emulsione senza grumi.',
+          'Unisci lo yogurt greco, le whey, lo sciroppo caldo e la pasta di mandorle frullando accuratamente.',
           'Versa nella pinta e congela in freezer per 24 ore.',
           'Estrai la pinta dal freezer e lasciala riposare a temperatura ambiente per 10-15 minuti (o 10 secondi in microonde) per temperarla, quindi esegui lo spin sul programma "Gelato".'
         ]
@@ -490,20 +497,21 @@
         programUsed: 'Gelato',
         protein: 'Leggera & Fit',
         kcal: 'Low Sugar',
-        tips: 'Ricetta dal manuale Moulinex rielaborata senza amido di mais: usiamo 2g di Neutro SaporePuro, che non lascia sapori pastosi! Sostituito il 66% dello zucchero con eritritolo per renderla leggera. Per scaglie perfette che non si induriscono, sciogli il cioccolato con mezzo cucchiaino di olio di cocco prima di congelarlo o tritalo finemente.',
+        tips: 'Ricetta dal manuale Moulinex rielaborata: usiamo 2g di Neutro e 12g di inulina per legare l\'acqua libera di latte e panna. Sostituito il 66% dello zucchero con eritritolo. Per scaglie perfette, sciogli il cioccolato con mezzo cucchiaino di olio di cocco prima di congelarlo.',
         ingredients: [
           { name: 'Latte intero fresco', quantity: 200, unit: 'ml' },
           { name: 'Panna fresca liquida (35% grassi)', quantity: 200, unit: 'ml' },
           { name: 'Zucchero semolato', quantity: 20, unit: 'g' },
           { name: 'Eritritolo', quantity: 40, unit: 'g' },
+          { name: 'Inulina (fibra di cicoria solubile)', quantity: 12, unit: 'g' },
           { name: 'Neutro per Gelati SaporePuro (Stabilizzante)', quantity: 2, unit: 'g' },
           { name: 'Vaniglia (estratto o polvere)', quantity: 0.5, unit: 'cucchiaino' },
           { name: 'Cioccolato fondente 70% (per le scaglie)', quantity: 30, unit: 'g' }
         ],
         steps: [
-          'Miscela a secco lo zucchero semolato, l\'eritritolo e il neutro SaporePuro in una ciotolina.',
+          'Miscela a secco lo zucchero semolato, l\'eritritolo, l\'inulina e il neutro SaporePuro in una ciotolina.',
           'In un pentolino, unisci il latte intero fresco e la panna fresca liquida. Riscalda fino a circa 80-85°C.',
-          'Aggiungi la miscela di polveri e la vaniglia nei liquidi caldi, quindi frulla energicamente col mixer a immersione per 1 minuto per attivare lo stabilizzante.',
+          'Aggiungi la miscela di polveri e la vaniglia nei liquidi caldi, quindi frulla energicamente col mixer a immersione per 1 minuto per attivare gli stabilizzanti.',
           'Lascia raffreddare la miscela a temperatura ambiente, poi lasciala maturare in frigorifero per 2 ore.',
           'Versa la miscela fredda nella pinta e congelala in freezer per 24 ore a -20°C.',
           'Prepara le scaglie tritando finemente il cioccolato fondente con un coltello (o sciogliendolo con un velo di olio di cocco per renderlo morbido al morso, stendendolo sottile su carta forno e poi spezzettandolo una volta freddo).',
@@ -546,21 +554,22 @@
         programUsed: 'Gelato',
         protein: 'Leggera & Proteica',
         kcal: 'Senza Zucchero',
-        tips: 'Usa latte in polvere e neutro per assorbire l\'acqua libera dell\'espresso! Evita il caffè americano che aggiungerebbe troppa acqua libera. Variazione Mochaccino: puoi sostituire 25g di eritritolo con 25g di whey al cioccolato per un gusto caffè-cioccolato proteico spettacolare.',
+        tips: 'L\'uso combinato di latte in polvere, inulina (12g) e neutro scherma l\'acqua dell\'espresso garantendo una cremosità superba senza grassi aggiunti. Variazione Mochaccino: puoi sostituire 25g di eritritolo con 25g di whey al cioccolato per un gusto caffè-cioccolato proteico spettacolare.',
         ingredients: [
           { name: 'Yogurt Greco 0% al Caffè', quantity: 180, unit: 'g' },
           { name: 'Latte intero fresco', quantity: 150, unit: 'ml' },
           { name: 'Latte scremato in polvere', quantity: 25, unit: 'g' },
           { name: 'Eritritolo', quantity: 45, unit: 'g' },
+          { name: 'Inulina (fibra di cicoria solubile)', quantity: 12, unit: 'g' },
           { name: 'Caffè espresso bollente', quantity: 30, unit: 'ml' },
           { name: 'Caffè solubile istantaneo (per booster)', quantity: 6, unit: 'g' },
           { name: 'Neutro per Gelati SaporePuro (Stabilizzante)', quantity: 2, unit: 'g' }
         ],
         steps: [
           'Prepara un caffè espresso bollente (circa 30ml).',
-          'In una ciotolina, miscela a secco il latte in polvere, l\'eritritolo, il caffè solubile e il neutro SaporePuro.',
-          'Versa il caffè espresso bollente sulla miscela di polveri e frulla energicamente col mixer a immersione per attivare il neutro ed evitare grumi.',
-          'Aggiungi il latte intero fresco freddo e lo yogurt greco al caffè, frullando accuratamente fino a ottenere un composto liscio, lucido e omogeneo.',
+          'In una ciotolina, miscela a secco il latte in polvere, l\'eritritolo, l\'inulina, il caffè solubile e il neutro SaporePuro.',
+          'Versa il caffè espresso bollente sulla miscela di polveri, aggiungi 100ml di latte intero caldo (a 80-85°C) e frulla energicamente col mixer a immersione per attivare il neutro ed evitare grumi.',
+          'Aggiungi il latte intero freddo rimanente (50ml) e lo yogurt greco al caffè, frullando accuratamente fino a ottenere un composto liscio, lucido e omogeneo.',
           'Versa la miscela nella pinta e congelala in freezer per 24 ore a -20°C.',
           'Estrai la pinta dal freezer e lasciala riposare a temperatura ambiente per 10-15 minuti (o 10 secondi in microonde) per temperarla, quindi manteca sul programma "Gelato".'
         ]
