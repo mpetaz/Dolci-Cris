@@ -157,7 +157,7 @@
 
   <!-- CODICE LOGICA APPLICAZIONE -->
   <script>
-    const APP_VERSION = "20260713-0935";
+    const APP_VERSION = "20260717-1635";
 
     // Ottiene le informazioni grafiche basate sulla categoria della ricetta
     function getRecipeCategoryInfo(recipe) {
@@ -237,29 +237,31 @@
       },
       {
         id: 'rec-2',
-        title: '[LIGHT] Malaga Proteico (Marsala & Uvetta)',
+        title: '[LIGHT] Malaga Proteico (Budino Milbona)',
         category: 'Gelato',
         section: 'recipes',
-        description: 'Il classico gusto Malaga rivisitato in chiave proteica con yogurt greco e un tocco alcolico di Marsala.',
+        description: 'Il classico gusto Malaga rivisitato in chiave proteica e cremosissima usando il budino alla vaniglia come base custard, uvetta e Marsala.',
         programUsed: 'Gelato',
-        protein: '18g',
-        kcal: '290',
-        tips: 'Shock Termico dell\'uvetta: metti le uvette scolate nel freezer per 20 minuti prima di inserirle nel gelato. L\'uso dell\'inulina combinato allo yogurt greco assicura un corpo cremoso e previene il congelamento eccessivo.',
+        protein: '31g',
+        kcal: '320',
+        tips: 'Shock Termico dell\'uvetta: metti le uvette scolate nel freezer per 20 minuti prima di inserirle nel gelato. L\'uso dell\'inulina e del latte in polvere a caldo si lega perfettamente con la struttura del budino alla vaniglia. Nota anti-grumi: miscela a secco il latte in polvere con inulina, eritritolo e neutro prima di unire il latte caldo.',
         ingredients: [
-          { name: 'Yogurt Greco 0% Bianco', quantity: 200, unit: 'g' },
+          { name: 'Budino Proteico alla Vaniglia Milbona', quantity: 200, unit: 'g' },
           { name: 'Latte fresco parzialmente scremato', quantity: 150, unit: 'ml' },
+          { name: 'Latte scremato in polvere', quantity: 20, unit: 'g' },
           { name: 'Marsala (per l\'uvetta e la base)', quantity: 30, unit: 'ml' },
-          { name: 'Eritritolo', quantity: 30, unit: 'g' },
+          { name: 'Eritritolo', quantity: 25, unit: 'g' },
           { name: 'Inulina (fibra di cicoria solubile)', quantity: 12, unit: 'g' },
-          { name: 'Neutro per Gelati SaporePuro (Stabilizzante)', quantity: 3, unit: 'g' },
-          { name: 'Uvetta', quantity: 40, unit: 'g' },
+          { name: 'Neutro per Gelati SaporePuro (Stabilizzante)', quantity: 2.5, unit: 'g' },
+          { name: 'Uvetta', quantity: 40, unit: 'g' }
         ],
         steps: [
           'Metti le uvette a bagno nei 30ml di Marsala per almeno 4 ore.',
-          'Miscela a secco il Neutro SaporePuro, l\'inulina e l\'eritritolo.',
-          'Scalda 70ml di latte a 80-85°C, unisci la miscela di polveri e frulla col mixer per attivare gli stabilizzanti.',
-          'Scola le uvette trattenendo il Marsala. Unisci lo yogurt greco 0%, il latte freddo rimanente (80ml), il Marsala scolato e frulla bene.',
-          'Versa la base nella pinta, livella la superficie e congela in freezer per 24 ore.',
+          'Miscela a secco il latte in polvere, l\'eritritolo, l\'inulina e il neutro SaporePuro.',
+          'Scalda 80ml di latte a 80-85°C (temperatura di idratazione del neutro e inulina).',
+          'Versa la miscela di polveri nel latte caldo e frulla col mixer a immersione per attivare gli stabilizzanti ed evitare grumi, ottenendo una crema liscia.',
+          'Scola le uvette trattenendo il Marsala. In una ciotola, unisci il budino alla vaniglia (200g), la crema calda di latte e polveri, il latte freddo rimanente (70ml) e il Marsala scolato, quindi frulla accuratamente col mixer.',
+          'Versa la base nella pinta, livella la superficie e congela in freezer per 24 ore a -20°C.',
           'Metti le uvette scolate nel congelatore per 20 minuti su un piattino.',
           'Estrai la pinta dal freezer e lasciala riposare a temperatura ambiente per 10-15 minuti (o 10 secondi in microonde) per temperarla. Esegui lo spin "Gelato", scava un foro al centro, versa le uvette ghiacciate e premi MIX.'
         ]
@@ -491,34 +493,33 @@
       },
       {
         id: 'rec-12',
-        title: '[LIGHT] Stracciatella Cremosa Low-Sugar',
+        title: '[LIGHT] Stracciatella Cremosa (Budino Milbona)',
         category: 'Gelato',
         section: 'recipes',
-        description: 'Gelato fiordilatte cremosissimo a ridotto contenuto di zuccheri, arricchito con scaglie sottili di cioccolato fondente.',
+        description: 'Gelato stracciatella leggerissimo e super proteico. Utilizza il budino alla stracciatella come base cremosa, arricchito con scaglie di cioccolato fondente.',
         programUsed: 'Gelato',
-        protein: 'Leggera & Fit',
-        kcal: 'Low Sugar',
-        tips: 'Ricetta dal manuale Moulinex rielaborata: usiamo 2g di Neutro e 12g di inulina per legare l\'acqua libera di latte e panna. Sostituito il 66% dello zucchero con eritritolo. Per scaglie perfette, sciogli il cioccolato con mezzo cucchiaino di olio di cocco prima di congelarlo.',
+        protein: '31g',
+        kcal: '290',
+        tips: 'L\'uso del budino proteico alla stracciatella Milbona elimina l\'acidità tipica dello yogurt e riduce drasticamente i grassi della panna classica. Aggiungiamo scaglie di cioccolato fondente per massimizzare la croccantezza. Nota anti-grumi: miscela a secco il latte in polvere con eritritolo, inulina e neutro prima di scioglierlo nel latte caldo.',
         ingredients: [
-          { name: 'Latte intero fresco', quantity: 200, unit: 'ml' },
-          { name: 'Panna fresca liquida (35% grassi)', quantity: 200, unit: 'ml' },
-          { name: 'Zucchero semolato', quantity: 20, unit: 'g' },
-          { name: 'Eritritolo', quantity: 40, unit: 'g' },
+          { name: 'Budino Proteico alla Stracciatella Milbona', quantity: 200, unit: 'g' },
+          { name: 'Latte fresco (parzialmente scremato o intero)', quantity: 150, unit: 'ml' },
+          { name: 'Latte scremato in polvere', quantity: 20, unit: 'g' },
+          { name: 'Eritritolo', quantity: 25, unit: 'g' },
           { name: 'Inulina (fibra di cicoria solubile)', quantity: 12, unit: 'g' },
           { name: 'Neutro per Gelati SaporePuro (Stabilizzante)', quantity: 2, unit: 'g' },
-          { name: 'Vaniglia (estratto o polvere)', quantity: 0.5, unit: 'cucchiaino' },
           { name: 'Cioccolato fondente 70% (per le scaglie)', quantity: 30, unit: 'g' }
         ],
         steps: [
-          'Miscela a secco lo zucchero semolato, l\'eritritolo, l\'inulina e il neutro SaporePuro in una ciotolina.',
-          'In un pentolino, unisci il latte intero fresco e la panna fresca liquida. Riscalda fino a circa 80-85°C.',
-          'Aggiungi la miscela di polveri e la vaniglia nei liquidi caldi, quindi frulla energicamente col mixer a immersione per 1 minuto per attivare gli stabilizzanti.',
-          'Lascia raffreddare la miscela a temperatura ambiente, poi lasciala maturare in frigorifero per 2 ore.',
-          'Versa la miscela fredda nella pinta e congelala in freezer per 24 ore a -20°C.',
+          'Miscela a secco il latte in polvere, l\'eritritolo, l\'inulina e il neutro SaporePuro.',
+          'Scalda 100ml di latte a 80-85°C (temperatura di idratazione del neutro e dell\'inulina).',
+          'Versa la miscela di polveri nel latte caldo e frulla energicamente col mixer a immersione per idratare e attivare il neutro e l\'inulina, ottenendo una crema liscia.',
+          'In una ciotola, unisci l\'intero tubetto di budino proteico alla stracciatella Milbona (200g), lo sciroppo caldo di latte e polveri e il latte freddo rimanente (50ml), frullando col mixer per circa 1 minuto per ottenere un composto liscio ed emulsionato.',
+          'Versa la base nella pinta e congelala in freezer per 24 ore a -20°C.',
           'Prepara le scaglie tritando finemente il cioccolato fondente con un coltello (o sciogliendolo con un velo di olio di cocco per renderlo morbido al morso, stendendolo sottile su carta forno e poi spezzettandolo una volta freddo).',
           'Estrai la pinta dal freezer e lasciala riposare a temperatura ambiente per 10-15 minuti (o 10 secondi in microonde) per temperarla.',
           'Esegui lo spin sul programma "Gelato".',
-          'Scava un foro al centro del gelato, inserisci le scaglie di cioccolato fondente e premi il programma "MIX" per distribuirle uniformemente.'
+          'Scava un foro al centro del gelato, inserisci le scaglie di cioccolato fondente fredde e premi il programma "MIX" per distribuirle uniformemente.'
         ]
       },
       {
